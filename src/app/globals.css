@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-surface text-on-surface;
+  }
+
+  ::selection {
+    @apply bg-secondary-container text-on-secondary-container;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-surface-container-lowest/70 backdrop-blur-[20px];
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center
+      bg-gradient-to-b from-primary to-primary-container
+      text-on-primary font-medium
+      px-8 py-3.5 rounded-full
+      transition-all duration-200
+      hover:opacity-90 hover:shadow-ambient-sm
+      active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center
+      bg-primary-fixed text-on-primary-fixed font-medium
+      px-8 py-3.5 rounded-full
+      transition-all duration-200
+      hover:opacity-90
+      active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center
+      text-primary font-medium
+      px-4 py-2
+      transition-all duration-200
+      hover:underline hover:underline-offset-4;
+  }
+
+  .label-meta {
+    @apply text-xs font-medium uppercase tracking-label text-primary;
+  }
+
+  .card {
+    @apply bg-surface-container-low rounded-lg p-6;
+  }
+
+  .card-floating {
+    @apply bg-surface-container-lowest rounded-lg p-6 shadow-ambient;
+  }
+
+  .input-field {
+    @apply w-full bg-surface-container-highest
+      rounded-none rounded-b px-4 py-3
+      border-b-2 border-outline-variant/20
+      text-on-surface placeholder:text-on-surface-variant/50
+      transition-all duration-200
+      focus:outline-none focus:bg-primary-fixed focus:border-primary;
+  }
+
+  .code-block {
+    @apply bg-inverse-surface text-primary-fixed rounded-lg p-6 font-mono text-sm;
+  }
+
+  .curator-chip {
+    @apply inline-flex items-center
+      bg-secondary-container text-on-secondary-container
+      px-4 py-1.5 rounded-full
+      text-xs font-medium;
+  }
+}
