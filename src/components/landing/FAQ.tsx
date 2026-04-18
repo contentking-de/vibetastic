@@ -19,11 +19,6 @@ const faqs = [
       "Du brauchst einen Laptop mit Internetzugang. Die genaue Tool-Liste und Setup-Anleitung erhältst du nach der Anmeldung im Club-Bereich. Wir nutzen hauptsächlich Cursor als Code-Editor und verschiedene KI-APIs.",
   },
   {
-    question: "Gibt es eine Geld-zurück-Garantie?",
-    answer:
-      "Ja. Wenn du nach dem ersten Workshop-Tag nicht zufrieden bist, erstatten wir dir den vollen Betrag. Kein Risiko für dich.",
-  },
-  {
     question: "Wie groß ist die Gruppe?",
     answer:
       "Maximal 5 Teilnehmer. So können wir sicherstellen, dass jeder individuelle Unterstützung bekommt und seine eigenen Projekte umsetzen kann.",

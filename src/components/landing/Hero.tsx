@@ -10,7 +10,12 @@ export default function Hero() {
           <p className="label-meta mb-6">Exklusiver Workshop</p>
 
           <h1 className="text-5xl md:text-7xl font-bold tracking-display leading-[1.05] text-on-surface mb-8">
-            VibeCoding
+            <span className="bg-gradient-to-r from-[#ff751f] via-primary-container to-primary bg-clip-text text-transparent">
+              Vibe
+            </span>
+            <span className="bg-gradient-to-r from-primary to-tertiary bg-clip-text text-transparent">
+              Coding
+            </span>
             <br />
             <span className="text-primary">für Einsteiger.</span>
           </h1>
