@@ -37,7 +37,7 @@ export default function Hero() {
             </div>
             <div className="w-8 h-8 rounded-full bg-surface-container-high" />
             <div>
-              <p className="text-2xl font-bold text-on-surface">15 Plätze</p>
+              <p className="text-2xl font-bold text-on-surface">5 Plätze</p>
               <p className="text-sm text-on-surface-variant">Limitierte Teilnehmer</p>
             </div>
             <div className="w-8 h-8 rounded-full bg-surface-container-high hidden sm:block" />

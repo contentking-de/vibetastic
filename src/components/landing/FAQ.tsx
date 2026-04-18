@@ -26,7 +26,7 @@ const faqs = [
   {
     question: "Wie groß ist die Gruppe?",
     answer:
-      "Maximal 15 Teilnehmer. So können wir sicherstellen, dass jeder individuelle Unterstützung bekommt und seine eigenen Projekte umsetzen kann.",
+      "Maximal 5 Teilnehmer. So können wir sicherstellen, dass jeder individuelle Unterstützung bekommt und seine eigenen Projekte umsetzen kann.",
   },
   {
     question: "Was ist der Vibetastic Club?",

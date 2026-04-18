@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   title: "Vibetastic – Vibe Coding Workshop",
   description:
     "Lerne Vibe Coding in einem exklusiven Workshop. Programmiere mit KI-Unterstützung und erschaffe Projekte, die sich gut anfühlen.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 export default function RootLayout({

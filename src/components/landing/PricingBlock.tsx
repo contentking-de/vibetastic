@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function PricingBlock() {
   const included = [
     "2 Tage Intensiv-Workshop vor Ort",
-    "Persönliche Betreuung (max. 15 Teilnehmer)",
+    "Persönliche Betreuung (max. 5 Teilnehmer)",
     "Alle Workshop-Materialien & Templates",
     "Zugang zum exklusiven Vibetastic Club",
     "Lebenslanger Zugang zu Updates & Community",

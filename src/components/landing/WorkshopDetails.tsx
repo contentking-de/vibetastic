@@ -59,7 +59,7 @@ export default function WorkshopDetails() {
               Vor Ort & Hands-on
             </p>
             <p className="text-sm text-on-surface-variant mt-1">
-              Max. 15 Teilnehmer für individuelle Betreuung
+              Max. 5 Teilnehmer für individuelle Betreuung
             </p>
           </div>
         </div>

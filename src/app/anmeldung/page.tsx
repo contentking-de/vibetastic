@@ -49,7 +49,7 @@ export default function AnmeldungPage() {
           <div className="max-w-lg mx-auto card-floating">
             <p className="label-meta mb-2">Vibetastic Workshop</p>
             <p className="text-sm text-on-surface-variant mb-8">
-              2-Tage Intensiv &middot; Vor Ort &middot; Max. 15 Plätze
+              2-Tage Intensiv &middot; Vor Ort &middot; Max. 5 Plätze
             </p>
 
             <div className="mb-8">
