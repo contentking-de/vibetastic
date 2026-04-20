@@ -8,6 +8,7 @@ export default function PricingBlock() {
     "Zugang zum exklusiven Vibetastic Club",
     "Lebenslanger Zugang zu Updates & Community",
     "Getränke & Snacks während des Workshops",
+    "Inkl. 2 Übernachtungen mit Frühstück, Mittag- und Abendessen",
   ]
 
   return (
@@ -20,14 +21,21 @@ export default function PricingBlock() {
           </h2>
         </div>
 
-        <div className="max-w-lg mx-auto card-floating text-center">
+        <div className="max-w-lg mx-auto card-floating text-center relative overflow-hidden">
+          <div className="absolute -top-2 -right-2 z-10">
+            <div className="bg-secondary text-white text-xs font-bold uppercase tracking-label px-12 py-1.5 rotate-45 translate-x-8 translate-y-11 origin-center shadow-sm">
+              All Inclusive
+            </div>
+          </div>
+
           <p className="label-meta mb-6">Vibetastic Workshop</p>
 
           <div className="mb-8">
             <span className="text-6xl md:text-7xl font-bold tracking-display text-on-surface">
-              297
+              1.790
             </span>
             <span className="text-2xl text-on-surface-variant ml-1">&euro;</span>
+            <p className="text-sm text-on-surface-variant mt-2">zzgl. 19% MwSt.</p>
           </div>
 
           <div className="space-y-6 text-left mb-10">
@@ -56,7 +64,7 @@ export default function PricingBlock() {
           </Link>
 
           <p className="mt-4 text-xs text-on-surface-variant/60">
-            Einmalige Zahlung. Inkl. MwSt. Sichere Zahlung über Stripe.
+            Einmalige Zahlung. Zzgl. 19% MwSt. Sichere Zahlung über Stripe.
           </p>
         </div>
       </div>

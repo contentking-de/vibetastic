@@ -12,6 +12,7 @@ const included = [
   "Exklusiver Zugang zum Vibetastic Club",
   "Lebenslanger Zugang zu Updates & Community",
   "Getränke & Snacks inklusive",
+  "Inkl. 2 Übernachtungen mit Frühstück, Mittag- und Abendessen",
 ]
 
 export default function AnmeldungPage() {
@@ -54,11 +55,11 @@ export default function AnmeldungPage() {
 
             <div className="mb-8">
               <span className="text-6xl font-bold tracking-display text-on-surface">
-                297
+                1.790
               </span>
               <span className="text-2xl text-on-surface-variant ml-1">&euro;</span>
               <p className="text-sm text-on-surface-variant mt-1">
-                Einmalige Zahlung inkl. MwSt.
+                Einmalige Zahlung zzgl. 19% MwSt.
               </p>
             </div>
 

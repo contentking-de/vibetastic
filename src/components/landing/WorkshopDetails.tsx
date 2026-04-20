@@ -47,10 +47,10 @@ export default function WorkshopDetails() {
           <div className="card-floating">
             <p className="label-meta mb-2">Wo</p>
             <p className="text-lg font-semibold text-on-surface">
-              Deutschland
+              contentking.de Agentur
             </p>
             <p className="text-sm text-on-surface-variant mt-1">
-              Genauer Ort wird nach Anmeldung bekannt gegeben
+              Eisenbahnstrasse 1, 88677 Markdorf
             </p>
           </div>
           <div className="card-floating">
