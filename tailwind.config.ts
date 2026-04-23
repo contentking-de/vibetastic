@@ -7,47 +7,49 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      sm: "640px",
+      md: "768px",
+      "md-wide": "860px",
+      lg: "960px",
+      xl: "1080px",
+      "2xl": "1280px",
+    },
     extend: {
       fontFamily: {
-        sans: ["var(--font-manrope)", "system-ui", "sans-serif"],
+        display: "var(--font-display)",
+        body: "var(--font-body)",
+        mono: "var(--font-mono)",
       },
       colors: {
-        surface: {
-          DEFAULT: "#fff8f1",
-          variant: "#e4ddd5",
-          container: {
-            lowest: "#ffffff",
-            low: "#faf2ea",
-            DEFAULT: "#f2eae2",
-            high: "#eee7df",
-            highest: "#e8e1da",
-          },
+        bg: {
+          DEFAULT: "var(--bg)",
+          soft: "var(--bg-soft)",
+          card: "var(--bg-card)",
         },
-        "on-surface": {
-          DEFAULT: "#1e1b17",
-          variant: "#524e47",
+        ink: {
+          DEFAULT: "var(--ink)",
+          soft: "var(--ink-soft)",
+          mute: "var(--ink-mute)",
         },
-        primary: {
-          DEFAULT: "#703210",
-          container: "#8d4925",
-          fixed: "#ffdbcc",
-          "fixed-dim": "#f0c5b0",
+        accent: {
+          DEFAULT: "var(--accent)",
+          ink: "var(--accent-ink)",
         },
-        "on-primary": "#ffffff",
-        "on-primary-fixed": "#351000",
-        secondary: {
-          DEFAULT: "#745b20",
-          container: "#ffdb94",
+        line: "var(--line)",
+        terminal: {
+          bg: "var(--terminal-bg)",
+          fg: "var(--terminal-fg)",
+          accent: "var(--terminal-accent)",
         },
-        "on-secondary-container": "#795f24",
-        tertiary: {
-          DEFAULT: "#004b56",
-          container: "#b8eaf3",
-        },
-        "inverse-surface": "#1e1b17",
-        outline: {
-          variant: "#d9c2b8",
-        },
+      },
+      maxWidth: {
+        page: "1240px",
+      },
+      letterSpacing: {
+        display: "-0.025em",
+        label: "0.05em",
+        wide: "0.08em",
       },
       borderRadius: {
         sm: "0.25rem",
@@ -57,14 +59,6 @@ const config: Config = {
         xl: "1.25rem",
         "2xl": "1.5rem",
         full: "9999px",
-      },
-      letterSpacing: {
-        display: "-0.02em",
-        label: "0.05em",
-      },
-      boxShadow: {
-        ambient: "0px 20px 40px rgba(30, 27, 23, 0.06)",
-        "ambient-sm": "0px 12px 24px rgba(30, 27, 23, 0.05)",
       },
     },
   },

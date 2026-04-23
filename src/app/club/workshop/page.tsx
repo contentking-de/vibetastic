@@ -10,7 +10,7 @@ export default function WorkshopPage() {
         { time: "12:30 – 13:30", title: "Mittagspause", description: "" },
         { time: "13:30 – 15:00", title: "Dein erstes Projekt", description: "Von der Idee zum funktionierenden Prototyp in 90 Minuten." },
         { time: "15:00 – 15:15", title: "Kaffeepause", description: "" },
-        { time: "15:15 – 16:30", title: "Hands-on: Landing Pages & Web Apps", description: "Verschiedene Projekt-Templates ausprobieren und anpassen." },
+        { time: "15:15 – 16:30", title: "Hands-on: Landing Pages & Websites", description: "Verschiedene Projekt-Templates ausprobieren und anpassen." },
         { time: "16:30 – 17:00", title: "Wrap-up & Ausblick Tag 2", description: "Reflexion, offene Fragen, Vorschau auf morgen." },
       ],
     },

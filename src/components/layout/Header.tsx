@@ -1,42 +1,48 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { useState } from "react"
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 glass">
-      <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-1.5 text-2xl font-extrabold tracking-display text-on-surface">
-          <Image src="/vibetastic-logo.svg" alt="vibetastic Logo" width={28} height={28} />
-          vibetastic
+    <nav
+      className="sticky top-0 z-40 border-b border-line"
+      style={{
+        background: "color-mix(in oklab, var(--bg) 85%, transparent)",
+        backdropFilter: "blur(12px)",
+      }}
+    >
+      <div className="wrap flex items-center justify-between py-[18px]">
+        <Link href="#top" className="flex items-baseline gap-[2px] font-mono text-[15px] font-medium tracking-tight">
+          <span className="font-display text-2xl font-normal tracking-display">vibetastic</span>
+          <span
+            className="inline-block w-2 h-4 ml-1"
+            style={{
+              background: "var(--accent)",
+              transform: "translateY(2px)",
+              animation: "blink 1.1s steps(2) infinite",
+            }}
+          />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
-          <Link href="#workshop" className="text-sm text-on-surface-variant hover:text-on-surface transition-colors">
-            Workshop
-          </Link>
-          <Link href="#pricing" className="text-sm text-on-surface-variant hover:text-on-surface transition-colors">
-            Preise
-          </Link>
-          <Link href="#faq" className="text-sm text-on-surface-variant hover:text-on-surface transition-colors">
-            FAQ
-          </Link>
-          <Link href="/login" className="text-sm text-on-surface-variant hover:text-on-surface transition-colors">
-            Club Login
-          </Link>
-          <Link href="/anmeldung" className="btn-primary text-sm !px-6 !py-2.5">
-            Jetzt anmelden
-          </Link>
-        </nav>
+        <div className="hidden md:flex items-center gap-7 text-sm text-ink-soft">
+          <Link href="#what" className="transition-colors hover:text-ink">Was ist das?</Link>
+          <Link href="#agenda" className="transition-colors hover:text-ink">Agenda</Link>
+          <Link href="#schedule" className="transition-colors hover:text-ink">Termine</Link>
+          <Link href="#price" className="transition-colors hover:text-ink">Preise</Link>
+          <Link href="#faq" className="transition-colors hover:text-ink">FAQ</Link>
+        </div>
+
+        <Link href="#signup" className="hidden md:inline-flex btn">
+          Anmelden →
+        </Link>
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden p-2 text-on-surface"
-          aria-label="Menü öffnen"
+          className="md:hidden p-2 text-ink"
+          aria-label="Menü"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             {menuOpen ? (
@@ -49,24 +55,15 @@ export default function Header() {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden glass bg-surface-container-low/80 px-6 py-6 space-y-4">
-          <Link href="#workshop" className="block text-on-surface-variant" onClick={() => setMenuOpen(false)}>
-            Workshop
-          </Link>
-          <Link href="#pricing" className="block text-on-surface-variant" onClick={() => setMenuOpen(false)}>
-            Preise
-          </Link>
-          <Link href="#faq" className="block text-on-surface-variant" onClick={() => setMenuOpen(false)}>
-            FAQ
-          </Link>
-          <Link href="/login" className="block text-on-surface-variant" onClick={() => setMenuOpen(false)}>
-            Club Login
-          </Link>
-          <Link href="/anmeldung" className="btn-primary text-sm w-full text-center" onClick={() => setMenuOpen(false)}>
-            Jetzt anmelden
-          </Link>
+        <div className="md:hidden px-[var(--gutter)] pb-6 space-y-4 text-sm text-ink-soft">
+          <Link href="#what" className="block" onClick={() => setMenuOpen(false)}>Was ist das?</Link>
+          <Link href="#agenda" className="block" onClick={() => setMenuOpen(false)}>Agenda</Link>
+          <Link href="#schedule" className="block" onClick={() => setMenuOpen(false)}>Termine</Link>
+          <Link href="#price" className="block" onClick={() => setMenuOpen(false)}>Preise</Link>
+          <Link href="#faq" className="block" onClick={() => setMenuOpen(false)}>FAQ</Link>
+          <Link href="#signup" className="btn inline-flex" onClick={() => setMenuOpen(false)}>Anmelden →</Link>
         </div>
       )}
-    </header>
+    </nav>
   )
 }

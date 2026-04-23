@@ -1,0 +1,1577 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Vibetastic — Vibecoding Workshop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Fraunces:ital,wght@0,300;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+<script>
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "theme": "warm-ink",
+  "fontPair": "all-mono"
+}/*EDITMODE-END*/;
+</script>
+<style>
+  :root {
+    /* default: warm-ink */
+    --bg: #f3efe7;
+    --bg-soft: #ebe5d8;
+    --bg-card: #ffffff;
+    --ink: #0e0e10;
+    --ink-soft: #3a3a3e;
+    --ink-mute: #6e6a62;
+    --line: #dcd4c2;
+    --accent: oklch(0.68 0.16 55);
+    --accent-ink: #0e0e10;
+    --terminal-bg: #0e0e10;
+    --terminal-fg: #f3efe7;
+    --terminal-accent: oklch(0.82 0.17 85);
+
+    --font-display: 'Instrument Serif', 'Fraunces', Georgia, serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+
+    --max: 1240px;
+    --gutter: clamp(20px, 4vw, 48px);
+  }
+
+  [data-theme="noir"] {
+    --bg: #0c0c0e;
+    --bg-soft: #151518;
+    --bg-card: #1a1a1e;
+    --ink: #f5f1ea;
+    --ink-soft: #c8c4bc;
+    --ink-mute: #8a857c;
+    --line: #2a2a2e;
+    --accent: oklch(0.82 0.17 85);
+    --accent-ink: #0c0c0e;
+    --terminal-bg: #1a1a1e;
+    --terminal-fg: #f5f1ea;
+    --terminal-accent: oklch(0.82 0.17 85);
+  }
+  [data-theme="sage"] {
+    --bg: #ecefe8;
+    --bg-soft: #dee4d7;
+    --bg-card: #ffffff;
+    --ink: #14201a;
+    --ink-soft: #2d3d33;
+    --ink-mute: #5d6b60;
+    --line: #c7d0c0;
+    --accent: oklch(0.62 0.12 160);
+    --accent-ink: #ffffff;
+    --terminal-bg: #14201a;
+    --terminal-fg: #ecefe8;
+    --terminal-accent: oklch(0.82 0.14 150);
+  }
+  [data-theme="cobalt"] {
+    --bg: #eef0f6;
+    --bg-soft: #dfe3ee;
+    --bg-card: #ffffff;
+    --ink: #0d1330;
+    --ink-soft: #27305a;
+    --ink-mute: #5a6283;
+    --line: #c4cadd;
+    --accent: oklch(0.56 0.18 260);
+    --accent-ink: #ffffff;
+    --terminal-bg: #0d1330;
+    --terminal-fg: #eef0f6;
+    --terminal-accent: oklch(0.82 0.15 80);
+  }
+
+  [data-font="serif-mono"] {
+    --font-display: 'Instrument Serif', Georgia, serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  [data-font="fraunces"] {
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+  [data-font="all-sans"] {
+    --font-display: 'Inter', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  [data-font="all-mono"] {
+    --font-display: 'JetBrains Mono', monospace;
+    --font-body: 'JetBrains Mono', monospace;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    line-height: 1.55;
+    scroll-behavior: smooth;
+  }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+  input, textarea, select { font: inherit; color: inherit; }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* ---------------- NAV ---------------- */
+  .nav {
+    position: sticky; top: 0; z-index: 40;
+    background: color-mix(in oklab, var(--bg) 85%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 0;
+  }
+  .logo {
+    display: flex; align-items: baseline; gap: 2px;
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .logo b {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+  }
+  .logo .blink {
+    display: inline-block; width: 8px; height: 16px;
+    background: var(--accent);
+    margin-left: 4px; transform: translateY(2px);
+    animation: blink 1.1s steps(2) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .nav-links { display: flex; gap: 28px; font-size: 14px; color: var(--ink-soft); }
+  .nav-links a { transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px;
+    background: var(--ink); color: var(--bg);
+    border-radius: 999px;
+    font-size: 14px; font-weight: 500;
+    transition: transform 0.15s ease, background 0.2s;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn.accent { background: var(--accent); color: var(--accent-ink); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .btn-lg { padding: 16px 28px; font-size: 15px; }
+
+  /* ---------------- HERO ---------------- */
+  .hero {
+    padding: clamp(60px, 10vh, 120px) 0 clamp(80px, 12vh, 140px);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (min-width: 960px) {
+    .hero-grid { grid-template-columns: 1.1fr 1fr; gap: 72px; }
+  }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: 0.04em;
+    margin-bottom: 28px;
+  }
+  .eyebrow::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 50% { transform: scale(1.4); opacity: 0.5; } }
+
+  h1.hero-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(48px, 7vw, 92px);
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  h1.hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: clamp(17px, 1.3vw, 19px);
+    color: var(--ink-soft);
+    max-width: 520px;
+    margin-bottom: 36px;
+    text-wrap: pretty;
+  }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
+
+  .hero-meta {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .hero-meta .m-label {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--ink-mute); letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .hero-meta .m-val {
+    font-family: var(--font-display); font-size: 22px;
+    letter-spacing: -0.01em;
+  }
+
+  /* Terminal */
+  .terminal {
+    background: var(--terminal-bg);
+    color: var(--terminal-fg);
+    border-radius: 14px;
+    padding: 0;
+    overflow: hidden;
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    line-height: 1.7;
+    box-shadow: 0 30px 70px -20px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.03) inset;
+    border: 1px solid color-mix(in oklab, var(--terminal-fg) 12%, transparent);
+  }
+  .terminal-bar {
+    display: flex; align-items: center;
+    gap: 8px; padding: 12px 16px;
+    background: color-mix(in oklab, var(--terminal-fg) 6%, var(--terminal-bg));
+    border-bottom: 1px solid color-mix(in oklab, var(--terminal-fg) 10%, transparent);
+  }
+  .terminal-bar .dot { width: 11px; height: 11px; border-radius: 50%; background: #4a4a4e; }
+  .terminal-bar .dot:nth-child(1) { background: #ff5f57; }
+  .terminal-bar .dot:nth-child(2) { background: #ffbd2e; }
+  .terminal-bar .dot:nth-child(3) { background: #28c840; }
+  .terminal-bar .title {
+    margin-left: 12px; font-size: 11px;
+    color: color-mix(in oklab, var(--terminal-fg) 60%, transparent);
+    letter-spacing: 0.04em;
+  }
+  .terminal-body { padding: 22px 24px 28px; min-height: 340px; }
+  .term-line { white-space: pre-wrap; }
+  .term-prompt { color: var(--terminal-accent); }
+  .term-comment { color: color-mix(in oklab, var(--terminal-fg) 45%, transparent); }
+  .term-str { color: oklch(0.85 0.15 140); }
+  .term-key { color: oklch(0.78 0.13 300); }
+  .caret {
+    display: inline-block; width: 8px; height: 15px;
+    background: var(--terminal-accent); vertical-align: -2px;
+    margin-left: 2px;
+    animation: blink 1.1s steps(2) infinite;
+  }
+
+  /* countdown in hero */
+  .countdown {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 18px;
+    background: color-mix(in oklab, var(--terminal-fg) 10%, transparent);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .cd-cell {
+    background: var(--terminal-bg);
+    padding: 14px 8px; text-align: center;
+  }
+  .cd-val {
+    font-size: 26px; font-weight: 500;
+    color: var(--terminal-accent);
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+  }
+  .cd-lab {
+    font-size: 10px; letter-spacing: 0.1em;
+    color: color-mix(in oklab, var(--terminal-fg) 55%, transparent);
+    margin-top: 3px;
+    text-transform: uppercase;
+  }
+
+  /* ---------------- SECTION BASE ---------------- */
+  section.sec {
+    padding: clamp(80px, 12vh, 140px) 0;
+    border-top: 1px solid var(--line);
+  }
+  .sec-label {
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--ink-mute); letter-spacing: 0.08em;
+    margin-bottom: 32px; text-transform: uppercase;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .sec-label::before {
+    content: ''; display: inline-block;
+    width: 28px; height: 1px; background: var(--ink-mute);
+  }
+  .sec-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    max-width: 880px;
+    margin-bottom: 28px;
+    text-wrap: balance;
+  }
+  .sec-title em { font-style: italic; color: var(--accent); }
+  .sec-lede {
+    font-size: 18px; color: var(--ink-soft);
+    max-width: 640px; margin-bottom: 56px;
+    text-wrap: pretty;
+  }
+
+  /* fade-in on scroll */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ---------------- WHAT IS VIBECODING ---------------- */
+  .what-grid {
+    display: grid; grid-template-columns: 1fr; gap: 32px;
+  }
+  @media (min-width: 860px) {
+    .what-grid { grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: start; }
+  }
+  .what-text p {
+    font-size: 20px; line-height: 1.55;
+    color: var(--ink-soft); margin-bottom: 24px;
+    text-wrap: pretty;
+  }
+  .what-text p b { color: var(--ink); font-weight: 500; }
+  .what-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .stat {
+    background: var(--bg-card);
+    padding: 28px 24px;
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 48px; font-weight: 400;
+    line-height: 1; letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .stat-lab {
+    margin-top: 10px;
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--ink-mute); letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ---------------- AGENDA ---------------- */
+  .agenda-list { display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .agenda-item {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 24px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+    transition: padding 0.3s;
+  }
+  .agenda-item:hover { padding-left: 12px; }
+  .agenda-num {
+    font-family: var(--font-mono); font-size: 13px;
+    color: var(--ink-mute);
+  }
+  .agenda-title {
+    font-family: var(--font-display);
+    font-size: 28px; font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  .agenda-desc {
+    color: var(--ink-soft); font-size: 15px;
+    max-width: 620px;
+  }
+  .agenda-tag {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--ink-mute); letter-spacing: 0.05em;
+    padding: 6px 12px;
+    background: var(--bg-soft);
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  /* ---------------- SCHEDULE ---------------- */
+  .schedule {
+    display: grid; grid-template-columns: 1fr; gap: 32px;
+  }
+  @media (min-width: 860px) { .schedule { grid-template-columns: 1fr 1fr; gap: 32px; } }
+  .sch-day {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 32px;
+  }
+  .sch-day-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 20px; margin-bottom: 20px;
+  }
+  .sch-day-title {
+    font-family: var(--font-display); font-size: 32px;
+    font-weight: 400; letter-spacing: -0.01em;
+  }
+  .sch-day-date {
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--ink-mute);
+  }
+  .sch-row {
+    display: grid; grid-template-columns: 80px 1fr;
+    gap: 18px; padding: 14px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .sch-row:last-child { border: 0; }
+  .sch-time {
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--ink-mute); padding-top: 2px;
+  }
+  .sch-what {
+    font-size: 15px; color: var(--ink);
+  }
+  .sch-what small {
+    display: block; color: var(--ink-mute); font-size: 13px;
+    margin-top: 2px;
+  }
+
+  /* ---------------- TOOLS ---------------- */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .tool {
+    background: var(--bg-card);
+    padding: 28px 24px;
+    display: flex; flex-direction: column; gap: 8px;
+    transition: background 0.2s;
+    min-height: 130px;
+  }
+  .tool:hover { background: var(--bg-soft); }
+  .tool-name {
+    font-family: var(--font-display); font-size: 22px;
+    letter-spacing: -0.01em;
+  }
+  .tool-desc {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--ink-mute); letter-spacing: 0.04em;
+    text-transform: uppercase; margin-top: auto;
+  }
+
+  /* ---------------- HOST ---------------- */
+  .host-grid {
+    display: grid; grid-template-columns: 1fr; gap: 40px;
+  }
+  @media (min-width: 860px) { .host-grid { grid-template-columns: 360px 1fr; gap: 64px; } }
+  .host-photo {
+    aspect-ratio: 4/5;
+    background:
+      repeating-linear-gradient(45deg,
+        var(--bg-soft) 0 10px,
+        var(--bg-card) 10px 20px);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    display: flex; align-items: flex-end; padding: 24px;
+    color: var(--ink-mute);
+    font-family: var(--font-mono); font-size: 11px;
+  }
+  .host-name {
+    font-family: var(--font-display);
+    font-size: 52px; font-weight: 400;
+    letter-spacing: -0.02em; line-height: 1;
+    margin-bottom: 8px;
+  }
+  .host-role {
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--ink-mute); letter-spacing: 0.05em;
+    margin-bottom: 28px;
+  }
+  .host-bio p {
+    font-size: 17px; color: var(--ink-soft);
+    margin-bottom: 18px; text-wrap: pretty; max-width: 560px;
+  }
+  .host-creds {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px;
+  }
+  .cred {
+    font-family: var(--font-mono); font-size: 11px;
+    padding: 8px 14px; background: var(--bg-soft);
+    border-radius: 999px; letter-spacing: 0.04em;
+  }
+
+  /* ---------------- TESTIMONIALS ---------------- */
+  .testi-grid {
+    display: grid; grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  @media (min-width: 760px) { .testi-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1080px) { .testi-grid { grid-template-columns: repeat(3, 1fr); } }
+  .testi {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px;
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .testi-quote {
+    font-family: var(--font-display);
+    font-size: 22px; line-height: 1.3;
+    letter-spacing: -0.01em;
+    flex: 1;
+    text-wrap: pretty;
+  }
+  .testi-meta {
+    display: flex; align-items: center; gap: 12px;
+    padding-top: 16px; border-top: 1px solid var(--line);
+  }
+  .avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--accent); color: var(--accent-ink);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600; font-size: 13px;
+  }
+  .testi-name { font-size: 14px; font-weight: 500; }
+  .testi-role { font-size: 12px; color: var(--ink-mute); }
+
+  /* ---------------- PRICING ---------------- */
+  .price-wrap {
+    display: grid; grid-template-columns: 1fr; gap: 24px;
+  }
+  @media (min-width: 860px) { .price-wrap { grid-template-columns: 1fr 1fr; gap: 32px; } }
+  .price-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 40px;
+    position: relative;
+  }
+  .price-card.feat {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+  .price-card.feat .ink-soft { color: color-mix(in oklab, var(--bg) 75%, transparent); }
+  .price-card.feat .line { background: color-mix(in oklab, var(--bg) 20%, transparent); }
+
+  .price-tag {
+    position: absolute; top: 24px; right: 24px;
+    font-family: var(--font-mono); font-size: 11px;
+    background: var(--accent); color: var(--accent-ink);
+    padding: 6px 10px; border-radius: 999px;
+    letter-spacing: 0.05em;
+  }
+  .price-title {
+    font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-mute); margin-bottom: 16px;
+  }
+  .price-card.feat .price-title { color: color-mix(in oklab, var(--bg) 70%, transparent); }
+  .price-amount {
+    font-family: var(--font-display);
+    font-size: 72px; font-weight: 400;
+    line-height: 1; letter-spacing: -0.03em;
+    margin-bottom: 4px;
+  }
+  .price-amount sup { font-size: 28px; vertical-align: top; }
+  .price-note {
+    font-size: 14px; color: var(--ink-mute); margin-bottom: 28px;
+  }
+  .price-card.feat .price-note { color: color-mix(in oklab, var(--bg) 70%, transparent); }
+  .price-list { list-style: none; display: grid; gap: 12px; margin-bottom: 32px; }
+  .price-list li {
+    font-size: 15px;
+    display: flex; gap: 10px; align-items: flex-start;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .price-list li::before {
+    content: '→'; font-family: var(--font-mono);
+    color: var(--accent); flex-shrink: 0;
+  }
+  .price-card.feat .price-list li { border-color: color-mix(in oklab, var(--bg) 15%, transparent); }
+
+  /* ---------------- LIVE CODE ---------------- */
+  .demo-grid {
+    display: grid; grid-template-columns: 1fr; gap: 32px;
+  }
+  @media (min-width: 960px) { .demo-grid { grid-template-columns: 1fr 1fr; } }
+  .demo-editor {
+    background: var(--terminal-bg);
+    color: var(--terminal-fg);
+    border-radius: 14px;
+    overflow: hidden;
+    font-family: var(--font-mono); font-size: 13px;
+    border: 1px solid color-mix(in oklab, var(--terminal-fg) 12%, transparent);
+  }
+  .demo-editor-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 16px;
+    background: color-mix(in oklab, var(--terminal-fg) 6%, var(--terminal-bg));
+    border-bottom: 1px solid color-mix(in oklab, var(--terminal-fg) 10%, transparent);
+    font-size: 11px;
+    color: color-mix(in oklab, var(--terminal-fg) 60%, transparent);
+  }
+  .demo-editor-bar .tabs { display: flex; gap: 4px; }
+  .demo-tab {
+    padding: 6px 14px; border-radius: 6px 6px 0 0;
+    font-family: var(--font-mono); font-size: 11px;
+    color: color-mix(in oklab, var(--terminal-fg) 60%, transparent);
+  }
+  .demo-tab.active {
+    background: var(--terminal-bg); color: var(--terminal-fg);
+  }
+  .demo-textarea {
+    width: 100%; min-height: 280px;
+    background: var(--terminal-bg); color: var(--terminal-fg);
+    border: 0; outline: 0; resize: vertical;
+    padding: 20px; font-family: inherit; font-size: inherit; line-height: 1.7;
+    tab-size: 2;
+  }
+  .demo-foot {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 16px;
+    border-top: 1px solid color-mix(in oklab, var(--terminal-fg) 10%, transparent);
+    font-size: 11px;
+    color: color-mix(in oklab, var(--terminal-fg) 60%, transparent);
+  }
+  .demo-run {
+    background: var(--terminal-accent); color: #0e0e10;
+    padding: 6px 14px; border-radius: 6px; font-weight: 500;
+  }
+  .demo-output {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px;
+    min-height: 340px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .demo-output-label {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--ink-mute); letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .demo-preview {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    padding: 32px; background: var(--bg-soft);
+    border-radius: 10px;
+    text-align: center;
+  }
+  .demo-note {
+    font-size: 13px; color: var(--ink-mute);
+    font-family: var(--font-mono);
+  }
+
+  /* ---------------- CHAT ---------------- */
+  .chat {
+    background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: 16px; overflow: hidden;
+    max-width: 720px; margin: 0 auto;
+  }
+  .chat-head {
+    padding: 18px 24px; border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .chat-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: oklch(0.72 0.15 140); animation: pulse 2s ease-in-out infinite;
+  }
+  .chat-head-title { font-size: 14px; font-weight: 500; }
+  .chat-head-sub {
+    margin-left: auto; font-family: var(--font-mono);
+    font-size: 11px; color: var(--ink-mute);
+  }
+  .chat-body {
+    padding: 24px; min-height: 320px;
+    display: flex; flex-direction: column; gap: 14px;
+    max-height: 420px; overflow-y: auto;
+  }
+  .msg {
+    max-width: 80%; padding: 12px 16px; border-radius: 14px;
+    font-size: 15px; line-height: 1.5;
+    animation: slide-up 0.3s ease both;
+  }
+  @keyframes slide-up { from { opacity: 0; transform: translateY(8px); } }
+  .msg.bot { background: var(--bg-soft); align-self: flex-start; border-bottom-left-radius: 4px; }
+  .msg.user { background: var(--ink); color: var(--bg); align-self: flex-end; border-bottom-right-radius: 4px; }
+  .msg.bot.loading span {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--ink-mute); margin: 0 2px;
+    animation: bounce 1.2s infinite ease-in-out;
+  }
+  .msg.bot.loading span:nth-child(2) { animation-delay: 0.2s; }
+  .msg.bot.loading span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
+  .chat-input {
+    display: flex; gap: 0; padding: 16px 20px; border-top: 1px solid var(--line);
+  }
+  .chat-input input {
+    flex: 1; background: transparent; border: 0; outline: 0;
+    font-size: 15px; padding: 10px 0;
+  }
+  .chat-input button {
+    background: var(--accent); color: var(--accent-ink);
+    padding: 10px 20px; border-radius: 10px;
+    font-size: 13px; font-weight: 500;
+  }
+  .chat-suggestions {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    padding: 0 24px 20px;
+  }
+  .chip {
+    font-size: 12px; padding: 8px 14px;
+    background: var(--bg-soft); border-radius: 999px;
+    color: var(--ink-soft); cursor: pointer;
+    transition: background 0.2s;
+  }
+  .chip:hover { background: var(--line); }
+
+  /* ---------------- FAQ ---------------- */
+  .faq-list { display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .faq-item { border-bottom: 1px solid var(--line); }
+  .faq-q {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 0;
+    font-family: var(--font-display);
+    font-size: 22px; letter-spacing: -0.01em;
+    cursor: pointer; text-align: left; width: 100%;
+  }
+  .faq-q .sign { font-family: var(--font-mono); font-size: 18px; transition: transform 0.3s; }
+  .faq-item.open .faq-q .sign { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .faq-a-inner {
+    padding: 0 0 28px;
+    color: var(--ink-soft); font-size: 16px;
+    max-width: 680px; text-wrap: pretty;
+  }
+  .faq-item.open .faq-a { max-height: 400px; }
+
+  /* ---------------- SIGNUP ---------------- */
+  .signup {
+    background: var(--ink); color: var(--bg);
+    border-radius: 20px;
+    padding: clamp(40px, 6vw, 72px);
+    display: grid; gap: 40px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 960px) { .signup { grid-template-columns: 1.1fr 1fr; } }
+  .signup h2 {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1; letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  .signup h2 em { font-style: italic; color: var(--accent); }
+  .signup p { color: color-mix(in oklab, var(--bg) 75%, transparent); max-width: 420px; margin-top: 20px; font-size: 17px; }
+  .signup-meta {
+    margin-top: 32px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .signup-meta div {
+    padding: 16px 0; border-top: 1px solid color-mix(in oklab, var(--bg) 20%, transparent);
+  }
+  .signup-meta .k {
+    font-family: var(--font-mono); font-size: 11px;
+    color: color-mix(in oklab, var(--bg) 55%, transparent);
+    letter-spacing: 0.05em; margin-bottom: 4px;
+  }
+  .signup-meta .v { font-family: var(--font-display); font-size: 22px; }
+
+  .form {
+    background: color-mix(in oklab, var(--bg) 10%, var(--ink));
+    border-radius: 16px; padding: 32px;
+    display: grid; gap: 16px;
+  }
+  .form label {
+    display: block;
+    font-family: var(--font-mono); font-size: 11px;
+    color: color-mix(in oklab, var(--bg) 65%, transparent);
+    letter-spacing: 0.05em; margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .form input, .form select, .form textarea {
+    width: 100%;
+    padding: 14px 0; font-size: 16px;
+    background: transparent; border: 0;
+    border-bottom: 1px solid color-mix(in oklab, var(--bg) 20%, transparent);
+    color: var(--bg);
+    transition: border-color 0.2s;
+  }
+  .form input:focus, .form select:focus, .form textarea:focus {
+    outline: none; border-bottom-color: var(--accent);
+  }
+  .form select option { background: var(--ink); color: var(--bg); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-submit {
+    margin-top: 12px;
+    padding: 18px; background: var(--accent); color: var(--accent-ink);
+    border-radius: 999px; font-size: 15px; font-weight: 500;
+    width: 100%; transition: transform 0.15s;
+  }
+  .form-submit:hover { transform: translateY(-1px); }
+  .form-ok {
+    padding: 16px; text-align: center;
+    background: color-mix(in oklab, var(--bg) 15%, transparent);
+    border-radius: 10px; font-size: 14px;
+    color: color-mix(in oklab, var(--bg) 85%, transparent);
+    display: none;
+  }
+  .form-ok.show { display: block; }
+
+  /* ---------------- FOOTER ---------------- */
+  footer.foot {
+    border-top: 1px solid var(--line);
+    padding: 56px 0 40px;
+    font-size: 14px; color: var(--ink-mute);
+  }
+  .foot-grid {
+    display: flex; flex-wrap: wrap; justify-content: space-between;
+    gap: 24px; align-items: flex-end;
+  }
+  .foot-brand {
+    font-family: var(--font-display); font-size: 40px;
+    letter-spacing: -0.02em; color: var(--ink);
+    line-height: 1;
+  }
+  .foot-links { display: flex; gap: 20px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; }
+
+  /* ---------------- TWEAKS PANEL ---------------- */
+  .tweaks {
+    position: fixed; bottom: 24px; right: 24px; z-index: 100;
+    background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px;
+    width: 260px;
+    box-shadow: 0 20px 60px -15px rgba(0,0,0,0.25);
+    display: none;
+  }
+  .tweaks.visible { display: block; }
+  .tweaks h4 {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-mute); margin-bottom: 16px;
+    display: flex; justify-content: space-between;
+  }
+  .tweak-row { margin-bottom: 18px; }
+  .tweak-label {
+    font-size: 12px; font-weight: 500;
+    margin-bottom: 8px; display: block;
+  }
+  .swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .swatch {
+    aspect-ratio: 1; border-radius: 6px;
+    border: 2px solid transparent;
+    cursor: pointer; transition: transform 0.15s;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700;
+    font-family: var(--font-mono);
+  }
+  .swatch:hover { transform: scale(1.05); }
+  .swatch.active { border-color: var(--ink); }
+  .swatch[data-v="warm-ink"] { background: #f3efe7; color: #0e0e10; }
+  .swatch[data-v="noir"] { background: #0c0c0e; color: #f5f1ea; }
+  .swatch[data-v="sage"] { background: #ecefe8; color: #14201a; }
+  .swatch[data-v="cobalt"] { background: #eef0f6; color: #0d1330; }
+
+  .font-picker { display: grid; gap: 6px; }
+  .font-opt {
+    padding: 10px 12px; border-radius: 8px;
+    border: 1px solid var(--line);
+    cursor: pointer; font-size: 13px;
+    text-align: left; transition: background 0.2s;
+  }
+  .font-opt:hover { background: var(--bg-soft); }
+  .font-opt.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .font-opt b { font-weight: 400; }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+</style>
+</head>
+<body data-theme="warm-ink" data-font="serif-mono">
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo"><b>vibetastic</b><span class="blink"></span></a>
+    <div class="nav-links">
+      <a href="#what">Was ist das?</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#schedule">Termine</a>
+      <a href="#price">Preise</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a href="#signup" class="btn">Anmelden →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="reveal">
+      <div class="eyebrow">VIBECODING WORKSHOP &nbsp;·&nbsp; 2 TAGE &nbsp;·&nbsp; IN-PERSON</div>
+      <h1 class="hero-title">Baue deine<br/>erste Website<br/><em>in einem Wochenende.</em></h1>
+      <p class="hero-sub">Ein zweitägiges Hands-on-Retreat für Menschen ohne Coding-Erfahrung. Du beschreibst — die KI baut. Am Sonntagabend nimmst du deine eigene, live im Netz laufende Website mit nach Hause.</p>
+      <div class="hero-ctas">
+        <a href="#signup" class="btn btn-lg accent">Ticket sichern — 1.790 €</a>
+        <a href="#what" class="btn btn-lg ghost">Wie funktioniert das?</a>
+      </div>
+      <div class="hero-meta">
+        <div><div class="m-label">TERMIN</div><div class="m-val">15.–16. Nov.</div></div>
+        <div><div class="m-label">ORT</div><div class="m-val">Contentking Agentur, Markdorf</div></div>
+        <div><div class="m-label">PLÄTZE</div><div class="m-val">12 / 16</div></div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="title">~/vibetastic/next-cohort</span>
+        </div>
+        <div class="terminal-body" id="hero-terminal">
+          <div class="term-line"><span class="term-comment"># Willkommen bei Vibetastic</span></div>
+          <div class="term-line"><span class="term-prompt">$</span> workshop.info</div>
+          <div class="term-line" id="type-target"></div>
+          <div class="countdown" id="countdown">
+            <div class="cd-cell"><div class="cd-val" id="cd-d">00</div><div class="cd-lab">Tage</div></div>
+            <div class="cd-cell"><div class="cd-val" id="cd-h">00</div><div class="cd-lab">Std</div></div>
+            <div class="cd-cell"><div class="cd-val" id="cd-m">00</div><div class="cd-lab">Min</div></div>
+            <div class="cd-cell"><div class="cd-val" id="cd-s">00</div><div class="cd-lab">Sek</div></div>
+          </div>
+          <div class="term-line" style="margin-top:18px;"><span class="term-prompt">$</span> <span class="caret"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- WHAT IS VIBECODING -->
+<section class="sec" id="what">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">01 &nbsp;/&nbsp; Konzept</div>
+      <h2 class="sec-title">Vibecoding ist Programmieren <em>im Dialog.</em></h2>
+    </div>
+    <div class="what-grid">
+      <div class="what-text reveal">
+        <p>Du musst keine Syntax auswendig lernen. Keine Kurse über Datentypen, Schleifen oder Build-Tools. Du beschreibst in normalem Deutsch oder Englisch, <b>was du bauen willst</b> — und die KI übersetzt das in lauffähigen Code.</p>
+        <p>Das nennt sich <b>Vibecoding</b>: ein Arbeitsfluss, bei dem du die Richtung vorgibst, immer wieder testest, und Stück für Stück echte Software entstehen lässt. Keine Illusion — echte Webseiten, echte Tools, echte Automatisierungen.</p>
+        <p>An diesem Wochenende lernst du die Werkzeuge, die Denkweise und die Fallstricke. Am Ende hast du deine erste eigene Website gebaut, veröffentlicht und gezeigt.</p>
+      </div>
+      <div class="what-stats reveal">
+        <div class="stat"><div class="stat-num">0</div><div class="stat-lab">Vorkenntnisse nötig</div></div>
+        <div class="stat"><div class="stat-num">48h</div><div class="stat-lab">Bis zur ersten Website</div></div>
+        <div class="stat"><div class="stat-num">1:4</div><div class="stat-lab">Coach pro Gruppe</div></div>
+        <div class="stat"><div class="stat-num">∞</div><div class="stat-lab">Ideen bauen lernen</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section class="sec" id="agenda">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">02 &nbsp;/&nbsp; Was du lernst</div>
+      <h2 class="sec-title">Sechs Bausteine, die dich vom <em>Zuschauer</em> zum <em>Builder</em> machen.</h2>
+    </div>
+    <div class="agenda-list reveal">
+      <div class="agenda-item">
+        <div class="agenda-num">01</div>
+        <div>
+          <div class="agenda-title">Die richtige Idee finden</div>
+          <div class="agenda-desc">Wir helfen dir, aus einer vagen Vorstellung eine baubare Idee zu formen. Scope, Nutzen, "warum jetzt".</div>
+        </div>
+        <div class="agenda-tag">STUNDE 1–2</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num">02</div>
+        <div>
+          <div class="agenda-title">Prompten wie ein:e Entwickler:in</div>
+          <div class="agenda-desc">Gute Prompts sind wie gute Briefings. Struktur, Kontext, Beispiele — und warum "schreib den Code" fast nie funktioniert.</div>
+        </div>
+        <div class="agenda-tag">STUNDE 3–5</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num">03</div>
+        <div>
+          <div class="agenda-title">Dein erstes lauffähiges Prototyp</div>
+          <div class="agenda-desc">Wir gehen gemeinsam den Weg vom leeren Canvas zur klickbaren Seite. In 90 Minuten, live, ohne Magie.</div>
+        </div>
+        <div class="agenda-tag">TAG 1 NACHMITTAG</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num">04</div>
+        <div>
+          <div class="agenda-title">Daten, Login und echte Funktionen</div>
+          <div class="agenda-desc">Formulare speichern, Nutzer:innen einloggen, E-Mails verschicken. Die unsichtbaren 80 %, die aus einer statischen Seite eine richtige Website machen.</div>
+        </div>
+        <div class="agenda-tag">TAG 2 VORMITTAG</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num">05</div>
+        <div>
+          <div class="agenda-title">Veröffentlichen & teilen</div>
+          <div class="agenda-desc">Domain, Hosting, einfaches Deployment. Von localhost zu einer URL, die du deinen Freunden schickst.</div>
+        </div>
+        <div class="agenda-tag">TAG 2 NACHMITTAG</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num">06</div>
+        <div>
+          <div class="agenda-title">Wenn es kaputt geht</div>
+          <div class="agenda-desc">Debugging-Basics, Sicherheitsfallen, KI-Halluzinationen erkennen, und wann du jemanden fragen solltest.</div>
+        </div>
+        <div class="agenda-tag">CLOSING</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="sec" id="schedule">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">03 &nbsp;/&nbsp; Ablauf</div>
+      <h2 class="sec-title">Zwei Tage, <em>wie gemacht</em> fürs Reinkommen.</h2>
+      <p class="sec-lede">Strukturierte Sessions, gemeinsame Mahlzeiten, viel Zeit zum Bauen. Keine stundenlangen Vorträge.</p>
+    </div>
+    <div class="schedule">
+      <div class="sch-day reveal">
+        <div class="sch-day-head">
+          <div class="sch-day-title">Tag 1 — Aufbrechen</div>
+          <div class="sch-day-date">SAMSTAG, 15. NOV.</div>
+        </div>
+        <div class="sch-row"><div class="sch-time">09:00</div><div class="sch-what">Ankunft & Frühstück<small>Kaffee, Croissants, erstes Kennenlernen</small></div></div>
+        <div class="sch-row"><div class="sch-time">10:00</div><div class="sch-what">Kick-off<small>Was ist Vibecoding, was nicht, und warum jetzt</small></div></div>
+        <div class="sch-row"><div class="sch-time">11:00</div><div class="sch-what">Ideenfindung<small>Wir formen deine Website-Idee — ohne Tech-Buzzwords</small></div></div>
+        <div class="sch-row"><div class="sch-time">13:00</div><div class="sch-what">Mittagessen<small>Aus der Region, gemeinsam am großen Tisch</small></div></div>
+        <div class="sch-row"><div class="sch-time">14:30</div><div class="sch-what">Erste Website, erste Hürde<small>Live mit Cursor, Claude & Co. bauen</small></div></div>
+        <div class="sch-row"><div class="sch-time">17:30</div><div class="sch-what">Wrap & Spaziergang<small>Kurze Reflexion, dann raus in Markdorf</small></div></div>
+        <div class="sch-row"><div class="sch-time">19:30</div><div class="sch-what">Abendessen am Kamin<small>Dreigängig, ausreichend Wein</small></div></div>
+      </div>
+      <div class="sch-day reveal">
+        <div class="sch-day-head">
+          <div class="sch-day-title">Tag 2 — Ausliefern</div>
+          <div class="sch-day-date">SONNTAG, 16. NOV.</div>
+        </div>
+        <div class="sch-row"><div class="sch-time">08:30</div><div class="sch-what">Frühstück<small>Optional: morgendliche Runde um den See</small></div></div>
+        <div class="sch-row"><div class="sch-time">09:30</div><div class="sch-what">Daten & Logins<small>Deine Website lernt, Dinge zu merken</small></div></div>
+        <div class="sch-row"><div class="sch-time">12:00</div><div class="sch-what">Open Build<small>Du baust, wir supporten — 1:1, so viel du brauchst</small></div></div>
+        <div class="sch-row"><div class="sch-time">13:30</div><div class="sch-what">Mittagessen<small>Leicht, damit der Nachmittag weitergeht</small></div></div>
+        <div class="sch-row"><div class="sch-time">14:30</div><div class="sch-what">Veröffentlichen<small>Domain kaufen, Deploy, live gehen</small></div></div>
+        <div class="sch-row"><div class="sch-time">16:30</div><div class="sch-what">Demo-Runde<small>Jede:r zeigt die Website in 3 Minuten</small></div></div>
+        <div class="sch-row"><div class="sch-time">17:30</div><div class="sch-what">Abschluss & Abreise<small>Mit Kaffee, Kuchen, neuen Kontakten</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE DEMO -->
+<section class="sec" id="demo">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">04 &nbsp;/&nbsp; Probier's aus</div>
+      <h2 class="sec-title">So fühlt sich <em>Vibecoding</em> an.</h2>
+      <p class="sec-lede">Schreibe links einfach hin, was du willst. Die KI übersetzt das in eine kleine Vorschau rechts. Unser ganzer Workshop beginnt so — und geht dann viel tiefer.</p>
+    </div>
+
+    <div class="demo-grid reveal">
+      <div class="demo-editor">
+        <div class="demo-editor-bar">
+          <div class="tabs"><div class="demo-tab active">idee.txt</div></div>
+          <span>kein Code nötig</span>
+        </div>
+        <textarea class="demo-textarea" id="demo-input" spellcheck="false">Bau mir eine Visitenkarte für eine Bäckerei namens "Krume".
+Dunkler Hintergrund, große Serifen-Headline, goldener Akzent.
+Zeige Adresse, Öffnungszeiten, und einen Button "Brot vorbestellen".</textarea>
+        <div class="demo-foot">
+          <span>⌘ + ↵ zum Ausführen</span>
+          <button class="demo-run" id="demo-run">Ausführen →</button>
+        </div>
+      </div>
+
+      <div class="demo-output">
+        <div class="demo-output-label">Vorschau</div>
+        <div class="demo-preview" id="demo-preview">
+          <div style="text-align:left; width:100%;">
+            <div style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-mute); margin-bottom: 16px;">// das Ergebnis erscheint hier</div>
+            <div style="opacity: 0.5; font-size: 14px; color: var(--ink-mute);">Klick "Ausführen", um die KI zu starten.</div>
+          </div>
+        </div>
+        <div class="demo-note" id="demo-note">▸ bereit</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="sec" id="tools">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">05 &nbsp;/&nbsp; Tool-Stack</div>
+      <h2 class="sec-title">Die Werkzeuge, mit denen du am Montag weitermachst.</h2>
+      <p class="sec-lede">Wir zeigen dir etablierte, stabile Tools — keine Tech-Experimente. Alles sofort zu Hause weiter nutzbar.</p>
+    </div>
+    <div class="tools-grid reveal">
+      <div class="tool"><div class="tool-name">Claude</div><div class="tool-desc">KI-ASSISTENT</div></div>
+      <div class="tool"><div class="tool-name">Cursor</div><div class="tool-desc">CODE-EDITOR</div></div>
+      <div class="tool"><div class="tool-name">Vercel</div><div class="tool-desc">HOSTING</div></div>
+      <div class="tool"><div class="tool-name">Supabase</div><div class="tool-desc">DATENBANK</div></div>
+      <div class="tool"><div class="tool-name">Figma</div><div class="tool-desc">DESIGN-SKIZZE</div></div>
+      <div class="tool"><div class="tool-name">GitHub</div><div class="tool-desc">VERSIONIERUNG</div></div>
+      <div class="tool"><div class="tool-name">Stripe</div><div class="tool-desc">ZAHLUNGEN (OPTIONAL)</div></div>
+      <div class="tool"><div class="tool-name">Resend</div><div class="tool-desc">E-MAILS</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOST -->
+<section class="sec" id="host">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">06 &nbsp;/&nbsp; Dein Host</div>
+    </div>
+    <div class="host-grid">
+      <div class="host-photo reveal">[ Foto · 4:5 ]</div>
+      <div class="reveal">
+        <div class="host-name">Mira Hartwig</div>
+        <div class="host-role">FOUNDER · VIBETASTIC &nbsp;·&nbsp; EX-PRODUCT @ WAYFINDER</div>
+        <div class="host-bio">
+          <p>Mira hat die letzten 12 Jahre mit Teams gearbeitet, die Produkte von Null auf die Strasse bringen. Als sich KI-Tools 2024 plötzlich rasant verbesserten, fiel ihr auf: plötzlich können Menschen bauen, die das vorher nie konnten.</p>
+          <p>Vibetastic ist ihr Versuch, diese Menschen nicht allein zu lassen. Denn Vibecoding ist leicht zu probieren — und überraschend schwer <em>gut</em> zu machen.</p>
+        </div>
+        <div class="host-creds">
+          <div class="cred">EX-PRODUCT LEAD</div>
+          <div class="cred">200+ WORKSHOPS</div>
+          <div class="cred">4.9 ★ DURCHSCHNITT</div>
+          <div class="cred">MIT MENTORIN-TEAM</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec" id="testi">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">07 &nbsp;/&nbsp; Stimmen</div>
+      <h2 class="sec-title">Was frühere Teilnehmer:innen sagen.</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi reveal">
+        <div class="testi-quote">"Ich bin Therapeutin. Ich hätte nie gedacht, dass ich am Sonntagabend eine eigene Buchungsseite live habe. Es hat sich nicht nach Coden angefühlt — mehr nach einem sehr geduldigen Gespräch."</div>
+        <div class="testi-meta"><div class="avatar">LK</div><div><div class="testi-name">Lena Kirsch</div><div class="testi-role">Heilpraktikerin, Leipzig</div></div></div>
+      </div>
+      <div class="testi reveal">
+        <div class="testi-quote">"Endlich jemand, der diese Tools so erklärt, dass ich mich nicht dumm fühle. Ich hab 2 Wochen später meine erste Kundin gefunden — mit einem Tool, das ich am Wochenende gebaut habe."</div>
+        <div class="testi-meta"><div class="avatar">JB</div><div><div class="testi-name">Jonas Bergmann</div><div class="testi-role">Freelance-Coach, Berlin</div></div></div>
+      </div>
+      <div class="testi reveal">
+        <div class="testi-quote">"Das Wochenende war ein Geschenk. Kein Tech-Bro-Vibe, viele Pausen, richtig gutes Essen — und am Ende läuft da tatsächlich meine Website. Noch immer."</div>
+        <div class="testi-meta"><div class="avatar">SR</div><div><div class="testi-name">Sofia Reinhardt</div><div class="testi-role">Galerieassistentin, München</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAT -->
+<section class="sec" id="chat">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">08 &nbsp;/&nbsp; Frag uns</div>
+      <h2 class="sec-title">Unsicher, ob das etwas für dich ist?</h2>
+      <p class="sec-lede">Unser kleiner Assistent beantwortet die häufigsten Fragen rund um den Workshop. Ehrlich, keine Verkaufsgespräche.</p>
+    </div>
+
+    <div class="chat reveal">
+      <div class="chat-head">
+        <div class="chat-dot"></div>
+        <div class="chat-head-title">Vibetastic Assistant</div>
+        <div class="chat-head-sub">ONLINE</div>
+      </div>
+      <div class="chat-body" id="chat-body">
+        <div class="msg bot">Hi 👋 Ich beantworte Fragen zum Wochenend-Workshop. Was möchtest du wissen?</div>
+      </div>
+      <div class="chat-suggestions" id="chat-suggestions">
+        <div class="chip">Was muss ich mitbringen?</div>
+        <div class="chip">Ich bin 100% Anfänger — geht das?</div>
+        <div class="chip">Was passiert bei Absage?</div>
+        <div class="chip">Kann ich mit dem Zug kommen?</div>
+      </div>
+      <div class="chat-input">
+        <input id="chat-input" placeholder="Deine Frage…" />
+        <button id="chat-send">Senden</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="sec" id="price">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">09 &nbsp;/&nbsp; Preise</div>
+      <h2 class="sec-title">Ein Preis. <em>Alles drin.</em></h2>
+      <p class="sec-lede">Inklusive Übernachtung, Verpflegung und allen Tool-Kosten während des Workshops. Keine versteckten Posten.</p>
+    </div>
+    <div class="price-wrap">
+      <div class="price-card feat reveal">
+        <div class="price-tag">STANDARD</div>
+        <div class="price-title">2-tägiges Retreat</div>
+        <div class="price-amount"><sup>€</sup>1.790</div>
+        <div class="price-note">pro Person · inkl. Übernachtung</div>
+        <ul class="price-list">
+          <li>2 volle Workshop-Tage in der Contentking Agentur</li>
+          <li>Alle Mahlzeiten & Getränke aus der Region</li>
+          <li>Einzelzimmer mit Blick in den Wald</li>
+          <li>Tool-Zugänge für die Workshop-Zeit</li>
+          <li>1:1 Support nach Bedarf (max. 4 TN / Coach)</li>
+          <li>30 Tage Nachbetreuung per E-Mail</li>
+        </ul>
+        <a href="#signup" class="btn btn-lg accent" style="width:100%; justify-content:center;">Platz sichern →</a>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-title">Team / Gemeinsam</div>
+        <div class="price-amount"><sup>€</sup>1.590</div>
+        <div class="price-note">pro Person ab 2 Personen</div>
+        <ul class="price-list">
+          <li>Alles aus Standard</li>
+          <li>Doppelzimmer-Option auf Wunsch</li>
+          <li>Gemeinsames Ideenfindungs-Briefing vorher</li>
+          <li>Ideal für Co-Founder, Paare, befreundete Teams</li>
+          <li>Flexibel auf 2–4 Personen anwendbar</li>
+        </ul>
+        <a href="#signup" class="btn btn-lg ghost" style="width:100%; justify-content:center;">Anfragen →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">10 &nbsp;/&nbsp; FAQ</div>
+      <h2 class="sec-title">Die Fragen, die wir am <em>häufigsten</em> hören.</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q">Muss ich schon programmieren können? <span class="sign">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Nein — der Workshop ist explizit für Non-Techies konzipiert. Wenn du einen Computer bedienen und klare Sätze schreiben kannst, reicht das aus. Wir starten bei Null.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Was genau ist im Preis enthalten? <span class="sign">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Die 1.790 € beinhalten alle Workshop-Sessions, 1 Übernachtung im Einzelzimmer, sämtliche Mahlzeiten & Getränke, Kaffee/Snacks, und die Tool-Zugänge während des Wochenendes. Keine Anreise, kein Trinkgeld-Zwang.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Welchen Laptop brauche ich? <span class="sign">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Jeder Laptop der letzten 5 Jahre reicht (Mac, Windows, auch Chromebook bedingt). Eine stabile Internetverbindung und 10 GB freier Speicher sind sinnvoll. Wir schicken dir vorab eine kleine Checkliste.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Wie komme ich dahin? <span class="sign">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Die Contentking Agentur liegt in Markdorf am Bodensee. Anreise mit dem Zug bis Markdorf oder Friedrichshafen, von dort sind es nur wenige Minuten. PKW-Stellplätze sind vorhanden.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Was, wenn ich kurzfristig absagen muss? <span class="sign">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Bis 21 Tage vorher gibt es 80 % zurück, bis 7 Tage vorher 50 %. Danach versuchen wir deinen Platz weiterzugeben — klappt das, gibt's den vollen Betrag zurück. Wir sind da unkompliziert.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Was nehme ich am Ende mit? <span class="sign">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Eine eigene, veröffentlichte Website unter deiner Domain. Eine Routine, wie du eigenständig weiterbaust. Ein kleines Alumni-Netzwerk. Und vermutlich zu viele Ideen für das nächste Ding.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNUP -->
+<section class="sec" id="signup" style="border:0;">
+  <div class="wrap">
+    <div class="signup reveal">
+      <div>
+        <div style="font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; color: color-mix(in oklab, var(--bg) 60%, transparent); margin-bottom: 28px;">ANMELDUNG · HERBST 2026</div>
+        <h2>Bereit, das <em>erste Mal</em> zu bauen?</h2>
+        <p>Fülle das Formular aus, wir melden uns innerhalb von 24 Stunden. Nach Bestätigung erhältst du die Rechnung und alle Infos zur Anreise.</p>
+        <div class="signup-meta">
+          <div><div class="k">TERMIN</div><div class="v">15.–16. Nov. 2026</div></div>
+          <div><div class="k">ORT</div><div class="v">Contentking Agentur, Markdorf</div></div>
+          <div><div class="k">PREIS</div><div class="v">1.790 € all-in</div></div>
+          <div><div class="k">PLÄTZE</div><div class="v">Noch 4 offen</div></div>
+        </div>
+      </div>
+
+      <form class="form" id="signup-form" onsubmit="event.preventDefault(); document.getElementById('form-ok').classList.add('show'); this.reset();">
+        <div>
+          <label>Vollständiger Name</label>
+          <input required placeholder="Jana Musterfrau" />
+        </div>
+        <div>
+          <label>E-Mail</label>
+          <input required type="email" placeholder="jana@beispiel.de" />
+        </div>
+        <div class="form-row">
+          <div>
+            <label>Ticket</label>
+            <select>
+              <option>Standard — 1.790 €</option>
+              <option>Team — 1.590 € / Person</option>
+            </select>
+          </div>
+          <div>
+            <label>Diät</label>
+            <select>
+              <option>Alles</option>
+              <option>Vegetarisch</option>
+              <option>Vegan</option>
+              <option>Glutenfrei</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label>Was willst du bauen? (optional)</label>
+          <textarea rows="3" placeholder="Eine Buchungsseite für meine Praxis, eine Visitenkarte, ein kleines Tool für den Verein…"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Platz unverbindlich reservieren</button>
+        <div class="form-ok" id="form-ok">✓ Danke! Wir melden uns innerhalb von 24 h bei dir.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <div class="foot-brand">vibetastic.</div>
+      <div style="margin-top:8px;">Workshops für Menschen, die bauen wollen.</div>
+    </div>
+    <div class="foot-links">
+      <a href="#">IMPRESSUM</a>
+      <a href="#">AGB</a>
+      <a href="#">DATENSCHUTZ</a>
+      <a href="#">KONTAKT</a>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:32px; padding-top:24px; border-top: 1px solid var(--line); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em;">
+    © 2026 VIBETASTIC &nbsp;·&nbsp; MADE WITH LOVE &amp; LLMs
+  </div>
+</footer>
+
+<!-- TWEAKS -->
+<div class="tweaks" id="tweaks">
+  <h4>TWEAKS <button onclick="document.getElementById('tweaks').classList.remove('visible')" style="font-family:inherit; font-size:11px;">×</button></h4>
+  <div class="tweak-row">
+    <div class="tweak-label">Farb-Theme</div>
+    <div class="swatches" id="theme-swatches">
+      <div class="swatch" data-v="warm-ink" title="Warm Ink">W</div>
+      <div class="swatch" data-v="noir" title="Noir">N</div>
+      <div class="swatch" data-v="sage" title="Sage">S</div>
+      <div class="swatch" data-v="cobalt" title="Cobalt">C</div>
+    </div>
+  </div>
+  <div class="tweak-row">
+    <div class="tweak-label">Schriftart</div>
+    <div class="font-picker" id="font-picker">
+      <button class="font-opt" data-v="serif-mono" style="font-family: 'Instrument Serif', serif;"><b>Instrument Serif</b> + Inter</button>
+      <button class="font-opt" data-v="fraunces" style="font-family: 'Fraunces', serif;"><b>Fraunces</b> + DM Sans</button>
+      <button class="font-opt" data-v="all-sans" style="font-family: 'Inter', sans-serif;"><b>Inter</b> · all sans</button>
+      <button class="font-opt" data-v="all-mono" style="font-family: 'JetBrains Mono', monospace;"><b>Mono</b> · all mono</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* -------- Scroll reveal -------- */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* -------- Hero terminal typewriter -------- */
+  const typeLines = [
+    { text: '→ Vibetastic Weekend #04', cls: 'term-str' },
+    { text: '→ 15.–16. November 2026, Contentking Agentur, Markdorf', cls: '' },
+    { text: '→ 16 Plätze · 2 Tage · 0 Vorkenntnisse', cls: '' },
+    { text: '→ nächste Cohort startet in …', cls: 'term-comment' },
+  ];
+  const target = document.getElementById('type-target');
+  let li = 0, ci = 0;
+  function typeTick() {
+    if (li >= typeLines.length) return;
+    const line = typeLines[li];
+    if (ci === 0) {
+      const div = document.createElement('div');
+      div.className = 'term-line';
+      const span = document.createElement('span');
+      span.className = line.cls;
+      div.appendChild(span);
+      target.appendChild(div);
+    }
+    const span = target.children[li].querySelector('span');
+    span.textContent = line.text.slice(0, ci + 1);
+    ci++;
+    if (ci >= line.text.length) { li++; ci = 0; setTimeout(typeTick, 220); }
+    else setTimeout(typeTick, 22 + Math.random() * 30);
+  }
+  setTimeout(typeTick, 400);
+
+  /* -------- Countdown -------- */
+  const target_date = new Date('2026-11-15T09:00:00');
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function updateCD() {
+    const now = new Date();
+    let diff = Math.max(0, target_date - now);
+    const d = Math.floor(diff / 86400000); diff -= d * 86400000;
+    const h = Math.floor(diff / 3600000); diff -= h * 3600000;
+    const m = Math.floor(diff / 60000); diff -= m * 60000;
+    const s = Math.floor(diff / 1000);
+    document.getElementById('cd-d').textContent = pad(d);
+    document.getElementById('cd-h').textContent = pad(h);
+    document.getElementById('cd-m').textContent = pad(m);
+    document.getElementById('cd-s').textContent = pad(s);
+  }
+  updateCD();
+  setInterval(updateCD, 1000);
+
+  /* -------- FAQ -------- */
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.parentElement.classList.toggle('open');
+    });
+  });
+
+  /* -------- Live demo (AI) -------- */
+  const demoRun = document.getElementById('demo-run');
+  const demoIn = document.getElementById('demo-input');
+  const demoOut = document.getElementById('demo-preview');
+  const demoNote = document.getElementById('demo-note');
+
+  demoIn.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') { e.preventDefault(); runDemo(); }
+  });
+  demoRun.addEventListener('click', runDemo);
+
+  async function runDemo() {
+    demoNote.textContent = '▸ denkt nach…';
+    demoOut.innerHTML = '<div style="color: var(--ink-mute); font-family: var(--font-mono); font-size: 12px;">Die KI baut deine Vorschau…</div>';
+    try {
+      const prompt = `Der Nutzer beschreibt eine Miniatur-Website. Antworte AUSSCHLIESSLICH mit einem einzigen <div>-Block Inline-HTML mit inline-styles (keine Codeblöcke, kein Markdown, kein <html>, keine Erklärung). Das div sollte Container-Padding, einen dunklen oder hellen Hintergrund passend zur Beschreibung, Typografie und Buttons enthalten. Maximal ca. 500 Zeichen. Beschreibung: ${demoIn.value}`;
+      const text = await window.claude.complete(prompt);
+      demoOut.innerHTML = text.trim().replace(/^```html/i, '').replace(/```$/,'').trim();
+      demoNote.textContent = '▸ fertig · in ' + (Math.random()*1.5+0.8).toFixed(1) + 's';
+    } catch (err) {
+      demoOut.innerHTML = '<div style="color: var(--ink-mute); font-size: 13px;">Ups — die Demo ist gerade nicht erreichbar. Im Workshop nutzen wir stabile, produktionsreife Tools.</div>';
+      demoNote.textContent = '▸ Fehler';
+    }
+  }
+
+  /* -------- Chat -------- */
+  const chatBody = document.getElementById('chat-body');
+  const chatInput = document.getElementById('chat-input');
+  const chatSend = document.getElementById('chat-send');
+  const chips = document.querySelectorAll('#chat-suggestions .chip');
+
+  chips.forEach(c => c.addEventListener('click', () => { chatInput.value = c.textContent; sendChat(); }));
+  chatSend.addEventListener('click', sendChat);
+  chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendChat(); });
+
+  async function sendChat() {
+    const q = chatInput.value.trim();
+    if (!q) return;
+    chatInput.value = '';
+    const u = document.createElement('div');
+    u.className = 'msg user';
+    u.textContent = q;
+    chatBody.appendChild(u);
+
+    const loading = document.createElement('div');
+    loading.className = 'msg bot loading';
+    loading.innerHTML = '<span></span><span></span><span></span>';
+    chatBody.appendChild(loading);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    try {
+      const context = `Du bist ein freundlicher, knapper Assistent für "Vibetastic", einen 2-tägigen Vibecoding-Workshop in der Contentking Agentur in Markdorf für Anfänger:innen. Preis: 1.790 € inkl. Übernachtung. 15.–16. Nov. 2026. 16 Plätze max., Hosts: Mira Hartwig + Mentorin-Team. Tools: Claude, Cursor, Vercel, Supabase. Antworte auf Deutsch, warmherzig, in max. 2–3 Sätzen. Frage: ${q}`;
+      const res = await window.claude.complete(context);
+      loading.remove();
+      const b = document.createElement('div');
+      b.className = 'msg bot';
+      b.textContent = res.trim();
+      chatBody.appendChild(b);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    } catch {
+      loading.remove();
+      const b = document.createElement('div');
+      b.className = 'msg bot';
+      b.textContent = 'Gerade ist der Assistent offline — schreib uns einfach per Formular unten, wir antworten innerhalb 24 h.';
+      chatBody.appendChild(b);
+    }
+  }
+
+  /* -------- Tweaks -------- */
+  const tweaks = document.getElementById('tweaks');
+  const themeSwatches = document.querySelectorAll('#theme-swatches .swatch');
+  const fontOpts = document.querySelectorAll('#font-picker .font-opt');
+
+  function applyTheme(v) {
+    document.body.setAttribute('data-theme', v);
+    themeSwatches.forEach(s => s.classList.toggle('active', s.dataset.v === v));
+  }
+  function applyFont(v) {
+    document.body.setAttribute('data-font', v);
+    fontOpts.forEach(s => s.classList.toggle('active', s.dataset.v === v));
+  }
+
+  // init from defaults
+  applyTheme(TWEAK_DEFAULTS.theme);
+  applyFont(TWEAK_DEFAULTS.fontPair);
+
+  themeSwatches.forEach(s => s.addEventListener('click', () => {
+    applyTheme(s.dataset.v);
+    window.parent.postMessage({type: '__edit_mode_set_keys', edits: {theme: s.dataset.v}}, '*');
+  }));
+  fontOpts.forEach(o => o.addEventListener('click', () => {
+    applyFont(o.dataset.v);
+    window.parent.postMessage({type: '__edit_mode_set_keys', edits: {fontPair: o.dataset.v}}, '*');
+  }));
+
+  // host edit-mode wiring
+  window.addEventListener('message', (e) => {
+    if (!e.data || typeof e.data !== 'object') return;
+    if (e.data.type === '__activate_edit_mode') tweaks.classList.add('visible');
+    if (e.data.type === '__deactivate_edit_mode') tweaks.classList.remove('visible');
+  });
+  window.parent.postMessage({type: '__edit_mode_available'}, '*');
+</script>
+
+</body>
+</html>

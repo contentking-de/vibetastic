@@ -1,71 +1,88 @@
 import Link from "next/link"
 
 export default function PricingBlock() {
-  const included = [
-    "2 Tage Intensiv-Workshop vor Ort",
-    "Persönliche Betreuung (max. 5 Teilnehmer)",
-    "Alle Workshop-Materialien & Templates",
-    "Zugang zum exklusiven Vibetastic Club",
-    "Lebenslanger Zugang zu Updates & Community",
-    "Getränke & Snacks während des Workshops",
-    "Inkl. 2 Übernachtungen mit Frühstück, Mittag- und Abendessen",
-  ]
-
   return (
-    <section id="pricing" className="py-24 md:py-32 bg-surface-container-low">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="max-w-2xl mx-auto text-center mb-16">
-          <p className="label-meta mb-4">Investition</p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-display text-on-surface leading-tight">
-            Dein Ticket
-          </h2>
+    <section className="py-[clamp(80px,12vh,140px)] border-t border-line" id="price">
+      <div className="wrap">
+        <div className="reveal">
+          <div className="sec-label">09 &nbsp;/&nbsp; Preise</div>
+          <h2 className="sec-title">Ein Preis. <em>Alles drin.</em></h2>
+          <p className="sec-lede">
+            Inklusive Übernachtung, Verpflegung und allen Tool-Kosten während des Workshops. Keine versteckten Posten.
+          </p>
         </div>
 
-        <div className="max-w-lg mx-auto card-floating text-center relative overflow-hidden">
-          <div className="absolute -top-2 -right-2 z-10">
-            <div className="bg-secondary text-white text-xs font-bold uppercase tracking-label px-12 py-1.5 rotate-45 translate-x-8 translate-y-11 origin-center shadow-sm">
-              All Inclusive
+        <div className="grid grid-cols-1 gap-6 md-wide:grid-cols-2 md-wide:gap-8">
+          {/* Standard (featured) */}
+          <div className="reveal bg-ink text-bg border border-ink rounded-2xl p-10 relative">
+            <div className="absolute top-6 right-6 font-mono text-[11px] bg-accent text-accent-ink px-2.5 py-1.5 rounded-full tracking-label">
+              STANDARD
             </div>
-          </div>
-
-          <p className="label-meta mb-6">Vibetastic Workshop</p>
-
-          <div className="mb-8">
-            <span className="text-6xl md:text-7xl font-bold tracking-display text-on-surface">
-              1.790
-            </span>
-            <span className="text-2xl text-on-surface-variant ml-1">&euro;</span>
-            <p className="text-sm text-on-surface-variant mt-2">zzgl. 19% MwSt.</p>
-          </div>
-
-          <div className="space-y-6 text-left mb-10">
-            {included.map((item) => (
-              <div key={item} className="flex items-start gap-3">
-                <svg
-                  className="w-5 h-5 text-primary shrink-0 mt-0.5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
+            <div className="font-mono text-xs tracking-wide uppercase mb-4" style={{ color: "color-mix(in oklab, var(--bg) 70%, transparent)" }}>
+              2-tägiges Retreat
+            </div>
+            <div className="font-display text-[72px] font-normal leading-none tracking-[-0.03em] mb-1">
+              <sup className="text-[28px] align-top">€</sup>1.790
+            </div>
+            <div className="text-sm mb-7" style={{ color: "color-mix(in oklab, var(--bg) 70%, transparent)" }}>
+              pro Person &middot; inkl. Übernachtung
+            </div>
+            <ul className="grid gap-3 mb-8">
+              {[
+                "2 volle Workshop-Tage in der Contentking Agentur",
+                "Alle Mahlzeiten & Getränke aus der Region",
+                "Einzelzimmer mit Blick in den Wald",
+                "Tool-Zugänge für die Workshop-Zeit",
+                "1:1 Support nach Bedarf (max. 4 TN / Coach)",
+                "30 Tage Nachbetreuung per E-Mail",
+              ].map((item) => (
+                <li
+                  key={item}
+                  className="text-[15px] flex gap-2.5 items-start pb-3"
+                  style={{ borderBottom: "1px solid color-mix(in oklab, var(--bg) 15%, transparent)" }}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-                <span className="text-on-surface-variant">{item}</span>
-              </div>
-            ))}
+                  <span className="font-mono text-accent shrink-0">→</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <Link href="#signup" className="btn btn-lg btn-accent w-full justify-center">
+              Platz sichern →
+            </Link>
           </div>
 
-          <Link href="/anmeldung" className="btn-primary w-full text-center">
-            Jetzt buchen
-          </Link>
-
-          <p className="mt-4 text-xs text-on-surface-variant/60">
-            Einmalige Zahlung. Zzgl. 19% MwSt. Sichere Zahlung über Stripe.
-          </p>
+          {/* Team */}
+          <div className="reveal bg-bg-card border border-line rounded-2xl p-10 relative">
+            <div className="font-mono text-xs tracking-wide uppercase text-ink-mute mb-4">
+              Team / Gemeinsam
+            </div>
+            <div className="font-display text-[72px] font-normal leading-none tracking-[-0.03em] mb-1">
+              <sup className="text-[28px] align-top">€</sup>1.590
+            </div>
+            <div className="text-sm text-ink-mute mb-7">
+              pro Person ab 2 Personen
+            </div>
+            <ul className="grid gap-3 mb-8">
+              {[
+                "Alles aus Standard",
+                "Doppelzimmer-Option auf Wunsch",
+                "Gemeinsames Ideenfindungs-Briefing vorher",
+                "Ideal für Co-Founder, Paare, befreundete Teams",
+                "Flexibel auf 2–4 Personen anwendbar",
+              ].map((item) => (
+                <li
+                  key={item}
+                  className="text-[15px] flex gap-2.5 items-start pb-3 border-b border-line"
+                >
+                  <span className="font-mono text-accent shrink-0">→</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <Link href="#signup" className="btn btn-lg btn-ghost w-full justify-center">
+              Anfragen →
+            </Link>
+          </div>
         </div>
       </div>
     </section>

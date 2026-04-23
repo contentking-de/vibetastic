@@ -1,54 +1,43 @@
 export default function WhatIsVibeCoding() {
-  const steps = [
-    {
-      number: "01",
-      title: "Beschreibe deine Vision",
-      description:
-        "Du formulierst in natürlicher Sprache, was du bauen möchtest. Kein Syntax, kein Boilerplate — nur deine Idee.",
-    },
-    {
-      number: "02",
-      title: "KI generiert den Code",
-      description:
-        "Moderne KI-Tools verwandeln deine Beschreibung in funktionierenden Code. Du steuerst die Richtung, die KI erledigt die Arbeit.",
-    },
-    {
-      number: "03",
-      title: "Iteriere & verfeinere",
-      description:
-        "Durch schnelle Feedback-Schleifen entsteht ein Projekt, das nicht nur funktioniert, sondern sich auch gut anfühlt.",
-    },
-  ]
-
   return (
-    <section className="py-24 md:py-32 bg-surface">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="max-w-2xl mb-16">
-          <p className="label-meta mb-4">Die Methode</p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-display text-on-surface leading-tight">
-            Was ist Vibe Coding?
+    <section className="py-[clamp(80px,12vh,140px)] border-t border-line" id="what">
+      <div className="wrap">
+        <div className="reveal">
+          <div className="sec-label">01 &nbsp;/&nbsp; Konzept</div>
+          <h2 className="sec-title">
+            Vibecoding ist Programmieren <em>im Dialog.</em>
           </h2>
-          <p className="mt-6 text-lg text-on-surface-variant leading-relaxed">
-            Vibe Coding ist eine neue Art zu programmieren. Du nutzt KI als
-            kreativen Partner und baust Projekte in einem Bruchteil der
-            üblichen Zeit.
-          </p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {steps.map((step) => (
-            <div key={step.number} className="card group">
-              <p className="text-5xl font-bold text-surface-container-highest/60 mb-6 group-hover:text-primary transition-colors">
-                {step.number}
-              </p>
-              <h3 className="text-base font-bold text-on-surface mb-3">
-                {step.title}
-              </h3>
-              <p className="text-on-surface-variant leading-relaxed">
-                {step.description}
-              </p>
-            </div>
-          ))}
+        <div className="grid grid-cols-1 gap-8 md-wide:grid-cols-[1.2fr_1fr] md-wide:gap-16 md-wide:items-start">
+          <div className="reveal">
+            <p className="text-xl leading-relaxed text-ink-soft mb-6" style={{ textWrap: "pretty" }}>
+              Du musst keine Syntax auswendig lernen. Keine Kurse über Datentypen, Schleifen oder Build-Tools. Du beschreibst in normalem Deutsch oder Englisch,{" "}
+              <b className="text-ink font-medium">was du bauen willst</b> — und die KI übersetzt das in lauffähigen Code.
+            </p>
+            <p className="text-xl leading-relaxed text-ink-soft mb-6" style={{ textWrap: "pretty" }}>
+              Das nennt sich <b className="text-ink font-medium">Vibecoding</b>: ein Arbeitsfluss, bei dem du die Richtung vorgibst, immer wieder testest, und Stück für Stück echte Software entstehen lässt. Keine Illusion — echte Webseiten, echte Tools, echte Automatisierungen.
+            </p>
+            <p className="text-xl leading-relaxed text-ink-soft" style={{ textWrap: "pretty" }}>
+              An diesem Wochenende lernst du die Werkzeuge, die Denkweise und die Fallstricke. Am Ende hast du deine erste eigene Website gebaut, veröffentlicht und gezeigt.
+            </p>
+          </div>
+          <div className="reveal grid grid-cols-2 gap-[1px] bg-line border border-line rounded-xl overflow-hidden">
+            {[
+              { num: "0", lab: "Vorkenntnisse nötig" },
+              { num: "48h", lab: "Bis zur ersten Website" },
+              { num: "1:4", lab: "Coach pro Gruppe" },
+              { num: "∞", lab: "Ideen bauen lernen" },
+            ].map((s) => (
+              <div key={s.lab} className="bg-bg-card p-7">
+                <div className="font-display text-5xl font-normal leading-none tracking-display text-ink">
+                  {s.num}
+                </div>
+                <div className="mt-2.5 font-mono text-[11px] text-ink-mute tracking-[0.06em] uppercase">
+                  {s.lab}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

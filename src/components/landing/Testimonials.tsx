@@ -1,50 +1,49 @@
+const testimonials = [
+  {
+    quote: "Ich bin Therapeutin. Ich hätte nie gedacht, dass ich am Sonntagabend eine eigene Buchungsseite live habe. Es hat sich nicht nach Coden angefühlt — mehr nach einem sehr geduldigen Gespräch.",
+    name: "Lena Kirsch",
+    initials: "LK",
+    role: "Heilpraktikerin, Leipzig",
+  },
+  {
+    quote: "Endlich jemand, der diese Tools so erklärt, dass ich mich nicht dumm fühle. Ich hab 2 Wochen später meine erste Kundin gefunden — mit einem Tool, das ich am Wochenende gebaut habe.",
+    name: "Jonas Bergmann",
+    initials: "JB",
+    role: "Freelance-Coach, Berlin",
+  },
+  {
+    quote: "Das Wochenende war ein Geschenk. Kein Tech-Bro-Vibe, viele Pausen, richtig gutes Essen — und am Ende läuft da tatsächlich meine Website. Noch immer.",
+    name: "Sofia Reinhardt",
+    initials: "SR",
+    role: "Galerieassistentin, München",
+  },
+]
+
 export default function Testimonials() {
-  const testimonials = [
-    {
-      quote:
-        "Ich habe in zwei Tagen eine komplette SaaS-App gebaut. Vor dem Workshop hätte ich das nicht für möglich gehalten.",
-      name: "Sarah M.",
-      role: "Gründerin & Designerin",
-    },
-    {
-      quote:
-        "Vibe Coding hat mir gezeigt, dass Programmieren nicht kompliziert sein muss. Die Atmosphäre im Workshop war unglaublich.",
-      name: "Thomas K.",
-      role: "Marketing Manager",
-    },
-    {
-      quote:
-        "Endlich kann ich meine eigenen Ideen umsetzen, ohne auf Entwickler warten zu müssen. Gamechanger!",
-      name: "Lisa R.",
-      role: "Produktmanagerin",
-    },
-    {
-      quote:
-        "Die persönliche Betreuung und die Community machen den Unterschied. Absolute Empfehlung.",
-      name: "Markus W.",
-      role: "Freelancer",
-    },
-  ]
-
   return (
-    <section className="py-24 md:py-32 bg-surface">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="max-w-2xl mb-16">
-          <p className="label-meta mb-4">Stimmen</p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-display text-on-surface leading-tight">
-            Was Teilnehmer sagen
-          </h2>
+    <section className="py-[clamp(80px,12vh,140px)] border-t border-line" id="testi">
+      <div className="wrap">
+        <div className="reveal">
+          <div className="sec-label">07 &nbsp;/&nbsp; Stimmen</div>
+          <h2 className="sec-title">Was frühere Teilnehmer:innen sagen.</h2>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
           {testimonials.map((t) => (
-            <div key={t.name} className="card-floating">
-              <p className="text-lg text-on-surface leading-relaxed mb-6 italic">
+            <div
+              key={t.name}
+              className="reveal bg-bg-card border border-line rounded-[14px] p-7 flex flex-col gap-5"
+            >
+              <div className="font-display text-[22px] leading-[1.3] tracking-tight flex-1" style={{ textWrap: "pretty" }}>
                 &ldquo;{t.quote}&rdquo;
-              </p>
-              <div>
-                <p className="font-semibold text-on-surface">{t.name}</p>
-                <p className="text-sm text-on-surface-variant">{t.role}</p>
+              </div>
+              <div className="flex items-center gap-3 pt-4 border-t border-line">
+                <div className="w-10 h-10 rounded-full bg-accent text-accent-ink flex items-center justify-center font-semibold text-[13px]">
+                  {t.initials}
+                </div>
+                <div>
+                  <div className="text-sm font-medium">{t.name}</div>
+                  <div className="text-xs text-ink-mute">{t.role}</div>
+                </div>
               </div>
             </div>
           ))}

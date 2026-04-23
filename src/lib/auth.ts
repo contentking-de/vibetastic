@@ -9,6 +9,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: DrizzleAdapter(db),
   providers: [
     Resend({
+      apiKey: process.env.RESEND_API_KEY,
       from: "Vibetastic <noreply@vibetastic.de>",
     }),
   ],
