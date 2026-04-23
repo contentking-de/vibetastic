@@ -113,21 +113,6 @@ export default function Hero() {
             <Link href="#signup" className="btn btn-lg btn-accent">Jetzt bewerben — 1.950 € netto</Link>
             <Link href="#what" className="btn btn-lg btn-ghost">Wie funktioniert das?</Link>
           </div>
-
-          <div className="grid grid-cols-3 gap-5 pt-7 border-t border-line">
-            <div>
-              <div className="font-mono text-[11px] text-ink-mute tracking-label mb-1.5">TERMIN</div>
-              <div className="font-display text-[22px] tracking-tight">02.–04. Jul.</div>
-            </div>
-            <div>
-              <div className="font-mono text-[11px] text-ink-mute tracking-label mb-1.5">ORT</div>
-              <div className="font-display text-[22px] tracking-tight">Contentking Agentur, Markdorf</div>
-            </div>
-            <div>
-              <div className="font-mono text-[11px] text-ink-mute tracking-label mb-1.5">PLÄTZE</div>
-              <div className="font-display text-[22px] tracking-tight">5 (begrenzt)</div>
-            </div>
-          </div>
         </div>
 
         <div className="reveal pt-[50px]">
@@ -179,6 +164,23 @@ export default function Hero() {
                 />
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="wrap reveal mt-14">
+        <div className="grid grid-cols-3 gap-5 pt-7 border-t border-line">
+          <div>
+            <div className="font-mono text-[11px] text-ink-mute tracking-label mb-1.5">TERMIN</div>
+            <div className="font-display text-[22px] tracking-tight">02.–04. Jul.</div>
+          </div>
+          <div>
+            <div className="font-mono text-[11px] text-ink-mute tracking-label mb-1.5">ORT</div>
+            <div className="font-display text-[22px] tracking-tight">Contentking Agentur, Markdorf</div>
+          </div>
+          <div>
+            <div className="font-mono text-[11px] text-ink-mute tracking-label mb-1.5">PLÄTZE</div>
+            <div className="font-display text-[22px] tracking-tight">5 (begrenzt)</div>
           </div>
         </div>
       </div>
