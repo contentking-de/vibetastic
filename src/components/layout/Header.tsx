@@ -29,7 +29,7 @@ export default function Header() {
           />
         </Link>
 
-        <div className="hidden md:flex items-center gap-7 text-sm text-ink-soft">
+        <div className="hidden md:flex items-center gap-7 text-base text-ink-soft">
           <Link href="#what" className="transition-colors hover:text-ink">Was ist das?</Link>
           <Link href="#agenda" className="transition-colors hover:text-ink">Agenda</Link>
           <Link href="#schedule" className="transition-colors hover:text-ink">Termine</Link>
@@ -37,9 +37,14 @@ export default function Header() {
           <Link href="#faq" className="transition-colors hover:text-ink">FAQ</Link>
         </div>
 
-        <Link href="#signup" className="hidden md:inline-flex btn">
-          Anmelden →
-        </Link>
+        <div className="hidden md:flex items-center gap-3">
+          <Link href="/club" className="btn btn-ghost">
+            Vibetastic Club
+          </Link>
+          <Link href="#signup" className="btn">
+            Anmelden →
+          </Link>
+        </div>
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
@@ -63,6 +68,7 @@ export default function Header() {
           <Link href="#schedule" className="block" onClick={() => setMenuOpen(false)}>Termine</Link>
           <Link href="#price" className="block" onClick={() => setMenuOpen(false)}>Preise</Link>
           <Link href="#faq" className="block" onClick={() => setMenuOpen(false)}>FAQ</Link>
+          <Link href="/club" className="block" onClick={() => setMenuOpen(false)}>Club</Link>
           <Link href="#signup" className="btn inline-flex" onClick={() => setMenuOpen(false)}>Anmelden →</Link>
         </div>
       )}

@@ -10,13 +10,19 @@ const navItems = [
   { href: "/club/anreise", label: "Anreise", icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z" },
 ]
 
-export default function ClubNav() {
+const adminItems = [
+  { href: "/club/signups", label: "Anmeldungen", icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" },
+]
+
+export default function ClubNav({ isAdmin = false }: { isAdmin?: boolean }) {
   const pathname = usePathname()
+
+  const items = isAdmin ? [...navItems, ...adminItems] : navItems
 
   return (
     <nav className="w-full lg:w-64 shrink-0">
       <div className="lg:sticky lg:top-24 space-y-1.5">
-        {navItems.map((item) => {
+        {items.map((item) => {
           const isActive = pathname === item.href
           return (
             <Link

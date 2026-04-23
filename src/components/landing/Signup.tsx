@@ -4,11 +4,39 @@ import { useState } from "react"
 
 export default function Signup() {
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    setSubmitted(true)
-    ;(e.target as HTMLFormElement).reset()
+    setLoading(true)
+    setError("")
+
+    const form = e.target as HTMLFormElement
+    const data = new FormData(form)
+
+    try {
+      const res = await fetch("/api/signups", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          ticket: data.get("ticket"),
+          diet: data.get("diet"),
+          project: data.get("project") || null,
+        }),
+      })
+
+      if (!res.ok) throw new Error("Fehler beim Absenden")
+
+      setSubmitted(true)
+      form.reset()
+    } catch {
+      setError("Etwas ist schiefgelaufen. Bitte versuche es erneut.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -60,6 +88,7 @@ export default function Signup() {
                 Vollständiger Name
               </label>
               <input
+                name="name"
                 required
                 placeholder="Jana Musterfrau"
                 className="w-full py-3.5 text-base bg-transparent border-0 text-bg outline-none transition-colors"
@@ -73,6 +102,7 @@ export default function Signup() {
                 E-Mail
               </label>
               <input
+                name="email"
                 required
                 type="email"
                 placeholder="jana@beispiel.de"
@@ -88,11 +118,12 @@ export default function Signup() {
                   Ticket
                 </label>
                 <select
+                  name="ticket"
                   className="w-full py-3.5 text-base bg-transparent border-0 text-bg outline-none"
                   style={{ borderBottom: "1px solid color-mix(in oklab, var(--bg) 20%, transparent)" }}
                 >
-                  <option className="bg-ink text-bg">Standard — 1.790 €</option>
-                  <option className="bg-ink text-bg">Team — 1.590 € / Person</option>
+                  <option className="bg-ink text-bg" value="Standard — 1.790 €">Standard — 1.790 €</option>
+                  <option className="bg-ink text-bg" value="Team — 1.590 € / Person">Team — 1.590 € / Person</option>
                 </select>
               </div>
               <div>
@@ -100,13 +131,14 @@ export default function Signup() {
                   Diät
                 </label>
                 <select
+                  name="diet"
                   className="w-full py-3.5 text-base bg-transparent border-0 text-bg outline-none"
                   style={{ borderBottom: "1px solid color-mix(in oklab, var(--bg) 20%, transparent)" }}
                 >
-                  <option className="bg-ink text-bg">Alles</option>
-                  <option className="bg-ink text-bg">Vegetarisch</option>
-                  <option className="bg-ink text-bg">Vegan</option>
-                  <option className="bg-ink text-bg">Glutenfrei</option>
+                  <option className="bg-ink text-bg" value="Alles">Alles</option>
+                  <option className="bg-ink text-bg" value="Vegetarisch">Vegetarisch</option>
+                  <option className="bg-ink text-bg" value="Vegan">Vegan</option>
+                  <option className="bg-ink text-bg" value="Glutenfrei">Glutenfrei</option>
                 </select>
               </div>
             </div>
@@ -115,6 +147,7 @@ export default function Signup() {
                 Was willst du bauen? (optional)
               </label>
               <textarea
+                name="project"
                 rows={3}
                 placeholder="Eine Buchungsseite für meine Praxis, eine Visitenkarte, ein kleines Tool für den Verein…"
                 className="w-full py-3.5 text-base bg-transparent border-0 text-bg outline-none resize-y"
@@ -123,9 +156,10 @@ export default function Signup() {
             </div>
             <button
               type="submit"
-              className="mt-3 py-[18px] bg-accent text-accent-ink rounded-full text-[15px] font-medium w-full transition-transform hover:-translate-y-[1px]"
+              disabled={loading}
+              className="mt-3 py-[18px] bg-accent text-accent-ink rounded-full text-[15px] font-medium w-full transition-transform hover:-translate-y-[1px] disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Platz unverbindlich reservieren
+              {loading ? "Wird gesendet…" : "Platz unverbindlich reservieren"}
             </button>
             {submitted && (
               <div
@@ -136,6 +170,16 @@ export default function Signup() {
                 }}
               >
                 ✓ Danke! Wir melden uns innerhalb von 24 h bei dir.
+              </div>
+            )}
+            {error && (
+              <div
+                className="p-4 text-center rounded-[10px] text-sm text-red-300"
+                style={{
+                  background: "color-mix(in oklab, red 10%, transparent)",
+                }}
+              >
+                {error}
               </div>
             )}
           </form>

@@ -69,6 +69,17 @@ export const members = pgTable("member", {
   email: text("email").unique().notNull(),
   stripeSessionId: text("stripe_session_id"),
   stripeCustomerId: text("stripe_customer_id"),
+  role: text("role").default("member").notNull(),
   paidAt: timestamp("paid_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+})
+
+export const signups = pgTable("signup", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  ticket: text("ticket").notNull(),
+  diet: text("diet").notNull(),
+  project: text("project"),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 })

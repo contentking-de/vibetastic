@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Instrument_Serif, Inter, JetBrains_Mono, Fraunces, IBM_Plex_Mono, DM_Sans } from "next/font/google"
+import { Instrument_Serif, Inter, JetBrains_Mono, Fraunces, IBM_Plex_Mono, DM_Sans, Figtree } from "next/font/google"
 import "./globals.css"
 
 const instrumentSerif = Instrument_Serif({
@@ -41,6 +41,12 @@ const dmSans = DM_Sans({
   display: "swap",
 })
 
+const figtree = Figtree({
+  subsets: ["latin"],
+  variable: "--font-figtree",
+  display: "swap",
+})
+
 export const metadata: Metadata = {
   title: "Vibetastic — Vibecoding Workshop",
   description:
@@ -59,7 +65,7 @@ export default function RootLayout({
   return (
     <html
       lang="de"
-      className={`${instrumentSerif.variable} ${inter.variable} ${jetbrainsMono.variable} ${fraunces.variable} ${ibmPlexMono.variable} ${dmSans.variable}`}
+      className={`${instrumentSerif.variable} ${inter.variable} ${jetbrainsMono.variable} ${fraunces.variable} ${ibmPlexMono.variable} ${dmSans.variable} ${figtree.variable}`}
     >
       <body data-theme="warm-ink" data-font="all-mono">
         {children}

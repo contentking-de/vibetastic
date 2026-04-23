@@ -34,6 +34,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return true
     },
     async session({ session }) {
+      if (session.user?.email) {
+        const member = await db
+          .select({ role: members.role })
+          .from(members)
+          .where(eq(members.email, session.user.email))
+          .limit(1)
+
+        if (member.length > 0) {
+          session.user.role = member[0].role
+        }
+      }
       return session
     },
   },

@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 
 export default function Footer() {
@@ -5,7 +6,8 @@ export default function Footer() {
     <footer className="border-t border-line pt-14 pb-10 text-sm text-ink-mute">
       <div className="wrap flex flex-wrap justify-between gap-6 items-end">
         <div>
-          <div className="font-display text-[40px] tracking-display text-ink leading-none">
+          <div className="font-display text-[40px] tracking-display text-ink leading-none flex items-center gap-3">
+            <Image src="/vibetastic-logo.svg" alt="" width={40} height={40} />
             vibetastic.
           </div>
           <div className="mt-2">Workshops für Menschen, die bauen wollen.</div>

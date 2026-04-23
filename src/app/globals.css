@@ -93,8 +93,8 @@
 }
 
 [data-font="all-mono"] {
-  --font-display: var(--font-jetbrains-mono, 'JetBrains Mono'), monospace;
-  --font-body: var(--font-jetbrains-mono, 'JetBrains Mono'), monospace;
+  --font-display: var(--font-figtree, 'Figtree'), system-ui, sans-serif;
+  --font-body: var(--font-figtree, 'Figtree'), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono, 'JetBrains Mono'), monospace;
 }
 
@@ -164,7 +164,7 @@
     padding: 10px 18px;
     background: var(--ink);
     color: var(--bg);
-    border-radius: 999px;
+    border-radius: 8px;
     font-size: 14px;
     font-weight: 500;
     transition: transform 0.15s ease, background 0.2s;
