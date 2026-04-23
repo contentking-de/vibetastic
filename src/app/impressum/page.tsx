@@ -68,7 +68,7 @@ export default function ImpressumPage() {
                 <br />
                 Nicolas Sacotte
                 <br />
-                Am Stadtgraben 25
+                Eisenbahnstrasse 1
                 <br />
                 88677 Markdorf
               </p>

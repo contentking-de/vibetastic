@@ -1,7 +1,14 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 
 export default function Footer() {
+  function resetCookieConsent() {
+    localStorage.removeItem("vibetastic-cookie-consent")
+    window.location.reload()
+  }
+
   return (
     <footer className="border-t border-line pt-14 pb-10 text-sm text-ink-mute">
       <div className="wrap flex flex-wrap justify-between gap-6 items-end">
@@ -16,7 +23,8 @@ export default function Footer() {
           <Link href="/impressum">IMPRESSUM</Link>
           <Link href="/agb">AGB</Link>
           <Link href="/datenschutz">DATENSCHUTZ</Link>
-          <Link href="#">KONTAKT</Link>
+          <button onClick={resetCookieConsent} className="hover:text-ink transition-colors">COOKIE-EINSTELLUNGEN</button>
+          <Link href="/kontakt">KONTAKT</Link>
         </div>
       </div>
       <div

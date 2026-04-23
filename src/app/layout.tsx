@@ -47,6 +47,8 @@ const figtree = Figtree({
   display: "swap",
 })
 
+import CookieConsent from "@/components/layout/CookieConsent"
+
 export const metadata: Metadata = {
   title: "Vibetastic — Vibecoding Workshop",
   description:
@@ -69,6 +71,7 @@ export default function RootLayout({
     >
       <body data-theme="warm-ink" data-font="all-mono">
         {children}
+        <CookieConsent />
       </body>
     </html>
   )
