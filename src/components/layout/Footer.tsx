@@ -14,7 +14,7 @@ export default function Footer() {
         </div>
         <div className="flex gap-5 font-mono text-xs tracking-[0.04em]">
           <Link href="/impressum">IMPRESSUM</Link>
-          <Link href="#">AGB</Link>
+          <Link href="/agb">AGB</Link>
           <Link href="/datenschutz">DATENSCHUTZ</Link>
           <Link href="#">KONTAKT</Link>
         </div>
