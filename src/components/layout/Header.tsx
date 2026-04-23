@@ -16,24 +16,24 @@ export default function Header() {
       }}
     >
       <div className="wrap flex items-center justify-between py-[18px]">
-        <Link href="#top" className="flex items-center gap-3 font-mono text-[15px] font-medium tracking-tight">
+        <Link href="/#top" className="flex items-center gap-3 font-mono text-[15px] font-medium tracking-tight">
           <Image src="/vibetastic-logo.svg" alt="" width={40} height={40} className="shrink-0" />
           <span className="font-display text-[40px] font-normal tracking-display leading-none">vibetastic.</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-7 text-base text-ink-soft font-bold">
-          <Link href="#what" className="transition-colors hover:text-ink">Was ist das?</Link>
-          <Link href="#agenda" className="transition-colors hover:text-ink">Agenda</Link>
-          <Link href="#schedule" className="transition-colors hover:text-ink">Termine</Link>
-          <Link href="#price" className="transition-colors hover:text-ink">Preise</Link>
-          <Link href="#faq" className="transition-colors hover:text-ink">FAQ</Link>
+          <Link href="/#what" className="transition-colors hover:text-ink">Was ist das?</Link>
+          <Link href="/#agenda" className="transition-colors hover:text-ink">Agenda</Link>
+          <Link href="/#schedule" className="transition-colors hover:text-ink">Termine</Link>
+          <Link href="/#price" className="transition-colors hover:text-ink">Preise</Link>
+          <Link href="/#faq" className="transition-colors hover:text-ink">FAQ</Link>
         </div>
 
         <div className="hidden md:flex items-center gap-3 font-bold">
           <Link href="/club" className="btn btn-ghost">
             Vibetastic Club
           </Link>
-          <Link href="#signup" className="btn">
+          <Link href="/#signup" className="btn">
             Anmelden →
           </Link>
         </div>
@@ -55,13 +55,13 @@ export default function Header() {
 
       {menuOpen && (
         <div className="md:hidden px-[var(--gutter)] pb-6 space-y-4 text-sm text-ink-soft font-bold">
-          <Link href="#what" className="block" onClick={() => setMenuOpen(false)}>Was ist das?</Link>
-          <Link href="#agenda" className="block" onClick={() => setMenuOpen(false)}>Agenda</Link>
-          <Link href="#schedule" className="block" onClick={() => setMenuOpen(false)}>Termine</Link>
-          <Link href="#price" className="block" onClick={() => setMenuOpen(false)}>Preise</Link>
-          <Link href="#faq" className="block" onClick={() => setMenuOpen(false)}>FAQ</Link>
+          <Link href="/#what" className="block" onClick={() => setMenuOpen(false)}>Was ist das?</Link>
+          <Link href="/#agenda" className="block" onClick={() => setMenuOpen(false)}>Agenda</Link>
+          <Link href="/#schedule" className="block" onClick={() => setMenuOpen(false)}>Termine</Link>
+          <Link href="/#price" className="block" onClick={() => setMenuOpen(false)}>Preise</Link>
+          <Link href="/#faq" className="block" onClick={() => setMenuOpen(false)}>FAQ</Link>
           <Link href="/club" className="block" onClick={() => setMenuOpen(false)}>Club</Link>
-          <Link href="#signup" className="btn inline-flex" onClick={() => setMenuOpen(false)}>Anmelden →</Link>
+          <Link href="/#signup" className="btn inline-flex" onClick={() => setMenuOpen(false)}>Anmelden →</Link>
         </div>
       )}
     </nav>
