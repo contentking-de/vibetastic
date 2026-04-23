@@ -21,7 +21,7 @@ export default function Header() {
           <span className="font-display text-[40px] font-normal tracking-display leading-none">vibetastic.</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-7 text-base text-ink-soft">
+        <div className="hidden md:flex items-center gap-7 text-base text-ink-soft font-bold">
           <Link href="#what" className="transition-colors hover:text-ink">Was ist das?</Link>
           <Link href="#agenda" className="transition-colors hover:text-ink">Agenda</Link>
           <Link href="#schedule" className="transition-colors hover:text-ink">Termine</Link>
@@ -29,7 +29,7 @@ export default function Header() {
           <Link href="#faq" className="transition-colors hover:text-ink">FAQ</Link>
         </div>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-3 font-bold">
           <Link href="/club" className="btn btn-ghost">
             Vibetastic Club
           </Link>
@@ -54,7 +54,7 @@ export default function Header() {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden px-[var(--gutter)] pb-6 space-y-4 text-sm text-ink-soft">
+        <div className="md:hidden px-[var(--gutter)] pb-6 space-y-4 text-sm text-ink-soft font-bold">
           <Link href="#what" className="block" onClick={() => setMenuOpen(false)}>Was ist das?</Link>
           <Link href="#agenda" className="block" onClick={() => setMenuOpen(false)}>Agenda</Link>
           <Link href="#schedule" className="block" onClick={() => setMenuOpen(false)}>Termine</Link>

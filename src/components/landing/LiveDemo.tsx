@@ -2,9 +2,9 @@
 
 import { useState } from "react"
 
-const defaultPrompt = `Bau mir eine Visitenkarte für eine Bäckerei namens "Krume".
-Dunkler Hintergrund, große Serifen-Headline, goldener Akzent.
-Zeige Adresse, Öffnungszeiten, und einen Button "Brot vorbestellen".`
+const defaultPrompt = `Ich möchte ein Online-Portal für lokale Bäckereien bauen.
+Kunden sollen Brot und Kuchen vorbestellen und zur Abholung reservieren können.
+Ich habe keine Programmierkenntnisse, aber Erfahrung im Einzelhandel.`
 
 export default function LiveDemo() {
   const [input, setInput] = useState(defaultPrompt)
@@ -16,7 +16,7 @@ export default function LiveDemo() {
     if (loading) return
     setLoading(true)
     setStatus("▸ denkt nach…")
-    setPreview('<div style="color: var(--ink-mute); font-family: var(--font-mono); font-size: 12px;">Die KI baut deine Vorschau…</div>')
+    setPreview('<div style="color: var(--ink-mute); font-family: var(--font-mono); font-size: 12px;">Die KI analysiert deine Idee…</div>')
 
     try {
       const res = await fetch("/api/ai", {
@@ -47,14 +47,14 @@ export default function LiveDemo() {
           <div className="sec-label">04 &nbsp;/&nbsp; Probier&apos;s aus</div>
           <h2 className="sec-title">So fühlt sich <em>Vibecoding</em> an.</h2>
           <p className="sec-lede">
-            Schreibe einfach hin, was du willst. Die KI übersetzt das in eine kleine Vorschau. Unser ganzer Workshop beginnt so — und geht dann viel tiefer.
+            Beschreib grob deine Geschäftsidee — die KI analysiert sie und macht dir Vorschläge, wie du sie umsetzen könntest. Genau so starten wir auch im Workshop.
           </p>
         </div>
 
-        <div className="reveal grid grid-cols-1 gap-8 lg:grid-cols-2">
+        <div className="reveal grid grid-cols-1 gap-8 lg:grid-cols-2 items-start">
           {/* Editor */}
           <div
-            className="bg-terminal-bg text-terminal-fg rounded-[14px] overflow-hidden font-mono text-[13px]"
+            className="bg-terminal-bg text-terminal-fg rounded-[14px] overflow-hidden font-mono text-[13px] h-[420px] flex flex-col"
             style={{ border: "1px solid color-mix(in oklab, var(--terminal-fg) 12%, transparent)" }}
           >
             <div
@@ -66,12 +66,12 @@ export default function LiveDemo() {
               }}
             >
               <div className="flex gap-1">
-                <div className="px-3.5 py-1.5 rounded-t-md bg-terminal-bg text-terminal-fg">idee.txt</div>
+                <div className="px-3.5 py-1.5 rounded-t-md bg-terminal-bg text-terminal-fg">meine-idee.txt</div>
               </div>
-              <span>kein Code nötig</span>
+              <span>beschreib einfach deine Idee</span>
             </div>
             <textarea
-              className="w-full min-h-[280px] bg-terminal-bg text-terminal-fg border-0 outline-none resize-y p-5 font-mono text-[13px] leading-[1.7]"
+              className="w-full flex-1 bg-terminal-bg text-terminal-fg border-0 outline-none resize-none p-5 font-mono text-[13px] leading-[1.7]"
               style={{ tabSize: 2 }}
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -102,20 +102,22 @@ export default function LiveDemo() {
           </div>
 
           {/* Preview */}
-          <div className="bg-bg-card border border-line rounded-[14px] p-7 min-h-[340px] flex flex-col gap-4">
+          <div className="bg-bg-card border border-line rounded-[14px] p-7 h-[420px] flex flex-col gap-4">
             <div className="font-mono text-[11px] text-ink-mute tracking-wide uppercase">
-              Vorschau
+              KI-Analyse
             </div>
-            <div className="flex-1 flex items-center justify-center p-8 bg-bg-soft rounded-[10px] text-center">
+            <div className="flex-1 p-6 bg-bg-soft rounded-[10px] overflow-y-auto">
               {preview ? (
-                <div className="w-full text-left" dangerouslySetInnerHTML={{ __html: preview }} />
+                <div className="w-full text-left text-[14px] text-ink-soft leading-relaxed prose-sm" dangerouslySetInnerHTML={{ __html: preview }} />
               ) : (
-                <div className="text-left w-full">
-                  <div className="font-mono text-[11px] text-ink-mute mb-4">
-                    {"// das Ergebnis erscheint hier"}
-                  </div>
-                  <div className="opacity-50 text-sm text-ink-mute">
-                    Klick &quot;Ausführen&quot;, um die KI zu starten.
+                <div className="text-left w-full flex items-center justify-center h-full">
+                  <div>
+                    <div className="font-mono text-[11px] text-ink-mute mb-4">
+                      {"// die Analyse erscheint hier"}
+                    </div>
+                    <div className="opacity-50 text-sm text-ink-mute">
+                      Klick &quot;Ausführen&quot;, um deine Idee analysieren zu lassen.
+                    </div>
                   </div>
                 </div>
               )}
