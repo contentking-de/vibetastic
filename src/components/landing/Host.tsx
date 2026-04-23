@@ -4,18 +4,21 @@ const hosts = [
     role: "FOUNDER · VIBETASTIC · CONTENTKING",
     bio: "Nicolas verbindet Unternehmertum mit Technologie. Als Gründer von Contentking und Vibetastic hilft er Menschen, mit modernen KI-Tools eigene digitale Produkte auf die Straße zu bringen.",
     img: "/nico-sacotte.png",
+    imgClass: "",
   },
   {
     name: "Maya Sacotte",
     role: "CO-FOUNDER · VIBETASTIC",
     bio: "Maya bringt Struktur und Kreativität zusammen. Sie sorgt dafür, dass aus wilden Ideen klare Konzepte werden — und dass jede:r Teilnehmer:in den Workshop mit einem echten Ergebnis verlässt.",
-    img: "/maya-sacotte.jpg",
+    img: "/maya-sacotte.webp",
+    imgClass: "",
   },
   {
     name: "Thorsten Loth",
     role: "COACH · VIBETASTIC",
     bio: "Thorsten ist der geduldige Erklärer im Team. Mit einem Auge fürs Detail und einem Talent fürs Vereinfachen begleitet er dich durch jede technische Hürde.",
     img: "/thorsten-loth.webp",
+    imgClass: "",
   },
 ]
 
@@ -38,7 +41,7 @@ export default function Host() {
                 <img
                   src={host.img}
                   alt={host.name}
-                  className="w-full h-full object-cover"
+                  className={`w-full h-full object-cover ${host.imgClass}`}
                 />
               </div>
               <div className="font-display text-[32px] font-normal tracking-display leading-none mb-2">
