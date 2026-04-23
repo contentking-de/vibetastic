@@ -2,10 +2,8 @@ const tools = [
   { name: "Claude", desc: "KI-ASSISTENT" },
   { name: "Cursor", desc: "CODE-EDITOR" },
   { name: "Vercel", desc: "HOSTING" },
-  { name: "Supabase", desc: "DATENBANK" },
-  { name: "Figma", desc: "DESIGN-SKIZZE" },
+  { name: "Neon", desc: "DATENBANK" },
   { name: "GitHub", desc: "VERSIONIERUNG" },
-  { name: "Stripe", desc: "ZAHLUNGEN (OPTIONAL)" },
   { name: "Resend", desc: "E-MAILS" },
 ]
 

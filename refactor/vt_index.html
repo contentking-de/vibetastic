@@ -1145,10 +1145,8 @@ Zeige Adresse, Öffnungszeiten, und einen Button "Brot vorbestellen".</textarea>
       <div class="tool"><div class="tool-name">Claude</div><div class="tool-desc">KI-ASSISTENT</div></div>
       <div class="tool"><div class="tool-name">Cursor</div><div class="tool-desc">CODE-EDITOR</div></div>
       <div class="tool"><div class="tool-name">Vercel</div><div class="tool-desc">HOSTING</div></div>
-      <div class="tool"><div class="tool-name">Supabase</div><div class="tool-desc">DATENBANK</div></div>
-      <div class="tool"><div class="tool-name">Figma</div><div class="tool-desc">DESIGN-SKIZZE</div></div>
+      <div class="tool"><div class="tool-name">Neon</div><div class="tool-desc">DATENBANK</div></div>
       <div class="tool"><div class="tool-name">GitHub</div><div class="tool-desc">VERSIONIERUNG</div></div>
-      <div class="tool"><div class="tool-name">Stripe</div><div class="tool-desc">ZAHLUNGEN (OPTIONAL)</div></div>
       <div class="tool"><div class="tool-name">Resend</div><div class="tool-desc">E-MAILS</div></div>
     </div>
   </div>
@@ -1520,7 +1518,7 @@ Zeige Adresse, Öffnungszeiten, und einen Button "Brot vorbestellen".</textarea>
     chatBody.scrollTop = chatBody.scrollHeight;
 
     try {
-      const context = `Du bist ein freundlicher, knapper Assistent für "Vibetastic", einen 2-tägigen Vibecoding-Workshop in der Contentking Agentur in Markdorf für Anfänger:innen. Preis: 1.790 € inkl. Übernachtung. 15.–16. Nov. 2026. 16 Plätze max., Hosts: Mira Hartwig + Mentorin-Team. Tools: Claude, Cursor, Vercel, Supabase. Antworte auf Deutsch, warmherzig, in max. 2–3 Sätzen. Frage: ${q}`;
+      const context = `Du bist ein freundlicher, knapper Assistent für "Vibetastic", einen 2-tägigen Vibecoding-Workshop in der Contentking Agentur in Markdorf für Anfänger:innen. Preis: 1.790 € inkl. Übernachtung. 15.–16. Nov. 2026. 16 Plätze max., Hosts: Mira Hartwig + Mentorin-Team. Tools: Claude, Cursor, Vercel, Neon. Antworte auf Deutsch, warmherzig, in max. 2–3 Sätzen. Frage: ${q}`;
       const res = await window.claude.complete(context);
       loading.remove();
       const b = document.createElement('div');

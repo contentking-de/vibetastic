@@ -80,7 +80,7 @@ export default function Hero() {
           </div>
 
           <h1 className="font-display font-normal text-[clamp(48px,7vw,92px)] leading-[0.95] tracking-display text-ink mb-7">
-            Baue deine<br />erste Website<br /><em className="italic text-accent">in einem Wochenende.</em>
+            Baue deine<br />Website<br /><em className="italic text-accent">in einem Wochenende.</em>
           </h1>
 
           <p className="text-[clamp(17px,1.3vw,19px)] text-ink-soft max-w-[520px] mb-9" style={{ textWrap: "pretty" }}>

@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
 
@@ -15,7 +16,8 @@ export default function Header() {
       }}
     >
       <div className="wrap flex items-center justify-between py-[18px]">
-        <Link href="#top" className="flex items-baseline gap-[2px] font-mono text-[15px] font-medium tracking-tight">
+        <Link href="#top" className="flex items-center gap-2 font-mono text-[15px] font-medium tracking-tight">
+          <Image src="/vibetastic-logo.svg" alt="" width={28} height={28} className="shrink-0" />
           <span className="font-display text-2xl font-normal tracking-display">vibetastic</span>
           <span
             className="inline-block w-2 h-4 ml-1"

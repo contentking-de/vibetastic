@@ -13,6 +13,7 @@ import Host from "@/components/landing/Host"
 import Testimonials from "@/components/landing/Testimonials"
 import Chat from "@/components/landing/Chat"
 import PricingBlock from "@/components/landing/PricingBlock"
+import Value from "@/components/landing/Value"
 import FAQ from "@/components/landing/FAQ"
 import Signup from "@/components/landing/Signup"
 
@@ -37,6 +38,7 @@ export default function Home() {
         <Testimonials />
         <Chat />
         <PricingBlock />
+        <Value />
         <FAQ />
         <Signup />
       </main>

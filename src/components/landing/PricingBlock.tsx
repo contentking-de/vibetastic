@@ -22,10 +22,10 @@ export default function PricingBlock() {
               2-tägiges Retreat
             </div>
             <div className="font-display text-[72px] font-normal leading-none tracking-[-0.03em] mb-1">
-              <sup className="text-[28px] align-top">€</sup>1.790
+              <span className="text-[28px] align-[0.55em] mr-1">€</span>1.790
             </div>
             <div className="text-sm mb-7" style={{ color: "color-mix(in oklab, var(--bg) 70%, transparent)" }}>
-              pro Person &middot; inkl. Übernachtung
+              pro Person &middot; inkl. Übernachtung &middot; zzgl. 19% MwSt.
             </div>
             <ul className="grid gap-3 mb-8">
               {[
@@ -57,10 +57,10 @@ export default function PricingBlock() {
               Team / Gemeinsam
             </div>
             <div className="font-display text-[72px] font-normal leading-none tracking-[-0.03em] mb-1">
-              <sup className="text-[28px] align-top">€</sup>1.590
+              <span className="text-[28px] align-[0.55em] mr-1">€</span>1.590
             </div>
             <div className="text-sm text-ink-mute mb-7">
-              pro Person ab 2 Personen
+              pro Person ab 2 Personen &middot; zzgl. 19% MwSt.
             </div>
             <ul className="grid gap-3 mb-8">
               {[

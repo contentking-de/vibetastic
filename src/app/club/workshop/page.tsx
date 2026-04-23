@@ -20,7 +20,7 @@ export default function WorkshopPage() {
         { time: "09:00 – 09:15", title: "Check-in", description: "Kurze Reflexion über Tag 1." },
         { time: "09:15 – 10:45", title: "Fortgeschrittene Prompting-Techniken", description: "Kontextmanagement, Multi-File-Edits, Debugging mit KI." },
         { time: "10:45 – 11:00", title: "Kaffeepause", description: "" },
-        { time: "11:00 – 12:30", title: "Datenbanken & APIs integrieren", description: "Supabase/Neon, Stripe und andere Services einbinden." },
+        { time: "11:00 – 12:30", title: "Datenbanken & APIs integrieren", description: "Neon und andere Services einbinden." },
         { time: "12:30 – 13:30", title: "Mittagspause", description: "" },
         { time: "13:30 – 15:30", title: "Eigenes Projekt bauen", description: "Du baust dein eigenes Projekt mit individueller Unterstützung." },
         { time: "15:30 – 16:30", title: "Projekt-Präsentationen", description: "Jeder stellt sein Projekt vor. Feedback & Austausch." },
