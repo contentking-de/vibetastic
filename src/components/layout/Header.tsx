@@ -16,17 +16,9 @@ export default function Header() {
       }}
     >
       <div className="wrap flex items-center justify-between py-[18px]">
-        <Link href="#top" className="flex items-center gap-2 font-mono text-[15px] font-medium tracking-tight">
-          <Image src="/vibetastic-logo.svg" alt="" width={28} height={28} className="shrink-0" />
-          <span className="font-display text-2xl font-normal tracking-display">vibetastic</span>
-          <span
-            className="inline-block w-2 h-4 ml-1"
-            style={{
-              background: "var(--accent)",
-              transform: "translateY(2px)",
-              animation: "blink 1.1s steps(2) infinite",
-            }}
-          />
+        <Link href="#top" className="flex items-center gap-3 font-mono text-[15px] font-medium tracking-tight">
+          <Image src="/vibetastic-logo.svg" alt="" width={40} height={40} className="shrink-0" />
+          <span className="font-display text-[40px] font-normal tracking-display leading-none">vibetastic.</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-7 text-base text-ink-soft">
