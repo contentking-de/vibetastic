@@ -33,23 +33,22 @@ function LoginForm() {
   if (sent) {
     return (
       <div className="text-center">
-        <div className="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center mx-auto mb-8">
-          <svg className="w-8 h-8 text-on-primary-fixed" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <div className="w-16 h-16 rounded-full bg-accent/15 flex items-center justify-center mx-auto mb-8">
+          <svg className="w-8 h-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
         </div>
-        <h1 className="text-2xl font-bold tracking-display text-on-surface mb-4">
+        <h1 className="font-display text-[28px] tracking-display text-ink mb-4">
           Check deine E-Mails
         </h1>
-        <p className="text-on-surface-variant leading-relaxed">
+        <p className="text-ink-soft leading-relaxed max-w-sm mx-auto">
           Wir haben dir einen Magic Link an{" "}
-          <strong className="text-on-surface">{email}</strong>{" "}
-          geschickt. Klicke auf den Link in der E-Mail, um dich
-          einzuloggen.
+          <strong className="text-ink">{email}</strong>{" "}
+          geschickt. Klicke auf den Link in der E-Mail, um dich einzuloggen.
         </p>
         <button
           onClick={() => { setSent(false); setLoading(false) }}
-          className="btn-ghost mt-6"
+          className="btn btn-ghost mt-8"
         >
           Andere E-Mail verwenden
         </button>
@@ -60,18 +59,18 @@ function LoginForm() {
   return (
     <>
       <div className="text-center mb-10">
-        <p className="label-meta mb-4">Club Login</p>
-        <h1 className="text-3xl font-bold tracking-display text-on-surface">
+        <div className="font-mono text-xs text-ink-mute tracking-[0.04em] mb-4">VIBETASTIC CLUB</div>
+        <h1 className="font-display text-[32px] tracking-display text-ink">
           Willkommen zurück
         </h1>
-        <p className="mt-3 text-on-surface-variant">
+        <p className="mt-3 text-ink-soft text-[15px]">
           Gib deine E-Mail ein und wir senden dir einen Login-Link.
         </p>
       </div>
 
       {error === "not-a-member" && (
-        <div className="bg-tertiary-container rounded-lg p-4 mb-6">
-          <p className="text-sm text-on-surface">
+        <div className="bg-accent/10 border border-accent/20 rounded-xl p-4 mb-6">
+          <p className="text-sm text-ink">
             <strong>Kein Zugang gefunden.</strong> Diese E-Mail ist
             nicht als Teilnehmer registriert. Hast du den Workshop
             bereits gebucht?
@@ -80,7 +79,7 @@ function LoginForm() {
       )}
 
       <form onSubmit={handleSubmit}>
-        <label className="block mb-2 text-sm font-medium text-on-surface">
+        <label className="block mb-2 text-sm font-medium text-ink">
           E-Mail-Adresse
         </label>
         <input
@@ -89,21 +88,21 @@ function LoginForm() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="deine@email.de"
           required
-          className="input-field mb-6"
+          className="w-full px-4 py-3 rounded-xl border border-line bg-bg-card text-ink text-[15px] placeholder:text-ink-mute/50 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all mb-6"
         />
         <button
           type="submit"
           disabled={loading || !email}
-          className="btn-primary w-full text-center disabled:opacity-60"
+          className="btn btn-accent w-full justify-center text-[15px] py-3.5 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {loading ? "Wird gesendet..." : "Magic Link senden"}
+          {loading ? "Wird gesendet…" : "Magic Link senden →"}
         </button>
       </form>
 
-      <p className="mt-8 text-center text-xs text-on-surface-variant/60">
+      <p className="mt-8 text-center text-xs text-ink-mute">
         Du brauchst erst einen Workshop-Zugang?{" "}
-        <a href="/anmeldung" className="text-primary underline underline-offset-4">
-          Jetzt anmelden
+        <a href="/#signup" className="text-accent underline underline-offset-4 hover:text-ink transition-colors">
+          Jetzt bewerben
         </a>
       </p>
     </>
@@ -114,13 +113,15 @@ export default function LoginPage() {
   return (
     <>
       <Header />
-      <main className="pt-24 pb-16 bg-surface min-h-screen flex items-center">
+      <main className="pt-24 pb-16 bg-bg min-h-screen flex items-center">
         <div className="mx-auto max-w-md w-full px-6">
-          <Suspense fallback={
-            <div className="text-center text-on-surface-variant">Laden...</div>
-          }>
-            <LoginForm />
-          </Suspense>
+          <div className="bg-bg-card border border-line rounded-2xl p-8 md:p-10 shadow-lg">
+            <Suspense fallback={
+              <div className="text-center text-ink-mute">Laden...</div>
+            }>
+              <LoginForm />
+            </Suspense>
+          </div>
         </div>
       </main>
       <Footer />
