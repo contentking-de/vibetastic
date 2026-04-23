@@ -14,7 +14,7 @@ function pad(n: number) {
   return String(n).padStart(2, "0")
 }
 
-const rotatingWords = ["Websites", "SaaS-Lösungen", "Web-Portale", "KPI Dashboards", "MVPs"]
+const rotatingWords = ["Websites", "SaaS-Lösungen", "Web-Portale", "KPI Dashboards", "MVPs", "Agentic Seller", "Support-Agenten", "Agentic-Chats"]
 
 export default function Hero() {
   const [typedLines, setTypedLines] = useState<{ text: string; cls: string }[]>([])
