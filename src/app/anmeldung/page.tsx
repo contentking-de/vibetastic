@@ -6,13 +6,13 @@ import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 
 const included = [
-  "2 Tage Intensiv-Workshop vor Ort",
-  "Persönliche Betreuung in Kleingruppe (max. 15)",
+  "2 Workshop-Tage + Anreiseabend vor Ort",
+  "Persönliche Betreuung in Kleingruppe (max. 5)",
   "Alle Workshop-Materialien, Templates & Checklisten",
   "Exklusiver Zugang zum Vibetastic Club",
   "Lebenslanger Zugang zu Updates & Community",
-  "Getränke & Snacks inklusive",
-  "Inkl. 2 Übernachtungen mit Frühstück, Mittag- und Abendessen",
+  "Komplette Verpflegung inkl. Getränke",
+  "Inkl. 2 Übernachtungen im Einzelzimmer",
 ]
 
 export default function AnmeldungPage() {
@@ -55,11 +55,11 @@ export default function AnmeldungPage() {
 
             <div className="mb-8">
               <span className="text-6xl font-bold tracking-display text-on-surface">
-                1.790
+                1.950
               </span>
               <span className="text-2xl text-on-surface-variant ml-1">&euro;</span>
               <p className="text-sm text-on-surface-variant mt-1">
-                Einmalige Zahlung zzgl. 19% MwSt.
+                Netto zzgl. 19% MwSt.
               </p>
             </div>
 

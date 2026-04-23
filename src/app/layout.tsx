@@ -50,7 +50,7 @@ const figtree = Figtree({
 export const metadata: Metadata = {
   title: "Vibetastic — Vibecoding Workshop",
   description:
-    "Ein zweitägiges Hands-on-Retreat für Menschen ohne Coding-Erfahrung. Du beschreibst — die KI baut.",
+    "Ein Hands-on-Workshop für Menschen ohne Coding-Erfahrung. Du beschreibst — die KI baut.",
   robots: {
     index: false,
     follow: false,

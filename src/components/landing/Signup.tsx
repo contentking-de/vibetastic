@@ -22,7 +22,7 @@ export default function Signup() {
         body: JSON.stringify({
           name: data.get("name"),
           email: data.get("email"),
-          ticket: data.get("ticket"),
+          ticket: "Workshop — 1.950 € netto",
           diet: data.get("diet"),
           project: data.get("project") || null,
         }),
@@ -51,21 +51,21 @@ export default function Signup() {
               className="font-mono text-xs tracking-wide mb-7"
               style={{ color: "color-mix(in oklab, var(--bg) 60%, transparent)" }}
             >
-              ANMELDUNG &middot; HERBST 2026
+              ANMELDUNG &middot; SOMMER 2026
             </div>
             <h2 className="font-display font-normal text-[clamp(40px,5vw,64px)] leading-none tracking-display" style={{ textWrap: "balance" }}>
               Bereit, das <em className="italic text-accent">erste Mal</em> zu bauen?
             </h2>
             <p className="max-w-[420px] mt-5 text-[17px]" style={{ color: "color-mix(in oklab, var(--bg) 75%, transparent)" }}>
-              Fülle das Formular aus, wir melden uns innerhalb von 24 Stunden. Nach Bestätigung erhältst du die Rechnung und alle Infos zur Anreise.
+              Bewirb dich für einen Platz. Wir melden uns innerhalb von 24 Stunden, ob du dabei bist. Bei Zusage erhältst du den Buchungslink.
             </p>
 
             <div className="mt-8 grid grid-cols-2 gap-4">
               {[
-                { k: "TERMIN", v: "15.–16. Nov. 2026" },
+                { k: "TERMIN", v: "02.–04. Jul. 2026" },
                 { k: "ORT", v: "Contentking Agentur, Markdorf" },
-                { k: "PREIS", v: "1.790 € all-in" },
-                { k: "PLÄTZE", v: "Noch 4 offen" },
+                { k: "PREIS", v: "1.950 € netto" },
+                { k: "PLÄTZE", v: "5 (begrenzt)" },
               ].map((item) => (
                 <div key={item.k} className="pt-4" style={{ borderTop: "1px solid color-mix(in oklab, var(--bg) 20%, transparent)" }}>
                   <div className="font-mono text-[11px] tracking-label mb-1" style={{ color: "color-mix(in oklab, var(--bg) 55%, transparent)" }}>
@@ -112,35 +112,20 @@ export default function Signup() {
                 onBlur={(e) => { e.currentTarget.style.borderBottomColor = "color-mix(in oklab, var(--bg) 20%, transparent)" }}
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block font-mono text-[11px] tracking-label uppercase mb-1.5" style={{ color: "color-mix(in oklab, var(--bg) 65%, transparent)" }}>
-                  Ticket
-                </label>
-                <select
-                  name="ticket"
-                  className="w-full py-3.5 text-base bg-transparent border-0 text-bg outline-none"
-                  style={{ borderBottom: "1px solid color-mix(in oklab, var(--bg) 20%, transparent)" }}
-                >
-                  <option className="bg-ink text-bg" value="Standard — 1.790 €">Standard — 1.790 €</option>
-                  <option className="bg-ink text-bg" value="Team — 1.590 € / Person">Team — 1.590 € / Person</option>
-                </select>
-              </div>
-              <div>
-                <label className="block font-mono text-[11px] tracking-label uppercase mb-1.5" style={{ color: "color-mix(in oklab, var(--bg) 65%, transparent)" }}>
-                  Diät
-                </label>
-                <select
-                  name="diet"
-                  className="w-full py-3.5 text-base bg-transparent border-0 text-bg outline-none"
-                  style={{ borderBottom: "1px solid color-mix(in oklab, var(--bg) 20%, transparent)" }}
-                >
-                  <option className="bg-ink text-bg" value="Alles">Alles</option>
-                  <option className="bg-ink text-bg" value="Vegetarisch">Vegetarisch</option>
-                  <option className="bg-ink text-bg" value="Vegan">Vegan</option>
-                  <option className="bg-ink text-bg" value="Glutenfrei">Glutenfrei</option>
-                </select>
-              </div>
+            <div>
+              <label className="block font-mono text-[11px] tracking-label uppercase mb-1.5" style={{ color: "color-mix(in oklab, var(--bg) 65%, transparent)" }}>
+                Diät
+              </label>
+              <select
+                name="diet"
+                className="w-full py-3.5 text-base bg-transparent border-0 text-bg outline-none"
+                style={{ borderBottom: "1px solid color-mix(in oklab, var(--bg) 20%, transparent)" }}
+              >
+                <option className="bg-ink text-bg" value="Alles">Alles</option>
+                <option className="bg-ink text-bg" value="Vegetarisch">Vegetarisch</option>
+                <option className="bg-ink text-bg" value="Vegan">Vegan</option>
+                <option className="bg-ink text-bg" value="Glutenfrei">Glutenfrei</option>
+              </select>
             </div>
             <div>
               <label className="block font-mono text-[11px] tracking-label uppercase mb-1.5" style={{ color: "color-mix(in oklab, var(--bg) 65%, transparent)" }}>
@@ -159,7 +144,7 @@ export default function Signup() {
               disabled={loading}
               className="mt-3 py-[18px] bg-accent text-accent-ink rounded-full text-[15px] font-medium w-full transition-transform hover:-translate-y-[1px] disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              {loading ? "Wird gesendet…" : "Platz unverbindlich reservieren"}
+              {loading ? "Wird gesendet…" : "Für einen Platz bewerben"}
             </button>
             {submitted && (
               <div
@@ -169,7 +154,7 @@ export default function Signup() {
                   color: "color-mix(in oklab, var(--bg) 85%, transparent)",
                 }}
               >
-                ✓ Danke! Wir melden uns innerhalb von 24 h bei dir.
+                ✓ Danke für deine Bewerbung! Wir melden uns innerhalb von 24 h bei dir.
               </div>
             )}
             {error && (

@@ -3,37 +3,31 @@ const agendaItems = [
     num: "01",
     title: "Die richtige Idee finden",
     desc: 'Wir helfen dir, aus einer vagen Vorstellung eine baubare Idee zu formen. Scope, Nutzen, "warum jetzt".',
-    tag: "STUNDE 1–2",
   },
   {
     num: "02",
     title: "Prompten wie ein:e Entwickler:in",
     desc: 'Gute Prompts sind wie gute Briefings. Struktur, Kontext, Beispiele — und warum "schreib den Code" fast nie funktioniert.',
-    tag: "STUNDE 3–5",
   },
   {
     num: "03",
     title: "Dein erstes lauffähiges Prototyp",
-    desc: "Wir gehen gemeinsam den Weg vom leeren Canvas zur klickbaren Seite. In 90 Minuten, live, ohne Magie.",
-    tag: "TAG 1 NACHMITTAG",
+    desc: "Wir gehen gemeinsam den Weg vom leeren Canvas zur klickbaren Seite. Live, ohne Magie.",
   },
   {
     num: "04",
     title: "Daten, Login und echte Funktionen",
     desc: "Formulare speichern, Nutzer:innen einloggen, E-Mails verschicken. Die unsichtbaren 80 %, die aus einer statischen Seite eine richtige Website machen.",
-    tag: "TAG 2 VORMITTAG",
   },
   {
     num: "05",
     title: "Veröffentlichen & teilen",
     desc: "Domain, Hosting, einfaches Deployment. Von localhost zu einer URL, die du deinen Freunden schickst.",
-    tag: "TAG 2 NACHMITTAG",
   },
   {
     num: "06",
     title: "Wenn es kaputt geht",
     desc: "Debugging-Basics, Sicherheitsfallen, KI-Halluzinationen erkennen, und wann du jemanden fragen solltest.",
-    tag: "CLOSING",
   },
 ]
 
@@ -51,7 +45,7 @@ export default function Agenda() {
           {agendaItems.map((item) => (
             <div
               key={item.num}
-              className="grid grid-cols-[60px_1fr_auto] gap-6 py-7 border-b border-line items-start transition-[padding] duration-300 hover:pl-3"
+              className="grid grid-cols-[60px_1fr] gap-6 py-7 border-b border-line items-start transition-[padding] duration-300 hover:pl-3"
             >
               <div className="font-mono text-[13px] text-ink-mute">{item.num}</div>
               <div>
@@ -61,9 +55,6 @@ export default function Agenda() {
                 <div className="text-ink-soft text-[15px] max-w-[620px]">
                   {item.desc}
                 </div>
-              </div>
-              <div className="font-mono text-[11px] text-ink-mute tracking-label px-3 py-1.5 bg-bg-soft rounded-full whitespace-nowrap">
-                {item.tag}
               </div>
             </div>
           ))}

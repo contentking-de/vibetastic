@@ -47,7 +47,7 @@ export default function LiveDemo() {
           <div className="sec-label">04 &nbsp;/&nbsp; Probier&apos;s aus</div>
           <h2 className="sec-title">So fühlt sich <em>Vibecoding</em> an.</h2>
           <p className="sec-lede">
-            Schreibe links einfach hin, was du willst. Die KI übersetzt das in eine kleine Vorschau rechts. Unser ganzer Workshop beginnt so — und geht dann viel tiefer.
+            Schreibe einfach hin, was du willst. Die KI übersetzt das in eine kleine Vorschau. Unser ganzer Workshop beginnt so — und geht dann viel tiefer.
           </p>
         </div>
 

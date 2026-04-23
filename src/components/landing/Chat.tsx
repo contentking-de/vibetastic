@@ -16,7 +16,7 @@ const defaultChips = [
 
 export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([
-    { role: "bot", text: "Hi 👋 Ich beantworte Fragen zum Wochenend-Workshop. Was möchtest du wissen?" },
+    { role: "bot", text: "Hi 👋 Ich beantworte Fragen zum Workshop. Was möchtest du wissen?" },
   ])
   const [input, setInput] = useState("")
   const [loading, setLoading] = useState(false)

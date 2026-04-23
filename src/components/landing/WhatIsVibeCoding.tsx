@@ -18,14 +18,14 @@ export default function WhatIsVibeCoding() {
               Das nennt sich <b className="text-ink font-medium">Vibecoding</b>: ein Arbeitsfluss, bei dem du die Richtung vorgibst, immer wieder testest, und Stück für Stück echte Software entstehen lässt. Keine Illusion — echte Webseiten, echte Tools, echte Automatisierungen.
             </p>
             <p className="text-xl leading-relaxed text-ink-soft" style={{ textWrap: "pretty" }}>
-              An diesem Wochenende lernst du die Werkzeuge, die Denkweise und die Fallstricke. Am Ende hast du deine erste eigene Website gebaut, veröffentlicht und gezeigt.
+              An diesem Workshop lernst du die Werkzeuge, die Denkweise und die Fallstricke. Am Ende hast du deine erste eigene Website gebaut, veröffentlicht und gezeigt.
             </p>
           </div>
           <div className="reveal grid grid-cols-2 gap-[1px] bg-line border border-line rounded-xl overflow-hidden">
             {[
               { num: "0", lab: "Vorkenntnisse nötig" },
               { num: "48h", lab: "Bis zur ersten Website" },
-              { num: "1:4", lab: "Coach pro Gruppe" },
+              { num: "3:5", lab: "Coach pro Gruppe" },
               { num: "∞", lab: "Ideen bauen lernen" },
             ].map((s) => (
               <div key={s.lab} className="bg-bg-card p-7">

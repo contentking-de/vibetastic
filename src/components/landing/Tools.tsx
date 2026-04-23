@@ -12,9 +12,9 @@ export default function Tools() {
     <section className="py-[clamp(80px,12vh,140px)] border-t border-line" id="tools">
       <div className="wrap">
         <div className="reveal">
-          <div className="sec-label">05 &nbsp;/&nbsp; Tool-Stack</div>
+          <div className="sec-label">05 &nbsp;/&nbsp; Deine Werkzeuge</div>
           <h2 className="sec-title">
-            Die Werkzeuge, mit denen du am Montag weitermachst.
+            Professionelle Tools, die du nach dem Workshop <em>weiternutzt.</em>
           </h2>
           <p className="sec-lede">
             Wir zeigen dir etablierte, stabile Tools — keine Tech-Experimente. Alles sofort zu Hause weiter nutzbar.

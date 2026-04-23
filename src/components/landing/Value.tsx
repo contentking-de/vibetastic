@@ -5,7 +5,7 @@ export default function Value() {
         <div className="reveal">
           <div className="sec-label">10 &nbsp;/&nbsp; Perspektive</div>
           <h2 className="sec-title">
-            1.790 € klingen nach viel. <em>Sind sie nicht.</em>
+            1.950 € klingen nach viel. <em>Sind sie nicht.</em>
           </h2>
           <p className="sec-lede">
             Vergleich es mit dem, was du sonst zahlen würdest — und was du danach selbst verdienen kannst.
@@ -23,7 +23,7 @@ export default function Value() {
                 { label: "Freelancer / Agentur", price: "3.000–15.000 €", note: "Einmalig, ohne dass du etwas lernst" },
                 { label: "Baukasten + Rumfrickeln", price: "0 € + 40 h Frust", note: "Ergebnis: sieht auch so aus" },
                 { label: "Online-Kurs (Udemy & Co.)", price: "15–200 €", note: "Abbruchquote > 90 %, kein Ergebnis" },
-                { label: "Vibetastic Workshop", price: "1.790 €", note: "Fertige Website + Skills für immer", highlight: true },
+                { label: "Vibetastic Workshop", price: "1.950 €", note: "Fertige Website + Skills für immer", highlight: true },
               ].map((row) => (
                 <div
                   key={row.label}
@@ -78,14 +78,14 @@ export default function Value() {
               </div>
               <div className="grid grid-cols-[1fr_auto] gap-y-2 gap-x-6 text-[15px]">
                 <span>Workshop-Ticket</span>
-                <span className="font-mono text-right">–1.790 €</span>
+                <span className="font-mono text-right">–1.950 €</span>
                 <span>1 Website für einen Kunden</span>
                 <span className="font-mono text-right text-accent">+3.500 €</span>
                 <span>Eigene Website (statt Agentur)</span>
                 <span className="font-mono text-right text-accent">+4.000 €</span>
                 <div className="col-span-2 border-t border-line my-1" style={{ borderColor: "color-mix(in oklab, var(--bg) 20%, transparent)" }} />
                 <span className="font-medium">Return on Investment</span>
-                <span className="font-mono text-right text-accent font-medium">+5.710 €</span>
+                <span className="font-mono text-right text-accent font-medium">+5.550 €</span>
               </div>
             </div>
           </div>

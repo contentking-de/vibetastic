@@ -1,21 +1,25 @@
+const dayAnreise = [
+  { time: "ab 17:00", what: "Anreise & Einchecken", detail: "Zimmer beziehen, ankommen, durchatmen" },
+  { time: "18:30", what: "Kennenlernen & Setup", detail: "Lockeres Get-together, Laptops einrichten, Fragen klären" },
+  { time: "19:30", what: "Gemeinsames Abendessen", detail: "Entspannt den Abend ausklingen lassen" },
+]
+
 const day1 = [
-  { time: "09:00", what: "Ankunft & Frühstück", detail: "Kaffee, Croissants, erstes Kennenlernen" },
-  { time: "10:00", what: "Kick-off", detail: "Was ist Vibecoding, was nicht, und warum jetzt" },
+  { time: "08:30", what: "Frühstück", detail: "Gemeinsam in den Tag starten" },
+  { time: "09:30", what: "Kick-off & Theorie", detail: "Was ist Vibecoding, was nicht, und warum es funktioniert" },
   { time: "11:00", what: "Ideenfindung", detail: "Wir formen deine Website-Idee — ohne Tech-Buzzwords" },
   { time: "13:00", what: "Mittagessen", detail: "Aus der Region, gemeinsam am großen Tisch" },
-  { time: "14:30", what: "Erste Website, erste Hürde", detail: "Live mit Cursor, Claude & Co. bauen" },
-  { time: "17:30", what: "Wrap & Spaziergang", detail: "Kurze Reflexion, dann raus in Markdorf" },
-  { time: "19:30", what: "Abendessen am Kamin", detail: "Dreigängig, ausreichend Wein" },
+  { time: "14:30", what: "Praxisteil: Bauen", detail: "Live mit Cursor, Claude & Co. — vom leeren Canvas zur ersten Seite" },
+  { time: "19:00", what: "Abendessen", detail: "Gemeinsam essen, den Tag Revue passieren lassen" },
 ]
 
 const day2 = [
-  { time: "08:30", what: "Frühstück", detail: "Optional: morgendliche Runde um den See" },
-  { time: "09:30", what: "Daten & Logins", detail: "Deine Website lernt, Dinge zu merken" },
-  { time: "12:00", what: "Open Build", detail: "Du baust, wir supporten — 1:1, so viel du brauchst" },
-  { time: "13:30", what: "Mittagessen", detail: "Leicht, damit der Nachmittag weitergeht" },
-  { time: "14:30", what: "Veröffentlichen", detail: "Domain kaufen, Deploy, live gehen" },
-  { time: "16:30", what: "Demo-Runde", detail: "Jede:r zeigt die Website in 3 Minuten" },
-  { time: "17:30", what: "Abschluss & Abreise", detail: "Mit Kaffee, Kuchen, neuen Kontakten" },
+  { time: "08:30", what: "Frühstück", detail: "Energie für den letzten Tag" },
+  { time: "09:30", what: "Reflexion & Weiterarbeiten", detail: "Kurzer Rückblick, dann weiter am Projekt" },
+  { time: "13:00", what: "Mittagessen", detail: "Leicht, damit der Nachmittag weitergeht" },
+  { time: "14:00", what: "Projekt fertigstellen", detail: "Letzte Features, Feinschliff, Veröffentlichen" },
+  { time: "16:00", what: "Demo-Runde", detail: "Jede:r zeigt die Website in 3 Minuten" },
+  { time: "17:00", what: "Abschluss & Abreise", detail: "Feedback, Kontakte tauschen, Abschied" },
 ]
 
 function DayCard({
@@ -58,15 +62,16 @@ export default function Schedule() {
         <div className="reveal">
           <div className="sec-label">03 &nbsp;/&nbsp; Ablauf</div>
           <h2 className="sec-title">
-            Zwei Tage, <em>wie gemacht</em> fürs Reinkommen.
+            Drei Tage, <em>wie gemacht</em> fürs Reinkommen.
           </h2>
           <p className="sec-lede">
-            Strukturierte Sessions, gemeinsame Mahlzeiten, viel Zeit zum Bauen. Keine stundenlangen Vorträge.
+            Donnerstagabend ankommen, Freitag und Samstag intensiv bauen. Gemeinsame Mahlzeiten, viel Zeit zum Coden.
           </p>
         </div>
-        <div className="grid grid-cols-1 gap-8 md-wide:grid-cols-2">
-          <DayCard title="Tag 1 — Aufbrechen" date="SAMSTAG, 15. NOV." rows={day1} />
-          <DayCard title="Tag 2 — Ausliefern" date="SONNTAG, 16. NOV." rows={day2} />
+        <div className="grid grid-cols-1 gap-8 md-wide:grid-cols-3">
+          <DayCard title="Anreise" date="DONNERSTAG, 02. JUL." rows={dayAnreise} />
+          <DayCard title="Tag 1 — Aufbrechen" date="FREITAG, 03. JUL." rows={day1} />
+          <DayCard title="Tag 2 — Ausliefern" date="SAMSTAG, 04. JUL." rows={day2} />
         </div>
       </div>
     </section>

@@ -1,18 +1,18 @@
 const testimonials = [
   {
-    quote: "Ich bin Therapeutin. Ich hätte nie gedacht, dass ich am Sonntagabend eine eigene Buchungsseite live habe. Es hat sich nicht nach Coden angefühlt — mehr nach einem sehr geduldigen Gespräch.",
+    quote: "Ich bin Therapeutin. Ich hätte nie gedacht, dass ich am Ende des Workshops eine eigene Buchungsseite live habe. Es hat sich nicht nach Coden angefühlt — mehr nach einem sehr geduldigen Gespräch.",
     name: "Lena Kirsch",
     initials: "LK",
     role: "Heilpraktikerin, Leipzig",
   },
   {
-    quote: "Endlich jemand, der diese Tools so erklärt, dass ich mich nicht dumm fühle. Ich hab 2 Wochen später meine erste Kundin gefunden — mit einem Tool, das ich am Wochenende gebaut habe.",
+    quote: "Endlich jemand, der diese Tools so erklärt, dass ich mich nicht dumm fühle. Ich hab 2 Wochen später meine erste Kundin gefunden — mit einem Tool, das ich am Workshop gebaut habe.",
     name: "Jonas Bergmann",
     initials: "JB",
     role: "Freelance-Coach, Berlin",
   },
   {
-    quote: "Das Wochenende war ein Geschenk. Kein Tech-Bro-Vibe, viele Pausen, richtig gutes Essen — und am Ende läuft da tatsächlich meine Website. Noch immer.",
+    quote: "Der Workshop war ein Geschenk. Kein Tech-Bro-Vibe, viele Pausen, richtig gutes Essen — und am Ende läuft da tatsächlich meine Website. Noch immer.",
     name: "Sofia Reinhardt",
     initials: "SR",
     role: "Galerieassistentin, München",

@@ -9,7 +9,7 @@ const faqs = [
   },
   {
     q: "Was genau ist im Preis enthalten?",
-    a: "Die 1.790 € beinhalten alle Workshop-Sessions, 1 Übernachtung im Einzelzimmer, sämtliche Mahlzeiten & Getränke, Kaffee/Snacks, und die Tool-Zugänge während des Wochenendes. Keine Anreise, kein Trinkgeld-Zwang.",
+    a: "Die 1.950 € (netto) beinhalten alle Workshop-Sessions, 2 Übernachtungen im Einzelzimmer, komplette Verpflegung inkl. Getränke und 1:1 Support. Nicht enthalten: Anreise/Abreise und Zugang zu Tools & Programmen (mögliche Kosten dafür).",
   },
   {
     q: "Welchen Laptop brauche ich?",
