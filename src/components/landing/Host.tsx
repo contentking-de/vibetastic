@@ -3,16 +3,19 @@ const hosts = [
     name: "Nicolas Sacotte",
     role: "FOUNDER · VIBETASTIC · CONTENTKING",
     bio: "Nicolas verbindet Unternehmertum mit Technologie. Als Gründer von Contentking und Vibetastic hilft er Menschen, mit modernen KI-Tools eigene digitale Produkte auf die Straße zu bringen.",
+    img: "/nico-sacotte.png",
   },
   {
     name: "Maya Sacotte",
     role: "CO-FOUNDER · VIBETASTIC",
     bio: "Maya bringt Struktur und Kreativität zusammen. Sie sorgt dafür, dass aus wilden Ideen klare Konzepte werden — und dass jede:r Teilnehmer:in den Workshop mit einem echten Ergebnis verlässt.",
+    img: "/maya-sacotte.jpg",
   },
   {
     name: "Thorsten Loth",
     role: "COACH · VIBETASTIC",
     bio: "Thorsten ist der geduldige Erklärer im Team. Mit einem Auge fürs Detail und einem Talent fürs Vereinfachen begleitet er dich durch jede technische Hürde.",
+    img: "/thorsten-loth.webp",
   },
 ]
 
@@ -30,12 +33,13 @@ export default function Host() {
           {hosts.map((host) => (
             <div key={host.name} className="reveal">
               <div
-                className="aspect-[4/5] border border-line rounded-[14px] flex items-end p-6 text-ink-mute font-mono text-[11px] mb-6"
-                style={{
-                  background: "repeating-linear-gradient(45deg, var(--bg-soft) 0 10px, var(--bg-card) 10px 20px)",
-                }}
+                className="aspect-[4/5] border border-line rounded-[14px] overflow-hidden mb-6"
               >
-                [ Foto &middot; 4:5 ]
+                <img
+                  src={host.img}
+                  alt={host.name}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="font-display text-[32px] font-normal tracking-display leading-none mb-2">
                 {host.name}

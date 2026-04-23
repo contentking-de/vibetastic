@@ -25,7 +25,7 @@ export default function Testimonials() {
       <div className="wrap">
         <div className="reveal">
           <div className="sec-label">07 &nbsp;/&nbsp; Stimmen</div>
-          <h2 className="sec-title">Was frühere Teilnehmer:innen sagen.</h2>
+          <h2 className="sec-title">Was andere so darüber sagen.</h2>
         </div>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
           {testimonials.map((t) => (
