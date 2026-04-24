@@ -84,10 +84,11 @@ export default function Signup() {
             style={{ background: "color-mix(in oklab, var(--bg) 10%, var(--ink))" }}
           >
             <div>
-              <label className="block font-mono text-[11px] tracking-label uppercase mb-1.5" style={{ color: "color-mix(in oklab, var(--bg) 65%, transparent)" }}>
+              <label htmlFor="name" className="block font-mono text-[11px] tracking-label uppercase mb-1.5" style={{ color: "color-mix(in oklab, var(--bg) 65%, transparent)" }}>
                 Vollständiger Name
               </label>
               <input
+                id="name"
                 name="name"
                 required
                 placeholder="Jana Musterfrau"
@@ -98,10 +99,11 @@ export default function Signup() {
               />
             </div>
             <div>
-              <label className="block font-mono text-[11px] tracking-label uppercase mb-1.5" style={{ color: "color-mix(in oklab, var(--bg) 65%, transparent)" }}>
+              <label htmlFor="email" className="block font-mono text-[11px] tracking-label uppercase mb-1.5" style={{ color: "color-mix(in oklab, var(--bg) 65%, transparent)" }}>
                 E-Mail
               </label>
               <input
+                id="email"
                 name="email"
                 required
                 type="email"
@@ -113,10 +115,11 @@ export default function Signup() {
               />
             </div>
             <div>
-              <label className="block font-mono text-[11px] tracking-label uppercase mb-1.5" style={{ color: "color-mix(in oklab, var(--bg) 65%, transparent)" }}>
-                Diät
+              <label htmlFor="diet" className="block font-mono text-[11px] tracking-label uppercase mb-1.5" style={{ color: "color-mix(in oklab, var(--bg) 65%, transparent)" }}>
+                Ernährungspräferenz
               </label>
               <select
+                id="diet"
                 name="diet"
                 className="w-full py-3.5 text-base bg-transparent border-0 text-bg outline-none"
                 style={{ borderBottom: "1px solid color-mix(in oklab, var(--bg) 20%, transparent)" }}
@@ -128,10 +131,11 @@ export default function Signup() {
               </select>
             </div>
             <div>
-              <label className="block font-mono text-[11px] tracking-label uppercase mb-1.5" style={{ color: "color-mix(in oklab, var(--bg) 65%, transparent)" }}>
+              <label htmlFor="project" className="block font-mono text-[11px] tracking-label uppercase mb-1.5" style={{ color: "color-mix(in oklab, var(--bg) 65%, transparent)" }}>
                 Was willst du bauen? (optional)
               </label>
               <textarea
+                id="project"
                 name="project"
                 rows={3}
                 placeholder="Eine Buchungsseite für meine Praxis, eine Visitenkarte, ein kleines Tool für den Verein…"

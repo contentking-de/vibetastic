@@ -71,6 +71,7 @@ export default function LiveDemo() {
               <span>beschreib einfach deine Idee</span>
             </div>
             <textarea
+              aria-label="Beschreib deine Idee"
               className="w-full flex-1 bg-terminal-bg text-terminal-fg border-0 outline-none resize-none p-5 font-mono text-[13px] leading-[1.7]"
               style={{ tabSize: 2 }}
               value={input}
