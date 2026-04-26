@@ -24,7 +24,7 @@ export default function Testimonials() {
     <section className="py-[clamp(80px,12vh,140px)] border-t border-line" id="testi">
       <div className="wrap">
         <div className="reveal">
-          <div className="sec-label">07 &nbsp;/&nbsp; Stimmen</div>
+          <div className="sec-label">08 &nbsp;/&nbsp; Stimmen</div>
           <h2 className="sec-title">Was andere so darüber sagen.</h2>
         </div>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">

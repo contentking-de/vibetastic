@@ -54,7 +54,7 @@ export default function Signup() {
               ANMELDUNG &middot; SOMMER 2026
             </div>
             <h2 className="font-display font-normal text-[clamp(40px,5vw,64px)] leading-none tracking-display" style={{ textWrap: "balance" }}>
-              Bereit, das <em className="italic text-accent">erste Mal</em> zu bauen?
+              Bereit, das <em className="text-accent">erste Mal</em> zu bauen?
             </h2>
             <p className="max-w-[420px] mt-5 text-[17px]" style={{ color: "color-mix(in oklab, var(--bg) 75%, transparent)" }}>
               Bewirb dich für einen Platz. Wir melden uns innerhalb von 24 Stunden, ob du dabei bist. Bei Zusage erhältst du den Buchungslink.

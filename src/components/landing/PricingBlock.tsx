@@ -5,7 +5,7 @@ export default function PricingBlock() {
     <section className="py-[clamp(80px,12vh,140px)] border-t border-line" id="price">
       <div className="wrap">
         <div className="reveal">
-          <div className="sec-label">09 &nbsp;/&nbsp; Preis</div>
+          <div className="sec-label">10 &nbsp;/&nbsp; Preis</div>
           <h2 className="sec-title">Ein Workshop. <em>Alles Wichtige drin.</em></h2>
           <p className="sec-lede">
             Inklusive Übernachtung, Verpflegung und persönlichem Support. Transparent und fair.

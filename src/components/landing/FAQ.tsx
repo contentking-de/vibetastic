@@ -20,10 +20,6 @@ const faqs = [
     a: "Die Contentking Agentur liegt in Markdorf am Bodensee. Anreise mit dem Zug bis Markdorf oder Friedrichshafen, von dort sind es nur wenige Minuten. PKW-Stellplätze sind vorhanden.",
   },
   {
-    q: "Was, wenn ich kurzfristig absagen muss?",
-    a: "Bis 21 Tage vorher gibt es 80 % zurück, bis 7 Tage vorher 50 %. Danach versuchen wir deinen Platz weiterzugeben — klappt das, gibt's den vollen Betrag zurück. Wir sind da unkompliziert.",
-  },
-  {
     q: "Was nehme ich am Ende mit?",
     a: "Eine eigene, veröffentlichte Website unter deiner Domain. Eine Routine, wie du eigenständig weiterbaust. Ein kleines Alumni-Netzwerk. Und vermutlich zu viele Ideen für das nächste Ding.",
   },
@@ -36,7 +32,7 @@ export default function FAQ() {
     <section className="py-[clamp(80px,12vh,140px)] border-t border-line" id="faq">
       <div className="wrap">
         <div className="reveal">
-          <div className="sec-label">10 &nbsp;/&nbsp; FAQ</div>
+          <div className="sec-label">12 &nbsp;/&nbsp; FAQ</div>
           <h2 className="sec-title">
             Die Fragen, die wir am <em>häufigsten</em> hören.
           </h2>

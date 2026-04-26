@@ -55,7 +55,7 @@ export default function Chat() {
     <section className="py-[clamp(80px,12vh,140px)] border-t border-line" id="chat">
       <div className="wrap">
         <div className="reveal">
-          <div className="sec-label">08 &nbsp;/&nbsp; Frag uns</div>
+          <div className="sec-label">09 &nbsp;/&nbsp; Frag uns</div>
           <h2 className="sec-title">Unsicher, ob das etwas für dich ist?</h2>
           <p className="sec-lede">
             Unser kleiner Assistent beantwortet die häufigsten Fragen rund um den Workshop. Ehrlich, keine Verkaufsgespräche.

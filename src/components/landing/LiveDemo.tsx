@@ -47,7 +47,7 @@ export default function LiveDemo() {
           <div className="sec-label">04 &nbsp;/&nbsp; Probier&apos;s aus</div>
           <h2 className="sec-title">So fühlt sich <em>Vibecoding</em> an.</h2>
           <p className="sec-lede">
-            Beschreib grob deine Geschäftsidee — die KI analysiert sie und macht dir Vorschläge, wie du sie umsetzen könntest. Genau so starten wir auch im Workshop.
+            Beschreib grob deine Geschäftsidee — die KI analysiert sie und macht dir Vorschläge, wie du sie umsetzen könntest. Genau so starten wir auch im Workshop. Das hast Du vielleicht sogar schon mal selber ausprobiert – wir gehen jetzt tief ins Detail und zeigen Dir das perfekte Setup und die richtige Vorgehensweise, um aus der Grundidee ein stabiles Projekt zu bauen.
           </p>
         </div>
 

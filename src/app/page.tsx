@@ -10,11 +10,13 @@ import Schedule from "@/components/landing/Schedule"
 import LiveDemo from "@/components/landing/LiveDemo"
 import Tools from "@/components/landing/Tools"
 import Host from "@/components/landing/Host"
+import Takeaways from "@/components/landing/Takeaways"
 import Testimonials from "@/components/landing/Testimonials"
 import Chat from "@/components/landing/Chat"
 import PricingBlock from "@/components/landing/PricingBlock"
 import Value from "@/components/landing/Value"
 import FAQ from "@/components/landing/FAQ"
+import Inspiration from "@/components/landing/Inspiration"
 import Signup from "@/components/landing/Signup"
 
 function ScrollRevealInit() {
@@ -35,11 +37,13 @@ export default function Home() {
         <LiveDemo />
         <Tools />
         <Host />
+        <Takeaways />
         <Testimonials />
         <Chat />
         <PricingBlock />
         <Value />
         <FAQ />
+        <Inspiration />
         <Signup />
       </main>
       <Footer />

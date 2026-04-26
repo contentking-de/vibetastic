@@ -102,7 +102,7 @@ export default function Hero() {
             >
               {rotatingWords[wordIdx]}
             </span>
-            <br /><em className="italic text-accent">in 2 Tagen selber.</em>
+            <br /><em className="not-italic text-accent">in 2 Tagen selber.</em>
           </h1>
 
           <p className="text-[clamp(17px,1.3vw,19px)] text-ink-soft max-w-[520px] mb-9" style={{ textWrap: "pretty" }}>

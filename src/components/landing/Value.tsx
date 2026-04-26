@@ -3,7 +3,7 @@ export default function Value() {
     <section className="py-[clamp(80px,12vh,140px)] border-t border-line">
       <div className="wrap">
         <div className="reveal">
-          <div className="sec-label">10 &nbsp;/&nbsp; Perspektive</div>
+          <div className="sec-label">11 &nbsp;/&nbsp; Perspektive</div>
           <h2 className="sec-title">
             1.950 € klingen nach viel. <em>Sind sie nicht.</em>
           </h2>
