@@ -57,7 +57,7 @@ export default function Signup() {
               Bereit, das <em className="text-accent">erste Mal</em> zu bauen?
             </h2>
             <p className="max-w-[420px] mt-5 text-[17px]" style={{ color: "color-mix(in oklab, var(--bg) 75%, transparent)" }}>
-              Bewirb dich für einen Platz. Wir melden uns innerhalb von 24 Stunden, ob du dabei bist. Bei Zusage erhältst du den Buchungslink.
+              Bewirb dich für einen Platz. Wir entscheiden nach der Sichtung der Projektideen im Losverfahren zwischen allen Bewerbern, um eine möglichst ausgewogene Workshop-Gruppe bilden zu können. Du bekommst innerhalb von 7 Werktagen Bescheid.
             </p>
 
             <div className="mt-8 grid grid-cols-2 gap-4">
@@ -132,13 +132,14 @@ export default function Signup() {
             </div>
             <div>
               <label htmlFor="project" className="block font-mono text-[11px] tracking-label uppercase mb-1.5" style={{ color: "color-mix(in oklab, var(--bg) 65%, transparent)" }}>
-                Was willst du bauen? (optional)
+                Deine Projekt-Idee — was willst Du bauen?
               </label>
               <textarea
                 id="project"
                 name="project"
+                required
                 rows={3}
-                placeholder="Eine Buchungsseite für meine Praxis, eine Visitenkarte, ein kleines Tool für den Verein…"
+                placeholder="z.B. SaaS-Lösung für Zahnärzte, meine Website relaunchen, ein KPI-Dashboard, ein internes Ticketsystem, Arbeitsplaner, Zeiterfassung, Agentur-Tool, eine Facebook-Alternative erschaffen, Google nachbauen … #younameit"
                 className="w-full py-3.5 text-base bg-transparent border-0 text-bg outline-none resize-y"
                 style={{ borderBottom: "1px solid color-mix(in oklab, var(--bg) 20%, transparent)" }}
               />
@@ -158,7 +159,7 @@ export default function Signup() {
                   color: "color-mix(in oklab, var(--bg) 85%, transparent)",
                 }}
               >
-                ✓ Danke für deine Bewerbung! Wir melden uns innerhalb von 24 h bei dir.
+                ✓ Danke für deine Bewerbung! Du bekommst innerhalb von 7 Werktagen Bescheid.
               </div>
             )}
             {error && (

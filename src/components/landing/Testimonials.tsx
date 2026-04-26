@@ -1,19 +1,19 @@
 const testimonials = [
   {
-    quote: "Ich bin Therapeutin. Ich hätte nie gedacht, dass ich am Ende des Workshops eine eigene Buchungsseite live habe. Es hat sich nicht nach Coden angefühlt — mehr nach einem sehr geduldigen Gespräch.",
-    name: "Lena Kirsch",
+    quote: "Die Jungs haben mir beigebracht, wie ich meine Webseite selber gestalten kann — Design, Layout aber auch inhaltlich und vor allem funktional. Für mich ein echter Mehrwert und das gute Gefühl, nie wieder Web-Baukästen anfassen zu müssen.",
+    name: "Lena K.",
     initials: "LK",
     role: "Heilpraktikerin, Leipzig",
   },
   {
-    quote: "Endlich jemand, der diese Tools so erklärt, dass ich mich nicht dumm fühle. Ich hab 2 Wochen später meine erste Kundin gefunden — mit einem Tool, das ich am Workshop gebaut habe.",
-    name: "Jonas Bergmann",
+    quote: "Endlich jemand, der diese Tools so erklärt, dass ich mich nicht direkt dumm fühle. Ich hab mir das von Nico in einer 3-Stunden-Session einmal zeigen lassen und 2 Wochen später das erste Projekt in Rechnung gestellt — für ein Dashboard, das ich an einem Wochenende gebaut habe.",
+    name: "Jonas B.",
     initials: "JB",
     role: "Freelance-Coach, Berlin",
   },
   {
-    quote: "Der Workshop war ein Geschenk. Kein Tech-Bro-Vibe, viele Pausen, richtig gutes Essen — und am Ende läuft da tatsächlich meine Website. Noch immer.",
-    name: "Sofia Reinhardt",
+    quote: "Die Session mit Nico und Maya war ein echtes Geschenk. Kein Tech-Bro-Vibe, sehr strukturierter Aufbau mit kleinen Beispielen und vielen Anekdoten zwischen den Zeilen, die mir persönlich richtig weitergeholfen haben — nach knapp 4 Stunden war meine Webseite fertig.",
+    name: "Sofia R.",
     initials: "SR",
     role: "Galerieassistentin, München",
   },
