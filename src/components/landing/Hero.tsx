@@ -116,6 +116,27 @@ export default function Hero() {
         </div>
 
         <div className="reveal pt-[50px]">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mb-5">
+            {[
+              { name: "Vercel", slug: "vercel", color: "000" },
+              { name: "GitHub", slug: "github", color: "181717" },
+              { name: "Neon", src: "https://neon.com/brand/neon-logomark-light-mono.svg" },
+              { name: "Next.js", slug: "nextdotjs", color: "000" },
+              { name: "React", slug: "react", color: "61DAFB" },
+              { name: "Claude", slug: "anthropic", color: "D97757" },
+              { name: "ChatGPT", slug: "openai", color: "412991" },
+              { name: "Perplexity", slug: "perplexity", color: "1FB8CD" },
+              { name: "Resend", slug: "resend", color: "000" },
+            ].map((logo) => (
+              <img
+                key={logo.name}
+                src={logo.src || `https://cdn.simpleicons.org/${logo.slug}/${logo.color}`}
+                alt={logo.name}
+                title={logo.name}
+                className="h-6 hover:scale-110 transition-transform"
+              />
+            ))}
+          </div>
           <div className="terminal">
             <div className="terminal-bar">
               <span className="w-[11px] h-[11px] rounded-full bg-[#ff5f57]" />

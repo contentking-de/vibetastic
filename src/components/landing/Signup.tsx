@@ -144,6 +144,17 @@ export default function Signup() {
                 style={{ borderBottom: "1px solid color-mix(in oklab, var(--bg) 20%, transparent)" }}
               />
             </div>
+            <label className="flex items-start gap-3 cursor-pointer mt-2">
+              <input
+                type="checkbox"
+                name="consent"
+                required
+                className="mt-1 accent-accent w-4 h-4 shrink-0"
+              />
+              <span className="text-[13px] leading-relaxed" style={{ color: "color-mix(in oklab, var(--bg) 65%, transparent)" }}>
+                Ich bin damit einverstanden, dass meine Daten zur Bearbeitung meiner Bewerbung gespeichert werden. Mehr dazu in unserer <a href="/datenschutz" className="underline hover:text-bg transition-colors">Datenschutzerklärung</a>.
+              </span>
+            </label>
             <button
               type="submit"
               disabled={loading}
