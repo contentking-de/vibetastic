@@ -5,6 +5,10 @@ import { desc } from "drizzle-orm"
 import { auth } from "@/lib/auth"
 import { members } from "@/lib/db/schema"
 import { eq } from "drizzle-orm"
+import { getResend } from "@/lib/resend"
+
+const FROM = "Vibetastic <noreply@vibetastic.de>"
+const ADMIN_EMAIL = "nico@contentking.de"
 
 export async function POST(req: Request) {
   const body = await req.json()
@@ -25,6 +29,40 @@ export async function POST(req: Request) {
     diet,
     project: project || null,
   })
+
+  const resend = getResend()
+
+  try {
+    await Promise.all([
+      resend.emails.send({
+        from: FROM,
+        to: email,
+        subject: "Deine Bewerbung ist eingegangen",
+        html: [
+          `<p>Hallo ${name},</p>`,
+          `<p>vielen Dank für deine Bewerbung zum Workshop! Wir melden uns innerhalb von 7 Werktagen bei dir.</p>`,
+          `<p>Liebe Grüße,<br/>Dein Vibetastic Team</p>`,
+        ].join("\n"),
+      }),
+      resend.emails.send({
+        from: FROM,
+        to: ADMIN_EMAIL,
+        subject: `Neue Bewerbung von ${name}`,
+        html: [
+          `<p>Neue Bewerbung eingegangen:</p>`,
+          `<ul>`,
+          `  <li><strong>Name:</strong> ${name}</li>`,
+          `  <li><strong>E-Mail:</strong> ${email}</li>`,
+          `  <li><strong>Ticket:</strong> ${ticket}</li>`,
+          `  <li><strong>Ernährung:</strong> ${diet}</li>`,
+          `  <li><strong>Projekt:</strong> ${project || "–"}</li>`,
+          `</ul>`,
+        ].join("\n"),
+      }),
+    ])
+  } catch (err) {
+    console.error("Signup confirmation emails failed:", err)
+  }
 
   return NextResponse.json({ ok: true })
 }
