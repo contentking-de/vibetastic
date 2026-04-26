@@ -11,7 +11,7 @@ const agendaItems = [
   },
   {
     num: "03",
-    title: "Dein erstes lauffähiges Prototyp",
+    title: "Dein erster lauffähiger Prototyp",
     desc: "Wir gehen gemeinsam den Weg vom leeren Canvas zur klickbaren Seite. Live, ohne Magie.",
   },
   {
