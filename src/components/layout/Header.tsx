@@ -25,7 +25,7 @@ export default function Header() {
           <Link href="/#what" className="transition-colors hover:text-ink">Was ist das?</Link>
           <Link href="/#agenda" className="transition-colors hover:text-ink">Agenda</Link>
           <Link href="/#schedule" className="transition-colors hover:text-ink">Termine</Link>
-          <Link href="/#price" className="transition-colors hover:text-ink">Preise</Link>
+          <Link href="/#price" className="transition-colors hover:text-ink">Preis</Link>
           <Link href="/#faq" className="transition-colors hover:text-ink">FAQ</Link>
         </div>
 
@@ -58,7 +58,7 @@ export default function Header() {
           <Link href="/#what" className="block" onClick={() => setMenuOpen(false)}>Was ist das?</Link>
           <Link href="/#agenda" className="block" onClick={() => setMenuOpen(false)}>Agenda</Link>
           <Link href="/#schedule" className="block" onClick={() => setMenuOpen(false)}>Termine</Link>
-          <Link href="/#price" className="block" onClick={() => setMenuOpen(false)}>Preise</Link>
+          <Link href="/#price" className="block" onClick={() => setMenuOpen(false)}>Preis</Link>
           <Link href="/#faq" className="block" onClick={() => setMenuOpen(false)}>FAQ</Link>
           <Link href="/club" className="block" onClick={() => setMenuOpen(false)}>Club</Link>
           <Link href="/#signup" className="btn inline-flex" onClick={() => setMenuOpen(false)}>Anmelden →</Link>
