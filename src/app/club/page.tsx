@@ -10,13 +10,13 @@ const cards = [
   },
   {
     title: "Unterkunft",
-    description: "Empfohlene Hotels und Unterkünfte in der Nähe des Workshop-Ortes.",
+    description: "Im Preis inklusive: Hotel Bürgerstuben mit Frühstück und Mittagessen für alle Teilnehmer.",
     href: "/club/unterkunft",
-    label: "Unterkünfte ansehen",
+    label: "Unterkunft ansehen",
   },
   {
     title: "Anreise",
-    description: "Wegbeschreibung per Bahn, Auto und alle wichtigen Infos zur Anreise.",
+    description: "Bahnhof Markdorf = Workshop-Location. Plus Infos zu Flugzeug und Auto.",
     href: "/club/anreise",
     label: "Anreise planen",
   },
@@ -64,7 +64,6 @@ export default async function ClubDashboard() {
             "Cursor Editor installieren (cursor.com)",
             "OpenAI oder Anthropic API Key einrichten",
             "Workshop-Materialien durchlesen",
-            "Anreise & Unterkunft klären",
           ].map((item, i) => (
             <label key={i} className="flex items-start gap-3 cursor-pointer">
               <input
