@@ -223,10 +223,9 @@ function ReplyItem({
 }
 
 function InlineImages({ attachments }: { attachments: string | null }) {
+  const [expanded, setExpanded] = useState<string | null>(null)
   const urls = parseAttachments(attachments)
   if (urls.length === 0) return null
-
-  const [expanded, setExpanded] = useState<string | null>(null)
 
   return (
     <>
