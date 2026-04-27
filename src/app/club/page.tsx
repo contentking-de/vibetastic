@@ -157,6 +157,11 @@ export default async function ClubDashboard() {
               detail="Claude AI API. API-Credits nötig (mind. $5 empfohlen)."
               href="https://console.anthropic.com"
             />
+            <ChecklistItem
+              label="Google Cloud Console (optional)"
+              detail="Nur nötig, wenn du z.B. Google Maps, Search Console, Analytics oder Google OAuth nutzen willst."
+              href="https://console.cloud.google.com"
+            />
           </ChecklistSection>
 
           <ChecklistSection title="Cursor einrichten">
