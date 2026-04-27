@@ -148,8 +148,8 @@ export default async function ClubDashboard() {
               href="https://resend.com"
             />
             <ChecklistItem
-              label="Stripe-Account"
-              detail="Zahlungsabwicklung. Test-Modus ist kostenlos."
+              label="Stripe-Account (optional)"
+              detail="Nur nötig, wenn du Zahlungen abwickeln und Rechnungen generieren willst. Test-Modus ist kostenlos."
               href="https://stripe.com"
             />
             <ChecklistItem
