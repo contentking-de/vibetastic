@@ -17,6 +17,7 @@ import PricingBlock from "@/components/landing/PricingBlock"
 import Value from "@/components/landing/Value"
 import FAQ from "@/components/landing/FAQ"
 import Inspiration from "@/components/landing/Inspiration"
+import Club from "@/components/landing/Club"
 import Signup from "@/components/landing/Signup"
 
 function ScrollRevealInit() {
@@ -44,6 +45,7 @@ export default function Home() {
         <Value />
         <FAQ />
         <Inspiration />
+        <Club />
         <Signup />
       </main>
       <Footer />
