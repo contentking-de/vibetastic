@@ -162,6 +162,20 @@ export default async function ClubDashboard() {
               detail="Nur nötig, wenn du z.B. Google Maps, Search Console, Analytics oder Google OAuth nutzen willst."
               href="https://console.cloud.google.com"
             />
+            <ChecklistItem
+              label="DataforSEO-Account (optional)"
+              detail="Nur nötig, wenn du mit Keyword-Daten oder anderen SEO-relevanten Daten arbeiten möchtest."
+              href="https://dataforseo.com"
+            />
+            <ChecklistItem
+              label="SISTRIX-Account (optional)"
+              detail="Nur nötig, wenn du die SISTRIX-API anbinden willst."
+              href="https://www.sistrix.de"
+            />
+            <ChecklistItem
+              label="Weitere APIs (optional)"
+              detail="Wenn du spezielle Anforderungen hast, richte vorab die Zugänge ein und besorge dir die API-Keys – dann sind wir in der praktischen Phase deutlich schneller. Beispiele: PandaDoc (digitale Signaturen), SEOspark (Keyword-Research), TopicLoops (Topic-Research), ElevenLabs (Text-to-Speech) … #younameit #youdecide"
+            />
           </ChecklistSection>
 
           <ChecklistSection title="Cursor einrichten">
