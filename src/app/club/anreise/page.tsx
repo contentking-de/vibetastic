@@ -14,17 +14,17 @@ export default function AnreisePage() {
       <div className="card-floating mb-6">
         <p className="label-meta mb-2">Workshop-Adresse</p>
         <p className="text-xl font-semibold text-on-surface">
-          Workshop-Location
+          contentking.de Agentur
         </p>
         <p className="text-on-surface-variant mt-1">
-          Musterstraße 42, 10115 Berlin
+          Eisenbahnstraße 1, 88677 Markdorf
         </p>
         <p className="text-sm text-on-surface-variant mt-1">
-          Genaue Adresse wird rechtzeitig per E-Mail bekannt gegeben.
+          Direkt im Bahnhof Markdorf — vom Bahnsteig sind es 20&nbsp;m bis zu den Räumlichkeiten. Aussteigen und ankommen.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="card-floating">
           <div className="flex items-center gap-3 mb-4">
             <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -36,16 +36,9 @@ export default function AnreisePage() {
           </div>
           <div className="space-y-4">
             <div>
-              <p className="font-medium text-on-surface text-sm">Nächster Bahnhof</p>
+              <p className="font-medium text-on-surface text-sm">Bahnhof Markdorf</p>
               <p className="text-sm text-on-surface-variant">
-                Hauptbahnhof (ca. 15 Minuten zu Fuß oder 2 Stationen mit der U-Bahn)
-              </p>
-            </div>
-            <div>
-              <p className="font-medium text-on-surface text-sm">Verbindung</p>
-              <p className="text-sm text-on-surface-variant">
-                Vom Hauptbahnhof mit der U6 bis Station Friedrichstraße, dann
-                5 Minuten zu Fuß.
+                Die Workshop-Location ist direkt im Bahnhof. Vom Bahnsteig bis zur Tür sind es nur 20&nbsp;m — einfacher geht&rsquo;s nicht.
               </p>
             </div>
             <div>
@@ -53,6 +46,31 @@ export default function AnreisePage() {
               <p className="text-sm text-on-surface-variant">
                 Buche ein Deutschland-Ticket für flexible Nutzung des ÖPNV
                 während deines Aufenthalts.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="card-floating">
+          <div className="flex items-center gap-3 mb-4">
+            <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+            </svg>
+            <h3 className="text-lg font-semibold text-on-surface">
+              Mit dem Flugzeug
+            </h3>
+          </div>
+          <div className="space-y-4">
+            <div>
+              <p className="font-medium text-on-surface text-sm">Flughafen Friedrichshafen</p>
+              <p className="text-sm text-on-surface-variant">
+                Der nächste Flughafen ist Friedrichshafen (FDH), ca. 20&nbsp;km entfernt.
+              </p>
+            </div>
+            <div>
+              <p className="font-medium text-on-surface text-sm">Tipp</p>
+              <p className="text-sm text-on-surface-variant">
+                Donnerstags gibt es günstige Flüge von Düsseldorf nach Friedrichshafen mit Air Uniqon.
               </p>
             </div>
           </div>
@@ -69,17 +87,15 @@ export default function AnreisePage() {
           </div>
           <div className="space-y-4">
             <div>
-              <p className="font-medium text-on-surface text-sm">Anfahrt</p>
+              <p className="font-medium text-on-surface text-sm">Von Westen (Stuttgart)</p>
               <p className="text-sm text-on-surface-variant">
-                Über die A100, Ausfahrt Zentrum. Navigation zu
-                &quot;Musterstraße 42&quot; eingeben.
+                Über die A81 Richtung Singen, dann Ausfahrt Richtung Lindau/Überlingen auf die B33/B31 nach Markdorf.
               </p>
             </div>
             <div>
-              <p className="font-medium text-on-surface text-sm">Parken</p>
+              <p className="font-medium text-on-surface text-sm">Von Osten (München)</p>
               <p className="text-sm text-on-surface-variant">
-                Parkhaus direkt um die Ecke (ca. 12€/Tag). Straßenparkplätze
-                sind begrenzt verfügbar.
+                Über die A96 bis Lindau, dann auf die B31 Richtung Friedrichshafen/Überlingen nach Markdorf.
               </p>
             </div>
             <div>
@@ -98,10 +114,10 @@ export default function AnreisePage() {
           <strong className="text-on-surface">Fragen zur Anreise?</strong>{" "}
           Schreib uns an{" "}
           <a
-            href="mailto:hallo@vibetastic.de"
+            href="mailto:maya@vibetastic.de"
             className="text-primary underline underline-offset-4"
           >
-            hallo@vibetastic.de
+            maya@vibetastic.de
           </a>{" "}
           und wir helfen dir gerne weiter.
         </p>
