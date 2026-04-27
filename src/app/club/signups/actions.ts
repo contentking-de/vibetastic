@@ -58,9 +58,11 @@ export async function approveSignup(signupId: string) {
       html: [
         `<p>Hallo ${signup.name},</p>`,
         `<p><strong>Glückwunsch — Du wurdest offiziell in den Vibetastic-Club aufgenommen!</strong></p>`,
-        `<p>Wir freuen uns riesig, dass du dabei bist.</p>`,
-        `<p>Bitte ergänze Deine Adressdaten. Wir nutzen diese nur zum Zweck der Rechnungserstellung für den Workshop.</p>`,
-        `<p>Du kannst dich ab sofort im Club einloggen und unter „Meine Daten" deine Adresse hinterlegen.</p>`,
+        `<p>Wir freuen uns riesig, dass du dabei bist. Im Club-Bereich findest Du alle wichtigen Infos, die Community-Funktion, mit der Du ab sofort Fragen stellen, Ideen challengen, Probleme lösen und Dich mit den Experten und anderen Club-Members austauschen kannst.</p>`,
+        `<p>Außerdem findest Du Angaben zum Workshop, zur Anreise, Unterkunft etc.</p>`,
+        `<p>Bitte ergänze noch Deine Adressdaten. Wir nutzen diese nur zum Zweck der Rechnungserstellung für den Workshop.</p>`,
+        `<p>Du kannst dich ab sofort im Club einloggen und unter „Meine Daten" deine Adresse hinterlegen. Die Anmeldung ist passwortfrei – Du gibst einfach auf vibetastic.de/club Deine Mailadresse ein und bekommst dann den Login-Token als Link.</p>`,
+        `<p>Falls Du weitere Fragen hast, nutze einfach den Community-Bereich um sie zu stellen, oder sende uns eine E-Mail an <a href="mailto:maya@vibetastic.de">maya@vibetastic.de</a>.</p>`,
         `<p>Bis bald!<br/>Dein Vibetastic Team</p>`,
       ].join("\n"),
     })
