@@ -24,7 +24,7 @@ export default function KontaktPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <a
-              href="mailto:maya@contentking.de"
+              href="mailto:maya@vibetastic.de"
               className="group border border-line rounded-2xl p-8 hover:border-accent/40 transition-all"
             >
               <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
@@ -36,7 +36,7 @@ export default function KontaktPage() {
                 E-Mail
               </div>
               <div className="text-on-surface-variant text-[15px]">
-                maya@contentking.de
+                maya@vibetastic.de
               </div>
             </a>
 
