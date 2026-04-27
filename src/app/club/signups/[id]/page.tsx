@@ -5,6 +5,7 @@ import { signups, members } from "@/lib/db/schema"
 import { eq } from "drizzle-orm"
 import Link from "next/link"
 import AddressForm from "@/app/club/meine-daten/AddressForm"
+import ApproveButton from "../ApproveButton"
 
 export default async function SignupDetailPage({
   params,
@@ -83,10 +84,18 @@ export default async function SignupDetailPage({
 
       {linkedMember.length > 0 ? (
         <div className="mt-8 card p-6">
-          <h2 className="text-base font-bold text-on-surface mb-1">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                <path d="M13.5 4.5L6 12L2.5 8.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              Bestätigt
+            </span>
+          </div>
+          <h2 className="text-base font-bold text-ink mb-1">
             Rechnungsadresse
           </h2>
-          <p className="text-sm text-on-surface-variant mb-6">
+          <p className="text-sm text-ink-soft mb-6">
             Club-Mitglied seit {linkedMember[0].createdAt
               ? new Intl.DateTimeFormat("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" }).format(new Date(linkedMember[0].createdAt))
               : "unbekannt"}
@@ -106,9 +115,11 @@ export default async function SignupDetailPage({
         </div>
       ) : (
         <div className="mt-8 card p-6">
-          <p className="text-sm text-on-surface-variant">
-            Noch kein Club-Mitglied — Adresse kann erst nach Beitritt gepflegt werden.
+          <h2 className="text-base font-bold text-ink mb-2">Mitgliedschaft</h2>
+          <p className="text-sm text-ink-soft mb-4">
+            Diese Person ist noch kein Club-Mitglied. Mit der Bestätigung wird ein Mitglied angelegt und eine Willkommens-Mail verschickt.
           </p>
+          <ApproveButton signupId={row.id} />
         </div>
       )}
     </div>
