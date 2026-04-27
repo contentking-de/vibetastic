@@ -5,6 +5,7 @@ import {
   uuid,
   primaryKey,
   integer,
+  serial,
 } from "drizzle-orm/pg-core"
 import type { AdapterAccountType } from "next-auth/adapters"
 
@@ -82,4 +83,29 @@ export const signups = pgTable("signup", {
   diet: text("diet").notNull(),
   project: text("project"),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+})
+
+export const forumChannels = pgTable("forum_channel", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: text("name").notNull(),
+  slug: text("slug").unique().notNull(),
+  description: text("description"),
+  emoji: text("emoji").default("💬"),
+  sortOrder: serial("sort_order"),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+})
+
+export const forumMessages = pgTable("forum_message", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  channelId: uuid("channel_id")
+    .notNull()
+    .references(() => forumChannels.id, { onDelete: "cascade" }),
+  userId: text("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  content: text("content").notNull(),
+  attachments: text("attachments"),
+  parentId: uuid("parent_id"),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
 })

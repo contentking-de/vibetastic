@@ -15,6 +15,7 @@
     "@anthropic-ai/sdk": "^0.90.0",
     "@auth/drizzle-adapter": "^1.7.4",
     "@neondatabase/serverless": "^0.10.4",
+    "@vercel/blob": "^2.3.3",
     "dotenv": "^17.4.2",
     "drizzle-orm": "^0.38.3",
     "next": "^14.2.29",

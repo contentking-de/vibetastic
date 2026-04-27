@@ -33,7 +33,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
       return true
     },
-    async session({ session }) {
+    async session({ session, user }) {
+      if (user?.id) {
+        session.user.id = user.id
+      }
       if (session.user?.email) {
         const member = await db
           .select({ role: members.role })
