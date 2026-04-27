@@ -19,11 +19,17 @@ function LoginForm() {
     setLoading(true)
 
     try {
-      await signIn("resend", {
+      const result = await signIn("resend", {
         email,
         callbackUrl,
         redirect: false,
       })
+
+      if (result?.error || (result?.url && result.url.includes("error="))) {
+        window.location.href = "/login?error=not-a-member"
+        return
+      }
+
       setSent(true)
     } catch {
       setLoading(false)

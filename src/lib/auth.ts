@@ -27,7 +27,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         .where(eq(members.email, user.email))
         .limit(1)
 
-      if (member.length === 0 || !member[0].paidAt) {
+      if (member.length === 0) {
         return "/login?error=not-a-member"
       }
 
