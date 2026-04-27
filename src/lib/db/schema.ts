@@ -71,6 +71,12 @@ export const members = pgTable("member", {
   stripeSessionId: text("stripe_session_id"),
   stripeCustomerId: text("stripe_customer_id"),
   role: text("role").default("member").notNull(),
+  company: text("company"),
+  fullName: text("full_name"),
+  street: text("street"),
+  zip: text("zip"),
+  city: text("city"),
+  country: text("country").default("Deutschland"),
   paidAt: timestamp("paid_at", { withTimezone: true }),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 })

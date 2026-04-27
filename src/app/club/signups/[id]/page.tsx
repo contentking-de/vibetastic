@@ -4,6 +4,7 @@ import { db } from "@/lib/db"
 import { signups, members } from "@/lib/db/schema"
 import { eq } from "drizzle-orm"
 import Link from "next/link"
+import AddressForm from "@/app/club/meine-daten/AddressForm"
 
 export default async function SignupDetailPage({
   params,
@@ -13,13 +14,13 @@ export default async function SignupDetailPage({
   const session = await auth()
   if (!session?.user?.email) redirect("/login")
 
-  const member = await db
+  const currentMember = await db
     .select()
     .from(members)
     .where(eq(members.email, session.user.email))
     .limit(1)
 
-  if (member.length === 0 || member[0].role !== "admin") {
+  if (currentMember.length === 0 || currentMember[0].role !== "admin") {
     redirect("/club")
   }
 
@@ -34,6 +35,12 @@ export default async function SignupDetailPage({
   if (rows.length === 0) notFound()
 
   const row = rows[0]
+
+  const linkedMember = await db
+    .select()
+    .from(members)
+    .where(eq(members.email, row.email))
+    .limit(1)
 
   const formattedDate = row.createdAt
     ? new Intl.DateTimeFormat("de-DE", {
@@ -73,6 +80,37 @@ export default async function SignupDetailPage({
           <DetailCard label="Projektidee" value={row.project || "—"} multiline />
         </div>
       </div>
+
+      {linkedMember.length > 0 ? (
+        <div className="mt-8 card p-6">
+          <h2 className="text-base font-bold text-on-surface mb-1">
+            Rechnungsadresse
+          </h2>
+          <p className="text-sm text-on-surface-variant mb-6">
+            Club-Mitglied seit {linkedMember[0].createdAt
+              ? new Intl.DateTimeFormat("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" }).format(new Date(linkedMember[0].createdAt))
+              : "unbekannt"}
+          </p>
+          <AddressForm
+            memberId={linkedMember[0].id}
+            initial={{
+              fullName: linkedMember[0].fullName ?? row.name,
+              company: linkedMember[0].company ?? "",
+              street: linkedMember[0].street ?? "",
+              zip: linkedMember[0].zip ?? "",
+              city: linkedMember[0].city ?? "",
+              country: linkedMember[0].country ?? "Deutschland",
+            }}
+            isAdmin
+          />
+        </div>
+      ) : (
+        <div className="mt-8 card p-6">
+          <p className="text-sm text-on-surface-variant">
+            Noch kein Club-Mitglied — Adresse kann erst nach Beitritt gepflegt werden.
+          </p>
+        </div>
+      )}
     </div>
   )
 }
