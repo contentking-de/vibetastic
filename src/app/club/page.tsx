@@ -128,8 +128,8 @@ export default async function ClubDashboard() {
 
           <ChecklistSection title="Accounts anlegen">
             <ChecklistItem
-              label="GitHub-Account"
-              detail="Code-Hosting und Versionskontrolle. Free Tier reicht."
+              label="GitHub-Account (zuerst!)"
+              detail="Richte als Erstes GitHub ein. Damit kannst du dich bei Vercel, Neon, Cursor und Co. direkt per GitHub anmelden."
               href="https://github.com"
             />
             <ChecklistItem
