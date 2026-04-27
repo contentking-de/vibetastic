@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { members, memberChecklist } from "@/lib/db/schema"
 import { and, eq } from "drizzle-orm"
+import { revalidatePath } from "next/cache"
 
 async function getMemberId(): Promise<string | null> {
   const session = await auth()
@@ -57,6 +58,8 @@ export async function toggleChecklistItem(
         checkedAt: checked ? new Date() : null,
       },
     })
+
+  revalidatePath("/club")
 
   return { ok: true }
 }
