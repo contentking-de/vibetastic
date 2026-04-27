@@ -54,8 +54,8 @@ export const metadata: Metadata = {
   description:
     "Ein Hands-on-Workshop für Menschen ohne Coding-Erfahrung. Du beschreibst — die KI baut.",
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
   },
 }
 
