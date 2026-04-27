@@ -1,5 +1,46 @@
 import { auth } from "@/lib/auth"
 import Link from "next/link"
+import { ReactNode } from "react"
+
+function ChecklistSection({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div>
+      <h3 className="text-sm font-bold text-on-surface mb-4 uppercase tracking-wider opacity-60">
+        {title}
+      </h3>
+      <div className="space-y-4">
+        {children}
+      </div>
+    </div>
+  )
+}
+
+function ChecklistItem({ label, detail, href }: { label: string; detail?: string; href?: string }) {
+  return (
+    <label className="flex items-start gap-3 cursor-pointer">
+      <input
+        type="checkbox"
+        className="mt-1 w-4 h-4 rounded-sm border-outline-variant/40 text-primary focus:ring-primary-fixed-dim/30 shrink-0"
+      />
+      <div>
+        <span className="text-on-surface font-medium">{label}</span>
+        {detail && (
+          <span className="block text-sm text-on-surface-variant mt-0.5">{detail}</span>
+        )}
+        {href && (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-sm text-primary hover:underline mt-1"
+          >
+            {href.replace(/^https?:\/\//, "")} &rarr;
+          </a>
+        )}
+      </div>
+    </label>
+  )
+}
 
 const cards = [
   {
@@ -55,24 +96,90 @@ export default async function ClubDashboard() {
       </div>
 
       <div className="card">
-        <h2 className="text-base font-bold text-on-surface mb-6">
-          Deine Checkliste
+        <h2 className="text-base font-bold text-on-surface mb-2">
+          Deine Vorbereitungs-Checkliste
         </h2>
-        <div className="space-y-6">
-          {[
-            "Laptop mit aktuellem Browser vorbereiten",
-            "Cursor Editor installieren (cursor.com)",
-            "OpenAI oder Anthropic API Key einrichten",
-            "Workshop-Materialien durchlesen",
-          ].map((item, i) => (
-            <label key={i} className="flex items-start gap-3 cursor-pointer">
-              <input
-                type="checkbox"
-                className="mt-1 w-4 h-4 rounded-sm border-outline-variant/40 text-primary focus:ring-primary-fixed-dim/30"
-              />
-              <span className="text-on-surface-variant">{item}</span>
-            </label>
-          ))}
+        <p className="text-sm text-on-surface-variant mb-8">
+          Bitte erledige alle Punkte <strong>vor</strong> dem Workshop, damit wir direkt loslegen können.
+        </p>
+
+        <div className="space-y-10">
+          <ChecklistSection title="Software installieren">
+            <ChecklistItem
+              label="Node.js (LTS, v22+)"
+              detail="JavaScript-Runtime. Am besten via nvm installieren."
+              href="https://nodejs.org"
+            />
+            <ChecklistItem
+              label="Git"
+              detail="Versionskontrolle. Prüfen mit: git --version"
+              href="https://git-scm.com"
+            />
+            <ChecklistItem
+              label="Cursor Editor"
+              detail="KI-gestützter Code-Editor – die Basis unseres Workshops."
+              href="https://cursor.com"
+            />
+            <ChecklistItem
+              label="Moderner Browser mit DevTools"
+              detail="Chrome, Firefox oder Edge – aktuellste Version."
+            />
+          </ChecklistSection>
+
+          <ChecklistSection title="Accounts anlegen">
+            <ChecklistItem
+              label="GitHub-Account"
+              detail="Code-Hosting und Versionskontrolle. Free Tier reicht."
+              href="https://github.com"
+            />
+            <ChecklistItem
+              label="Neon-Account"
+              detail="Serverless PostgreSQL-Datenbank. Free Tier reicht."
+              href="https://neon.tech"
+            />
+            <ChecklistItem
+              label="Vercel-Account"
+              detail="Hosting & Deployment. Am besten direkt mit GitHub verknüpfen."
+              href="https://vercel.com"
+            />
+            <ChecklistItem
+              label="Resend-Account"
+              detail="E-Mail-Versand (100 Mails/Tag gratis)."
+              href="https://resend.com"
+            />
+            <ChecklistItem
+              label="Stripe-Account"
+              detail="Zahlungsabwicklung. Test-Modus ist kostenlos."
+              href="https://stripe.com"
+            />
+            <ChecklistItem
+              label="Anthropic-Account"
+              detail="Claude AI API. API-Credits nötig (mind. $5 empfohlen)."
+              href="https://console.anthropic.com"
+            />
+          </ChecklistSection>
+
+          <ChecklistSection title="Cursor einrichten">
+            <ChecklistItem
+              label="Mit GitHub in Cursor anmelden"
+              detail="Cursor > Settings > Sign in with GitHub."
+            />
+            <ChecklistItem
+              label="Cursor Pro aktivieren oder Free Trial starten"
+              detail="Für die vollen KI-Features im Workshop."
+              href="https://cursor.com/pricing"
+            />
+          </ChecklistSection>
+
+          <ChecklistSection title="Am Workshop-Tag">
+            <ChecklistItem
+              label="Laptop mit Netzteil einpacken"
+            />
+            <ChecklistItem
+              label="Alle API-Keys griffbereit haben"
+              detail="Neon Connection String, Resend API Key, Stripe Keys, Anthropic API Key."
+            />
+          </ChecklistSection>
         </div>
       </div>
     </div>
