@@ -3,6 +3,7 @@ import { redirect } from "next/navigation"
 import { db } from "@/lib/db"
 import { signups, members } from "@/lib/db/schema"
 import { eq, desc } from "drizzle-orm"
+import Link from "next/link"
 
 export default async function SignupsPage() {
   const session = await auth()
@@ -52,8 +53,12 @@ export default async function SignupsPage() {
             </thead>
             <tbody>
               {rows.map((row) => (
-                <tr key={row.id} className="border-b border-outline-variant/10 last:border-0">
-                  <td className="py-3 px-4 text-on-surface font-medium">{row.name}</td>
+                <tr key={row.id} className="border-b border-outline-variant/10 last:border-0 hover:bg-surface-variant/30 transition-colors">
+                  <td className="py-3 px-4">
+                    <Link href={`/club/signups/${row.id}`} className="text-on-surface font-medium hover:text-primary transition-colors">
+                      {row.name}
+                    </Link>
+                  </td>
                   <td className="py-3 px-4 text-on-surface-variant">{row.email}</td>
                   <td className="py-3 px-4 text-on-surface-variant">{row.ticket}</td>
                   <td className="py-3 px-4 text-on-surface-variant">{row.diet}</td>
