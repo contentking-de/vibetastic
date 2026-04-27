@@ -11,6 +11,7 @@ async function seed() {
   const seedMembers = [
     { email: "nico@contentking.de" },
     { email: "maya.sacotte@outlook.de" },
+    { email: "thorsten.loth@omfire.de", role: "admin" as const, fullName: "Thorsten Loth" },
   ]
 
   for (const m of seedMembers) {
@@ -19,13 +20,15 @@ async function seed() {
       .values({
         email: m.email,
         paidAt: new Date(),
+        ...("role" in m && { role: m.role }),
+        ...("fullName" in m && { fullName: m.fullName }),
       })
       .onConflictDoNothing({ target: members.email })
 
-    console.log(`✓ Member seeded: ${m.email}`)
+    console.log(`✓ Member seeded: ${m.email}${m.role ? ` (${m.role})` : ""}`)
   }
 
-  console.log("\nDone! Both members can now log in.")
+  console.log("\nDone! All members can now log in.")
 }
 
 seed().catch((err) => {

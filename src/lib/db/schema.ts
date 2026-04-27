@@ -6,6 +6,7 @@ import {
   primaryKey,
   integer,
   serial,
+  boolean,
 } from "drizzle-orm/pg-core"
 import type { AdapterAccountType } from "next-auth/adapters"
 
@@ -115,3 +116,18 @@ export const forumMessages = pgTable("forum_message", {
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
 })
+
+export const memberChecklist = pgTable(
+  "member_checklist",
+  {
+    memberId: uuid("member_id")
+      .notNull()
+      .references(() => members.id, { onDelete: "cascade" }),
+    itemId: text("item_id").notNull(),
+    checked: boolean("checked").notNull().default(false),
+    checkedAt: timestamp("checked_at", { withTimezone: true }),
+  },
+  (table) => ({
+    pk: primaryKey({ columns: [table.memberId, table.itemId] }),
+  })
+)
