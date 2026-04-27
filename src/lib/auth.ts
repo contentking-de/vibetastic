@@ -39,13 +39,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
       if (session.user?.email) {
         const member = await db
-          .select({ role: members.role })
+          .select({ role: members.role, fullName: members.fullName })
           .from(members)
           .where(eq(members.email, session.user.email))
           .limit(1)
 
         if (member.length > 0) {
           session.user.role = member[0].role
+          if (member[0].fullName) {
+            session.user.name = member[0].fullName
+          }
         }
       }
       return session
