@@ -124,7 +124,7 @@ export default function Hero() {
               { name: "Next.js", slug: "nextdotjs", color: "000" },
               { name: "React", slug: "react", color: "61DAFB" },
               { name: "Claude", slug: "anthropic", color: "D97757" },
-              { name: "ChatGPT", slug: "openai", color: "412991" },
+              { name: "ChatGPT", src: "/logos/chatgpt-logo.webp" },
               { name: "Perplexity", slug: "perplexity", color: "1FB8CD" },
               { name: "Resend", slug: "resend", color: "000" },
             ].map((logo) => (
