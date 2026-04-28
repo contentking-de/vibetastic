@@ -15,7 +15,7 @@ export async function POST(req: Request) {
 
   const { name, email, ticket, diet, project } = body
 
-  if (!name || !email || !ticket || !diet) {
+  if (!name || !email || !ticket) {
     return NextResponse.json(
       { error: "Pflichtfelder fehlen" },
       { status: 400 }
@@ -26,10 +26,11 @@ export async function POST(req: Request) {
     name,
     email,
     ticket,
-    diet,
+    diet: diet || "–",
     project: project || null,
   })
 
+  const isWaitlist = ticket?.includes("Warteliste")
   const resend = getResend()
 
   try {
@@ -37,17 +38,27 @@ export async function POST(req: Request) {
       resend.emails.send({
         from: FROM,
         to: email,
-        subject: "Deine Bewerbung ist eingegangen",
-        html: [
-          `<p>Hallo ${name},</p>`,
-          `<p>vielen Dank für deine Bewerbung zum Workshop! Wir melden uns innerhalb von 7 Werktagen bei dir.</p>`,
-          `<p>Liebe Grüße,<br/>Dein Vibetastic Team</p>`,
-        ].join("\n"),
+        subject: isWaitlist
+          ? "Du stehst auf der Warteliste"
+          : "Deine Bewerbung ist eingegangen",
+        html: isWaitlist
+          ? [
+              `<p>Hallo ${name},</p>`,
+              `<p>du stehst jetzt auf der Warteliste für kommende Vibetastic Workshops. Wir melden uns, sobald neue Termine feststehen.</p>`,
+              `<p>Liebe Grüße,<br/>Dein Vibetastic Team</p>`,
+            ].join("\n")
+          : [
+              `<p>Hallo ${name},</p>`,
+              `<p>vielen Dank für deine Bewerbung zum Workshop! Wir melden uns innerhalb von 7 Werktagen bei dir.</p>`,
+              `<p>Liebe Grüße,<br/>Dein Vibetastic Team</p>`,
+            ].join("\n"),
       }),
       resend.emails.send({
         from: FROM,
         to: ADMIN_EMAIL,
-        subject: `Neue Bewerbung von ${name}`,
+        subject: isWaitlist
+          ? `Neue Wartelisten-Anmeldung von ${name}`
+          : `Neue Bewerbung von ${name}`,
         html: [
           `<p>Neue Bewerbung eingegangen:</p>`,
           `<ul>`,
