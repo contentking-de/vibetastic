@@ -34,7 +34,7 @@ export default function Header() {
             Vibetastic Club
           </Link>
           <Link href="/#signup" className="btn">
-            Anmelden →
+            Warteliste →
           </Link>
         </div>
 
@@ -61,7 +61,7 @@ export default function Header() {
           <Link href="/#price" className="block" onClick={() => setMenuOpen(false)}>Preis</Link>
           <Link href="/#faq" className="block" onClick={() => setMenuOpen(false)}>FAQ</Link>
           <Link href="/club" className="block" onClick={() => setMenuOpen(false)}>Club</Link>
-          <Link href="/#signup" className="btn inline-flex" onClick={() => setMenuOpen(false)}>Anmelden →</Link>
+          <Link href="/#signup" className="btn inline-flex" onClick={() => setMenuOpen(false)}>Warteliste →</Link>
         </div>
       )}
     </nav>

@@ -7,7 +7,8 @@ const typeLines = [
   { text: "→ Vibetastic Workshop #01", cls: "text-[oklch(0.85_0.15_140)]" },
   { text: "→ 02.–04. Juli 2026, Contentking Agentur, Markdorf", cls: "" },
   { text: "→ 5 Plätze · 2 Workshop-Tage · 0 Vorkenntnisse", cls: "" },
-  { text: "→ nächste Cohort startet in …", cls: "opacity-45" },
+  { text: "→ STATUS: AUSVERKAUFT ✓", cls: "text-[oklch(0.85_0.15_140)] font-bold" },
+  { text: "→ Folgetermine folgen in Kürze …", cls: "opacity-45" },
 ]
 
 function pad(n: number) {
@@ -110,7 +111,8 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-3 mb-10">
-            <Link href="#signup" className="btn btn-lg btn-accent">Jetzt bewerben — 1.950 € netto</Link>
+            <span className="btn btn-lg bg-ink/10 text-ink-mute cursor-default line-through decoration-1">Ausverkauft — 1.950 € netto</span>
+            <Link href="#signup" className="btn btn-lg btn-accent">Warteliste →</Link>
             <Link href="#what" className="btn btn-lg btn-ghost">Wie funktioniert das?</Link>
           </div>
         </div>
@@ -201,7 +203,7 @@ export default function Hero() {
           </div>
           <div>
             <div className="font-mono text-[11px] text-ink-mute tracking-label mb-1.5">PLÄTZE</div>
-            <div className="font-display text-[22px] tracking-tight">5 (begrenzt)</div>
+            <div className="font-display text-[22px] tracking-tight text-accent font-bold">5 / 5 vergeben</div>
           </div>
         </div>
       </div>

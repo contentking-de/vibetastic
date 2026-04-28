@@ -22,8 +22,8 @@ export default function Signup() {
         body: JSON.stringify({
           name: data.get("name"),
           email: data.get("email"),
-          ticket: "Workshop — 1.950 € netto",
-          diet: data.get("diet"),
+          ticket: "Warteliste — Folgetermin",
+          diet: "",
           project: data.get("project") || null,
         }),
       })
@@ -51,21 +51,21 @@ export default function Signup() {
               className="font-mono text-xs tracking-wide mb-7"
               style={{ color: "color-mix(in oklab, var(--bg) 60%, transparent)" }}
             >
-              ANMELDUNG &middot; SOMMER 2026
+              WORKSHOP #01 &middot; AUSVERKAUFT
             </div>
             <h2 className="font-display font-normal text-[clamp(40px,5vw,64px)] leading-none tracking-display" style={{ textWrap: "balance" }}>
-              Bereit, das <em className="text-accent">erste Mal</em> zu bauen?
+              5 von 5 Plätzen <em className="text-accent">vergeben.</em>
             </h2>
             <p className="max-w-[420px] mt-5 text-[17px]" style={{ color: "color-mix(in oklab, var(--bg) 75%, transparent)" }}>
-              Bewirb dich für einen Platz. Wir entscheiden nach der Sichtung der Projektideen im Losverfahren zwischen allen Bewerbern, um eine möglichst ausgewogene Workshop-Gruppe bilden zu können. Du bekommst innerhalb von 7 Werktagen Bescheid.
+              Workshop #01 ist komplett ausgebucht. Aber keine Sorge — wir planen bereits Folgetermine, die in Kürze bekannt gegeben werden. Trag dich auf die Warteliste ein, damit du als Erste:r erfährst, wann es weitergeht.
             </p>
 
             <div className="mt-8 grid grid-cols-2 gap-4">
               {[
                 { k: "TERMIN", v: "02.–04. Jul. 2026" },
                 { k: "ORT", v: "Contentking Agentur, Markdorf" },
-                { k: "PREIS", v: "1.950 € netto" },
-                { k: "PLÄTZE", v: "5 (begrenzt)" },
+                { k: "STATUS", v: "Ausverkauft" },
+                { k: "PLÄTZE", v: "5 / 5 vergeben" },
               ].map((item) => (
                 <div key={item.k} className="pt-4" style={{ borderTop: "1px solid color-mix(in oklab, var(--bg) 20%, transparent)" }}>
                   <div className="font-mono text-[11px] tracking-label mb-1" style={{ color: "color-mix(in oklab, var(--bg) 55%, transparent)" }}>
@@ -77,12 +77,16 @@ export default function Signup() {
             </div>
           </div>
 
-          {/* Right form */}
+          {/* Right form — waitlist */}
           <form
             onSubmit={handleSubmit}
-            className="rounded-2xl p-8 grid gap-4"
+            className="rounded-2xl p-8 grid gap-4 content-start"
             style={{ background: "color-mix(in oklab, var(--bg) 10%, var(--ink))" }}
           >
+            <div className="inline-flex items-center gap-2 font-mono text-[11px] tracking-label uppercase text-accent mb-2">
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              Warteliste für Folgetermine
+            </div>
             <div>
               <label htmlFor="name" className="block font-mono text-[11px] tracking-label uppercase mb-1.5" style={{ color: "color-mix(in oklab, var(--bg) 65%, transparent)" }}>
                 Vollständiger Name
@@ -115,31 +119,14 @@ export default function Signup() {
               />
             </div>
             <div>
-              <label htmlFor="diet" className="block font-mono text-[11px] tracking-label uppercase mb-1.5" style={{ color: "color-mix(in oklab, var(--bg) 65%, transparent)" }}>
-                Ernährungspräferenz
-              </label>
-              <select
-                id="diet"
-                name="diet"
-                className="w-full py-3.5 text-base bg-transparent border-0 text-bg outline-none"
-                style={{ borderBottom: "1px solid color-mix(in oklab, var(--bg) 20%, transparent)" }}
-              >
-                <option className="bg-ink text-bg" value="Alles">Alles</option>
-                <option className="bg-ink text-bg" value="Vegetarisch">Vegetarisch</option>
-                <option className="bg-ink text-bg" value="Vegan">Vegan</option>
-                <option className="bg-ink text-bg" value="Glutenfrei">Glutenfrei</option>
-              </select>
-            </div>
-            <div>
               <label htmlFor="project" className="block font-mono text-[11px] tracking-label uppercase mb-1.5" style={{ color: "color-mix(in oklab, var(--bg) 65%, transparent)" }}>
-                Deine Projekt-Idee — was willst Du bauen?
+                Deine Projekt-Idee (optional)
               </label>
               <textarea
                 id="project"
                 name="project"
-                required
-                rows={3}
-                placeholder="z.B. SaaS-Lösung für Zahnärzte, meine Website relaunchen, ein KPI-Dashboard, ein internes Ticketsystem, Arbeitsplaner, Zeiterfassung, Agentur-Tool, eine Facebook-Alternative erschaffen, Google nachbauen … #younameit"
+                rows={2}
+                placeholder="Was möchtest du bauen?"
                 className="w-full py-3.5 text-base bg-transparent border-0 text-bg outline-none resize-y"
                 style={{ borderBottom: "1px solid color-mix(in oklab, var(--bg) 20%, transparent)" }}
               />
@@ -152,7 +139,7 @@ export default function Signup() {
                 className="mt-1 accent-accent w-4 h-4 shrink-0"
               />
               <span className="text-[13px] leading-relaxed" style={{ color: "color-mix(in oklab, var(--bg) 65%, transparent)" }}>
-                Ich bin damit einverstanden, dass meine Daten zur Bearbeitung meiner Bewerbung gespeichert werden. Mehr dazu in unserer <a href="/datenschutz" className="underline hover:text-bg transition-colors">Datenschutzerklärung</a>.
+                Ich bin damit einverstanden, dass meine Daten gespeichert werden. Mehr dazu in unserer <a href="/datenschutz" className="underline hover:text-bg transition-colors">Datenschutzerklärung</a>.
               </span>
             </label>
             <button
@@ -160,7 +147,7 @@ export default function Signup() {
               disabled={loading}
               className="mt-3 py-[18px] bg-accent text-accent-ink rounded-full text-[15px] font-medium w-full transition-transform hover:-translate-y-[1px] disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              {loading ? "Wird gesendet…" : "Für einen Platz bewerben"}
+              {loading ? "Wird gesendet…" : "Auf die Warteliste setzen"}
             </button>
             {submitted && (
               <div
@@ -170,7 +157,7 @@ export default function Signup() {
                   color: "color-mix(in oklab, var(--bg) 85%, transparent)",
                 }}
               >
-                ✓ Danke für deine Bewerbung! Du bekommst innerhalb von 7 Werktagen Bescheid.
+                ✓ Du stehst auf der Warteliste! Wir melden uns, sobald neue Termine feststehen.
               </div>
             )}
             {error && (

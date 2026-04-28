@@ -13,8 +13,8 @@ export default function PricingBlock() {
         </div>
 
         <div className="reveal bg-ink text-bg border border-ink rounded-2xl p-10 max-w-[640px] mx-auto relative">
-          <div className="absolute top-6 right-6 font-mono text-[11px] bg-accent text-accent-ink px-2.5 py-1.5 rounded-full tracking-label">
-            WORKSHOP
+          <div className="absolute top-6 right-6 font-mono text-[11px] bg-red-500 text-white px-2.5 py-1.5 rounded-full tracking-label font-bold">
+            AUSVERKAUFT
           </div>
           <div className="font-mono text-xs tracking-wide uppercase mb-4" style={{ color: "color-mix(in oklab, var(--bg) 70%, transparent)" }}>
             02.–04. Juli 2026
@@ -71,8 +71,11 @@ export default function PricingBlock() {
           </div>
 
           <Link href="#signup" className="btn btn-lg btn-accent w-full justify-center mt-8">
-            Jetzt bewerben →
+            Auf die Warteliste für Folgetermine →
           </Link>
+          <p className="text-center text-sm mt-3" style={{ color: "color-mix(in oklab, var(--bg) 55%, transparent)" }}>
+            Alle 5 Plätze für Workshop #01 sind vergeben. Neue Termine folgen in Kürze.
+          </p>
         </div>
       </div>
     </section>
