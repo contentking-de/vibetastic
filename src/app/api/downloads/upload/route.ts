@@ -1,4 +1,4 @@
-import { handleUpload, type HandleUploadBody } from "@vercel/blob"
+import { handleUpload, type HandleUploadBody } from "@vercel/blob/client"
 import { auth } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { members } from "@/lib/db/schema"
