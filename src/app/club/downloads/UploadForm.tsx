@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react"
 import { useRouter } from "next/navigation"
-import { upload } from "@vercel/blob/client"
+import { put } from "@vercel/blob/client"
 
 const FILE_ICONS: Record<string, string> = {
   "application/pdf": "PDF",
@@ -40,11 +40,23 @@ export default function UploadForm() {
     setError("")
 
     try {
-      const blob = await upload(
-        `downloads/${file.name}`,
-        file,
-        { access: "public", handleUploadUrl: "/api/downloads/upload" },
-      )
+      const pathname = `downloads/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`
+
+      const tokenRes = await fetch("/api/downloads/upload", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ pathname }),
+      })
+      if (!tokenRes.ok) {
+        const data = await tokenRes.json().catch(() => ({}))
+        throw new Error(data.error || "Token-Generierung fehlgeschlagen")
+      }
+      const { clientToken } = await tokenRes.json()
+
+      const blob = await put(pathname, file, {
+        access: "public",
+        token: clientToken,
+      })
 
       const res = await fetch("/api/downloads", {
         method: "POST",
