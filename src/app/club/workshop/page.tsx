@@ -51,8 +51,8 @@ const day2 = [
   { time: "09:30", what: "Reflexion & Weiterarbeiten", detail: "Kurzer Rückblick, dann weiter am Projekt" },
   { time: "13:00", what: "Mittagessen", detail: "Leicht, damit der Nachmittag weitergeht" },
   { time: "14:00", what: "Projekt fertigstellen", detail: "Letzte Features, Feinschliff, Veröffentlichen" },
-  { time: "16:00", what: "Demo-Runde", detail: "Jede:r zeigt die Website in 3 Minuten" },
-  { time: "17:00", what: "Abschluss & Abreise", detail: "Feedback, Kontakte tauschen, Abschied" },
+  { time: "14:30", what: "Demo-Runde", detail: "Jede:r zeigt die Website in 3 Minuten" },
+  { time: "16:00", what: "Abschluss & Abreise", detail: "Feedback, Kontakte tauschen, Abschied" },
 ]
 
 const tools = [
