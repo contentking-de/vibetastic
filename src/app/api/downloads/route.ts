@@ -1,11 +1,9 @@
-import { put, del } from "@vercel/blob"
+import { del } from "@vercel/blob"
 import { auth } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { members, clubDownloads } from "@/lib/db/schema"
 import { eq } from "drizzle-orm"
 import { NextRequest, NextResponse } from "next/server"
-
-const MAX_FILE_SIZE = 50 * 1024 * 1024 // 50 MB
 
 async function getAdminSession() {
   const session = await auth()
@@ -27,36 +25,21 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Keine Berechtigung" }, { status: 403 })
   }
 
-  const formData = await req.formData()
-  const file = formData.get("file") as File | null
-  const title = formData.get("title") as string | null
-  const description = formData.get("description") as string | null
+  const { title, description, fileName, fileSize, mimeType, blobUrl } = await req.json()
 
-  if (!file || !title?.trim()) {
-    return NextResponse.json({ error: "Datei und Titel erforderlich" }, { status: 400 })
+  if (!title?.trim() || !blobUrl || !fileName) {
+    return NextResponse.json({ error: "Pflichtfelder fehlen" }, { status: 400 })
   }
-
-  if (file.size > MAX_FILE_SIZE) {
-    return NextResponse.json({ error: "Max. 50 MB pro Datei" }, { status: 400 })
-  }
-
-  const ext = file.name.split(".").pop() || "bin"
-  const filename = `downloads/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`
-
-  const blob = await put(filename, file, {
-    access: "public",
-    addRandomSuffix: true,
-  })
 
   const [download] = await db
     .insert(clubDownloads)
     .values({
       title: title.trim(),
       description: description?.trim() || null,
-      fileName: file.name,
-      fileSize: file.size,
-      mimeType: file.type || "application/octet-stream",
-      blobUrl: blob.url,
+      fileName,
+      fileSize: fileSize || 0,
+      mimeType: mimeType || "application/octet-stream",
+      blobUrl,
       uploadedBy: session.user.id!,
     })
     .returning()

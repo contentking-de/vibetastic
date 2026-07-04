@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react"
 import { useRouter } from "next/navigation"
+import { upload } from "@vercel/blob/client"
 
 const FILE_ICONS: Record<string, string> = {
   "application/pdf": "PDF",
@@ -39,15 +40,27 @@ export default function UploadForm() {
     setError("")
 
     try {
-      const formData = new FormData()
-      formData.append("file", file)
-      formData.append("title", title.trim())
-      if (description.trim()) formData.append("description", description.trim())
+      const blob = await upload(
+        `downloads/${file.name}`,
+        file,
+        { access: "public", handleUploadUrl: "/api/downloads/upload" },
+      )
 
-      const res = await fetch("/api/downloads", { method: "POST", body: formData })
+      const res = await fetch("/api/downloads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: title.trim(),
+          description: description.trim() || null,
+          fileName: file.name,
+          fileSize: file.size,
+          mimeType: file.type || "application/octet-stream",
+          blobUrl: blob.url,
+        }),
+      })
       if (!res.ok) {
-        const data = await res.json()
-        throw new Error(data.error || "Upload fehlgeschlagen")
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.error || "Speichern fehlgeschlagen")
       }
 
       setTitle("")
