@@ -117,6 +117,20 @@ export const forumMessages = pgTable("forum_message", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
 })
 
+export const clubDownloads = pgTable("club_download", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  title: text("title").notNull(),
+  description: text("description"),
+  fileName: text("file_name").notNull(),
+  fileSize: integer("file_size").notNull(),
+  mimeType: text("mime_type").notNull(),
+  blobUrl: text("blob_url").notNull(),
+  uploadedBy: text("uploaded_by")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+})
+
 export const memberChecklist = pgTable(
   "member_checklist",
   {
