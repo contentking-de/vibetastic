@@ -282,6 +282,21 @@ export default function Hero() {
             </div>
           </div>
         </div>
+
+        <div className="grid grid-cols-3 gap-5 pt-5 mt-5 border-t border-line/50 opacity-60">
+          <div>
+            <div className="font-mono text-[11px] text-ink-mute tracking-label mb-1.5">WORKSHOP #01</div>
+            <div className="font-display text-[18px] tracking-tight">02.–04. Jul. 2025</div>
+          </div>
+          <div>
+            <div className="font-mono text-[11px] text-ink-mute tracking-label mb-1.5">ORT</div>
+            <div className="font-display text-[18px] tracking-tight">Contentking HQ, Markdorf</div>
+          </div>
+          <div>
+            <div className="font-mono text-[11px] text-ink-mute tracking-label mb-1.5">STATUS</div>
+            <div className="font-display text-[18px] tracking-tight">✓ Abgeschlossen</div>
+          </div>
+        </div>
       </div>
     </header>
   )
