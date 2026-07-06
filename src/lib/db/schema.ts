@@ -131,6 +131,17 @@ export const clubDownloads = pgTable("club_download", {
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 })
 
+export const clubResources = pgTable("club_resource", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  title: text("title").notNull(),
+  url: text("url").notNull(),
+  description: text("description").notNull(),
+  createdBy: text("created_by")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+})
+
 export const memberChecklist = pgTable(
   "member_checklist",
   {
