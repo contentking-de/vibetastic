@@ -1,21 +1,24 @@
 const testimonials = [
   {
-    quote: "Die Jungs haben mir beigebracht, wie ich meine Webseite selber gestalten kann — Design, Layout aber auch inhaltlich und vor allem funktional. Für mich ein echter Mehrwert und das gute Gefühl, nie wieder Web-Baukästen anfassen zu müssen.",
-    name: "Lena K.",
-    initials: "LK",
-    role: "Heilpraktikerin, Leipzig",
+    quote: "War mega! 🤩 Noch nie einen Workshop gehabt, der so faszinierend war. Wie gesagt war der ganze Workshop ein Aha-Effekt. 😀 Und nicht nur das Inhaltliche hat gepasst. Mit den Dozenten, Teilnehmern und dem Rahmenprogramm war das Ganze echt ein top Erlebnis! Hätte auch schon wieder Lust auf eine V2.",
+    name: "Mario Schwertfeger",
+    initials: "MS",
+    role: "hausverwalter-vz.de",
+    url: "https://hausverwalter-vz.de",
   },
   {
-    quote: "Endlich jemand, der diese Tools so erklärt, dass ich mich nicht direkt dumm fühle. Ich hab mir das von Nico in einer 3-Stunden-Session einmal zeigen lassen und 2 Wochen später das erste Projekt in Rechnung gestellt — für ein Dashboard, das ich an einem Wochenende gebaut habe.",
-    name: "Jonas B.",
-    initials: "JB",
-    role: "Freelance-Coach, Berlin",
+    quote: "Ich durfte am initialen vibetastic Workshop von Nicolas Sacotte und Thorsten Loth als einer der ersten fünf überhaupt teilnehmen. Allein der Betreuungsschlüssel – fünf Teilnehmer bei drei Dozenten – war ein echtes Privileg. Nico und sein Team haben uns nicht nur dazu befähigt, das Ganze technisch anzuwenden, sondern in One-on-One-Gesprächen auch immer wieder herausgekitzelt, was als Nächstes machbar ist.",
+    name: "Borris Häring",
+    initials: "BH",
+    role: "ihr-gutachten.com",
+    url: "https://ihr-gutachten.com",
   },
   {
-    quote: "Die Session mit Nico und Maya war ein echtes Geschenk. Kein Tech-Bro-Vibe, sehr strukturierter Aufbau mit kleinen Beispielen und vielen Anekdoten zwischen den Zeilen, die mir persönlich richtig weitergeholfen haben — nach knapp 4 Stunden war meine Webseite fertig.",
-    name: "Sofia R.",
-    initials: "SR",
-    role: "Galerieassistentin, München",
+    quote: "Aber mal ehrlich das war wohl in den 15 Jahren OM mein bester Workshop. Hier lief einfach alles. Top Team, Top Location, die Tage gut strukturiert. Mega Input. Ich komme sofort wieder und mache nochmal mit weil ich würde bei jedem Mal wieder was dazu lernen.. die Kosten sind ein Witz zum Ergebnis",
+    name: "Michael Schöttler",
+    initials: "MS",
+    role: "papa.de",
+    url: "https://papa.de",
   },
 ]
 
@@ -42,7 +45,7 @@ export default function Testimonials() {
                 </div>
                 <div>
                   <div className="text-sm font-medium">{t.name}</div>
-                  <div className="text-xs text-ink-mute">{t.role}</div>
+                  <a href={t.url} target="_blank" rel="noopener noreferrer" className="text-xs text-ink-mute hover:text-accent transition-colors">{t.role}</a>
                 </div>
               </div>
             </div>
