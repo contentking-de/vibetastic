@@ -48,13 +48,17 @@ export async function POST(req: NextRequest) {
     .returning()
 
   const authorName = result.session.user.name || result.session.user.email?.split("@")[0] || "Jemand"
-  notifyMembersAboutResource({
-    authorEmail: result.session.user.email!,
-    authorName,
-    title: title.trim(),
-    url: url.trim(),
-    description: description.trim(),
-  }).catch(() => {})
+  try {
+    await notifyMembersAboutResource({
+      authorEmail: result.session.user.email!,
+      authorName,
+      title: title.trim(),
+      url: url.trim(),
+      description: description.trim(),
+    })
+  } catch (e) {
+    console.error("Resource notification failed:", e)
+  }
 
   return NextResponse.json({ resource })
 }
