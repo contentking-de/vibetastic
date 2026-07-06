@@ -7,7 +7,7 @@ import Footer from "@/components/layout/Footer"
 
 const included = [
   "2 Workshop-Tage + Anreiseabend vor Ort",
-  "Persönliche Betreuung in Kleingruppe (max. 5)",
+  "Persönliche Betreuung in Kleingruppe (max. 7)",
   "Alle Workshop-Materialien, Templates & Checklisten",
   "Exklusiver Zugang zum Vibetastic Club",
   "Lebenslanger Zugang zu Updates & Community",
@@ -50,7 +50,7 @@ export default function AnmeldungPage() {
           <div className="max-w-lg mx-auto card-floating">
             <p className="label-meta mb-2">Vibetastic Workshop</p>
             <p className="text-sm text-on-surface-variant mb-8">
-              2-Tage Intensiv &middot; Vor Ort &middot; Max. 5 Plätze
+              2-Tage Intensiv &middot; Vor Ort &middot; Max. 7 Plätze
             </p>
 
             <div className="mb-8">

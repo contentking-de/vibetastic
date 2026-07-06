@@ -142,6 +142,18 @@ export const clubResources = pgTable("club_resource", {
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 })
 
+export const workshopEvents = pgTable("workshop_event", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  title: text("title").notNull(),
+  dateStart: timestamp("date_start", { withTimezone: true }).notNull(),
+  dateEnd: timestamp("date_end", { withTimezone: true }).notNull(),
+  location: text("location").notNull(),
+  maxSpots: integer("max_spots").notNull().default(7),
+  priceNet: integer("price_net").notNull().default(1950),
+  active: boolean("active").notNull().default(true),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+})
+
 export const memberChecklist = pgTable(
   "member_checklist",
   {

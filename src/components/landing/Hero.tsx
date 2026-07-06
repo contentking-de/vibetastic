@@ -1,15 +1,36 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useCallback } from "react"
 import Link from "next/link"
 
-const typeLines = [
-  { text: "→ Vibetastic Workshop #01", cls: "text-[oklch(0.85_0.15_140)]" },
-  { text: "→ 02.–04. Juli 2026, Contentking Agentur, Markdorf", cls: "" },
-  { text: "→ 5 Plätze · 2 Workshop-Tage · 0 Vorkenntnisse", cls: "" },
-  { text: "→ STATUS: AUSVERKAUFT ✓", cls: "text-[oklch(0.85_0.15_140)] font-bold" },
-  { text: "→ Folgetermine folgen in Kürze …", cls: "opacity-45" },
-]
+type SpotData = {
+  event: {
+    title: string
+    dateStart: string
+    dateEnd: string
+    location: string
+    maxSpots: number
+    priceNet: number
+  } | null
+  taken: number
+  remaining: number
+}
+
+function formatDateRange(start: string, end: string) {
+  const s = new Date(start)
+  const e = new Date(end)
+  const opts: Intl.DateTimeFormatOptions = { day: "2-digit", month: "short" }
+  return `${s.toLocaleDateString("de-DE", opts)}–${e.toLocaleDateString("de-DE", { ...opts, year: "numeric" })}`
+}
+
+function formatShortRange(start: string, end: string) {
+  const s = new Date(start)
+  const e = new Date(end)
+  const sDay = String(s.getDate()).padStart(2, "0")
+  const eDay = String(e.getDate()).padStart(2, "0")
+  const month = s.toLocaleDateString("de-DE", { month: "short" })
+  return `${sDay}.–${eDay}. ${month}`
+}
 
 function pad(n: number) {
   return String(n).padStart(2, "0")
@@ -18,15 +39,30 @@ function pad(n: number) {
 const rotatingWords = ["Websites", "SaaS-Lösungen", "Web-Portale", "KPI Dashboards", "MVPs", "Agentic Seller", "Support-Agenten", "Agentic-Chats"]
 
 export default function Hero() {
+  const [spots, setSpots] = useState<SpotData | null>(null)
   const [typedLines, setTypedLines] = useState<{ text: string; cls: string }[]>([])
   const lineIdx = useRef(0)
   const charIdx = useRef(0)
+  const typingStarted = useRef(false)
   const [countdown, setCountdown] = useState({ d: "00", h: "00", m: "00", s: "00" })
   const [wordIdx, setWordIdx] = useState(0)
   const [fade, setFade] = useState(true)
 
+  const fetchSpots = useCallback(async () => {
+    try {
+      const res = await fetch("/api/spots")
+      if (res.ok) setSpots(await res.json())
+    } catch { /* silent */ }
+  }, [])
+
+  useEffect(() => { fetchSpots() }, [fetchSpots])
+
+  const isWaitlist = !spots?.event || spots.remaining <= 0
+  const event = spots?.event
+
   useEffect(() => {
-    const targetDate = new Date("2026-07-02T18:00:00").getTime()
+    if (!event) return
+    const targetDate = new Date(event.dateStart).getTime()
     function updateCD() {
       const now = Date.now()
       let diff = Math.max(0, targetDate - now)
@@ -39,7 +75,7 @@ export default function Hero() {
     updateCD()
     const interval = setInterval(updateCD, 1000)
     return () => clearInterval(interval)
-  }, [])
+  }, [event])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -53,6 +89,27 @@ export default function Hero() {
   }, [])
 
   useEffect(() => {
+    if (!spots || typingStarted.current) return
+    typingStarted.current = true
+
+    const typeLines = event
+      ? [
+          { text: `→ Vibetastic ${event.title}`, cls: "text-[oklch(0.85_0.15_140)]" },
+          { text: `→ ${formatDateRange(event.dateStart, event.dateEnd)}, ${event.location}`, cls: "" },
+          { text: `→ ${event.maxSpots} Plätze · 2 Workshop-Tage · 0 Vorkenntnisse`, cls: "" },
+          isWaitlist
+            ? { text: "→ STATUS: AUSGEBUCHT ✓", cls: "text-[oklch(0.85_0.15_140)] font-bold" }
+            : { text: `→ STATUS: ${spots.remaining} PLÄTZE VERFÜGBAR ✓`, cls: "text-[oklch(0.85_0.15_140)] font-bold" },
+          isWaitlist
+            ? { text: "→ Warteliste offen …", cls: "opacity-45" }
+            : { text: "→ Jetzt Platz sichern …", cls: "opacity-45" },
+        ]
+      : [
+          { text: "→ Vibetastic Workshop", cls: "text-[oklch(0.85_0.15_140)]" },
+          { text: "→ Neuer Termin wird in Kürze bekannt gegeben", cls: "" },
+          { text: "→ Warteliste offen …", cls: "opacity-45" },
+        ]
+
     let timeout: NodeJS.Timeout
 
     function tick() {
@@ -84,7 +141,7 @@ export default function Hero() {
 
     timeout = setTimeout(tick, 400)
     return () => clearTimeout(timeout)
-  }, [])
+  }, [spots, event, isWaitlist])
 
   return (
     <header className="py-[clamp(60px,10vh,120px)] pb-[clamp(80px,12vh,140px)] relative overflow-hidden" id="top">
@@ -111,8 +168,18 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-3 mb-10">
-            <span className="btn btn-lg bg-ink/10 text-ink-mute cursor-default line-through decoration-1">Ausverkauft — 1.950 € netto</span>
-            <Link href="#signup" className="btn btn-lg btn-accent">Warteliste →</Link>
+            {isWaitlist ? (
+              <>
+                <span className="btn btn-lg bg-ink/10 text-ink-mute cursor-default line-through decoration-1">
+                  Ausgebucht{event ? ` — ${event.priceNet.toLocaleString("de-DE")} € netto` : ""}
+                </span>
+                <Link href="#signup" className="btn btn-lg btn-accent">Warteliste →</Link>
+              </>
+            ) : (
+              <Link href="#signup" className="btn btn-lg btn-accent">
+                Jetzt Platz sichern — {event!.priceNet.toLocaleString("de-DE")} € netto →
+              </Link>
+            )}
             <Link href="#what" className="btn btn-lg btn-ghost">Wie funktioniert das?</Link>
           </div>
         </div>
@@ -145,7 +212,7 @@ export default function Hero() {
               <span className="w-[11px] h-[11px] rounded-full bg-[#ffbd2e]" />
               <span className="w-[11px] h-[11px] rounded-full bg-[#28c840]" />
               <span className="ml-3 text-[11px] tracking-[0.04em]" style={{ color: "color-mix(in oklab, var(--terminal-fg) 60%, transparent)" }}>
-                ~/vibetastic/next-cohort
+                ~/vibetastic/{event ? event.title.toLowerCase().replace(/\s+/g, "-") : "workshop"}
               </span>
             </div>
             <div className="p-[22px_24px_28px] min-h-[340px]">
@@ -195,15 +262,24 @@ export default function Hero() {
         <div className="grid grid-cols-3 gap-5 pt-7 border-t border-line">
           <div>
             <div className="font-mono text-[11px] text-ink-mute tracking-label mb-1.5">TERMIN</div>
-            <div className="font-display text-[22px] tracking-tight">02.–04. Jul.</div>
+            <div className="font-display text-[22px] tracking-tight">
+              {event ? formatShortRange(event.dateStart, event.dateEnd) : "TBA"}
+            </div>
           </div>
           <div>
             <div className="font-mono text-[11px] text-ink-mute tracking-label mb-1.5">ORT</div>
-            <div className="font-display text-[22px] tracking-tight">Contentking Agentur, Markdorf</div>
+            <div className="font-display text-[22px] tracking-tight">
+              {event?.location || "Wird bekannt gegeben"}
+            </div>
           </div>
           <div>
             <div className="font-mono text-[11px] text-ink-mute tracking-label mb-1.5">PLÄTZE</div>
-            <div className="font-display text-[22px] tracking-tight text-accent font-bold">5 / 5 vergeben</div>
+            <div className="font-display text-[22px] tracking-tight text-accent font-bold">
+              {isWaitlist
+                ? event ? `${event.maxSpots} / ${event.maxSpots} vergeben` : "—"
+                : `${spots!.remaining} verfügbar`
+              }
+            </div>
           </div>
         </div>
       </div>

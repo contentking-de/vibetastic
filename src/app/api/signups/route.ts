@@ -40,7 +40,7 @@ export async function POST(req: Request) {
         to: email,
         subject: isWaitlist
           ? "Du stehst auf der Warteliste"
-          : "Deine Bewerbung ist eingegangen",
+          : "Deine Anmeldung zum Vibetastic Workshop",
         html: isWaitlist
           ? [
               `<p>Hallo ${name},</p>`,
@@ -49,7 +49,7 @@ export async function POST(req: Request) {
             ].join("\n")
           : [
               `<p>Hallo ${name},</p>`,
-              `<p>vielen Dank für deine Bewerbung zum Workshop! Wir melden uns innerhalb von 7 Werktagen bei dir.</p>`,
+              `<p>vielen Dank für deine Anmeldung zum Vibetastic Workshop (${ticket})! Wir melden uns in Kürze mit allen Details zu Anreise, Ablauf und Bezahlung bei dir.</p>`,
               `<p>Liebe Grüße,<br/>Dein Vibetastic Team</p>`,
             ].join("\n"),
       }),
@@ -58,9 +58,9 @@ export async function POST(req: Request) {
         to: ADMIN_EMAIL,
         subject: isWaitlist
           ? `Neue Wartelisten-Anmeldung von ${name}`
-          : `Neue Bewerbung von ${name}`,
+          : `Neue Workshop-Anmeldung von ${name}`,
         html: [
-          `<p>Neue Bewerbung eingegangen:</p>`,
+          `<p>Neue Anmeldung eingegangen:</p>`,
           `<ul>`,
           `  <li><strong>Name:</strong> ${name}</li>`,
           `  <li><strong>E-Mail:</strong> ${email}</li>`,

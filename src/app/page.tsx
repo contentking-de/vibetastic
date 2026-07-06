@@ -3,7 +3,7 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
-import SoldOutBanner from "@/components/landing/SoldOutBanner"
+
 import Hero from "@/components/landing/Hero"
 import WhatIsVibeCoding from "@/components/landing/WhatIsVibeCoding"
 import Agenda from "@/components/landing/Agenda"
@@ -31,7 +31,6 @@ export default function Home() {
     <>
       <ScrollRevealInit />
       <Header />
-      <SoldOutBanner />
       <main>
         <Hero />
         <WhatIsVibeCoding />
@@ -44,11 +43,11 @@ export default function Home() {
         <Testimonials />
         <Chat />
         <PricingBlock />
+        <Signup />
         <Value />
         <FAQ />
         <Inspiration />
         <Club />
-        <Signup />
       </main>
       <Footer />
     </>

@@ -69,9 +69,9 @@ export default function Schedule() {
           </p>
         </div>
         <div className="grid grid-cols-1 gap-8 md-wide:grid-cols-3">
-          <DayCard title="Anreise" date="DONNERSTAG, 02. JUL." rows={dayAnreise} />
-          <DayCard title="Tag 1 — Aufbrechen" date="FREITAG, 03. JUL." rows={day1} />
-          <DayCard title="Tag 2 — Ausliefern" date="SAMSTAG, 04. JUL." rows={day2} />
+          <DayCard title="Anreise" date="DONNERSTAG, 10. SEP." rows={dayAnreise} />
+          <DayCard title="Tag 1 — Aufbrechen" date="FREITAG, 11. SEP." rows={day1} />
+          <DayCard title="Tag 2 — Ausliefern" date="SAMSTAG, 12. SEP." rows={day2} />
         </div>
       </div>
     </section>
