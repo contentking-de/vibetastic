@@ -8,7 +8,7 @@ export default function SoldOutBanner() {
           <span className="inline-flex items-center gap-1.5 bg-accent-ink text-accent text-[11px] px-2 py-0.5 rounded-full tracking-label font-bold uppercase">
             Ausverkauft
           </span>
-          Workshop #01 — alle 5 Plätze vergeben!
+          Workshop #01 — alle 7 Plätze vergeben!
         </div>
         <span className="text-sm opacity-80">
           Folgetermine werden in Kürze bekannt gegeben.{" "}
