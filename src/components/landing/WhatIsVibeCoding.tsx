@@ -25,7 +25,7 @@ export default function WhatIsVibeCoding() {
             {[
               { num: "0", lab: "Vorkenntnisse nötig" },
               { num: "48h", lab: "Bis zur ersten Website" },
-              { num: "3:7", lab: "Coach pro Gruppe" },
+              { num: "3:6", lab: "Coach pro Gruppe" },
               { num: "∞", lab: "Ideen bauen lernen" },
             ].map((s) => (
               <div key={s.lab} className="bg-bg-card p-7">
