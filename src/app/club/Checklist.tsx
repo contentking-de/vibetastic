@@ -29,7 +29,7 @@ const sections: Section[] = [
         id: "sw-git",
         label: "Git",
         detail: "Versionskontrolle. Prüfen mit: git --version",
-        href: "https://git-scm.com",
+        href: "https://github.com",
       },
       {
         id: "sw-cursor",
